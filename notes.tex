@@ -1,0 +1,575 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[all]{xy}
+\usepackage{color}
+\usepackage{geometry}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+\SelectTips{eu}{}
+\setlength{\fboxsep}{0pt}
+\setlength\parskip{0.3em}
+\setlength{\parindent}{0 pt}
+
+\newcommand{\Sym}{\text{Sym}}
+\newcommand{\adj}{\text{adj}\ }
+\newcommand{\lcm}{\text{lcm}\ }
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+\newcommand{\spanset}{\text{span}}
+\newcommand{\rank}{\text{rank }}
+\newcommand{\Mod}{\text{ mod }}
+
+\theoremstyle{definition}
+
+\newtheorem{defn}{Definition}[subsection]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{lemma}[defn]{Lemma}
+\newtheorem{coro}[defn]{Corollary}
+\newtheorem{example}[defn]{Example}
+\newtheorem{exe}[defn]{Exercise}
+\newtheorem*{remark}{Remark}
+\newtheorem*{notation}{Notation}
+
+\title{MA3K4 Introduction to group theory :: Lecture notes}
+\author{Lecturer: Gareth Tracey}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\begin{flushright}
+\textit{Week 1, lecture 1 starts here}
+\end{flushright}
+
+\section{Introduction}
+\begin{defn}
+A \textit{group} is a pair $(G,\circ)$ where $G$ is a set and $\circ:G\times G\rightarrow G$ is a binary operation satisfying
+\begin{enumerate}
+\item Associativity: $(g\circ h)\circ k = g\circ (h\circ k) \ \forall g,h,k \in G$,
+\item Identity: $\exists$ an element in $G$, denoted $1_G$, such that $1_G\circ g = g\circ 1_G = g \ \forall g\in G$,
+\item Inverses: $\forall g\in G$, $\exists$ an element in $G$, denoted $g^{-1}$, such that $g\circ g^{-1} = g^{-1}\circ g = 1_G$.
+\end{enumerate}
+\end{defn}
+
+\begin{remark}
+Implicit in parts 1 and 2 of above definition are
+\begin{enumerate}
+\item An identity element in an associative binary operation is unique, justifying the notation and the `the' before `identity'
+\item Similarly, inverses are unique in an associative binary operation, so we say \textit{the} inverse of $g$
+\end{enumerate}
+The number of elements in a group $(G,\circ)$ is called the order of $G$, denoted $|G|$.
+\end{remark}
+
+\begin{example}
+Let $G=\mathbb Z$. Then
+\begin{enumerate}
+\item If we define $\circ:G\times G\rightarrow G$ by $g\circ h=g+h$ for $g,h\in \mathbb Z$ then we know $(G,\circ)$ is a group and $1_G=0,\ g^{-1}=-g \ \forall g\in G$.
+\item For the same set, if we define $g\circ h=g\times h$ then $(G,\circ)$ is not a group for lack of inverses for $g\in \mathbb Z \backslash \{\pm 1\}$.
+\end{enumerate}
+\end{example}
+
+\begin{remark}
+\begin{enumerate}
+\item You may have been given a fourth axiom, closure, in previously seen definitions of a group. The reason we omit that here is because it's implied by definition of binary operation.
+\item If $(G,\circ)$ is a group, $\circ$ is often called the \textit{group operation}.
+\item Given clear context, we will streamline our notation and simply write $G$ in place of $(G,\circ)$ and $gh$ in place of $g\circ h$.
+\end{enumerate}
+\end{remark}
+
+\begin{defn}
+Let $G$ be a group.
+\begin{enumerate}
+\item If $g,h\in G : gh=hg$ then $g$ and $h$ \textit{commute}.
+\item If $g$ and $h$ commute $\forall g,h \in G$ then $G$ is \textit{abelian}.
+\end{enumerate}
+\end{defn}
+
+\begin{example}
+$(\mathbb Z,+)$ is abelian.
+\end{example}
+
+\begin{exe}[Commuting elements in groups]
+Let $G$ be a group.
+\begin{enumerate}
+\item Suppose $g^2=1_G \ \forall g\in G$. Show that $G$ is abelian.
+\begin{proof}
+Note that this implies $\forall g,h\in G,\ (gh)^{-1}=gh$, but $(gh)^{-1}=h^{-1}g^{-1}=hg$, so $gh=hg$.
+\end{proof}
+\item Suppose $g^3=1_G \ \forall g\in G$. Show that $hgh^{-1}$ and $g$ commute $\forall g,h\in G$.
+\begin{proof}
+One has $g^2h=g^{-1}h^{-2}=(h^2g)^{-1}=h^2gh^2g\Rightarrow gh^2g=hg^2h\Rightarrow  hgh^2g=h^2g^2h$. Now consider $(gh)^{-1}$, which equals $h^2g^2$ but also $ghgh$. Hence $ghgh^{-1}=ghgh^2=h^2g^2h=hgh^2g=hgh^{-1}g$, as desired.
+\end{proof}
+\end{enumerate}
+\end{exe}
+
+Next, we are going to look at two infinite families of examples of groups: 1. Symmetric groups and 2. Linear groups.
+
+\subsection{Symmetric group}
+\begin{defn}
+Let $X$ be a set, and define
+\[
+\Sym(X) = \{f:f:X\rightarrow X \text{ is a bijection}\}
+\]
+Define $\circ:\Sym(X)\times \Sym(X)\rightarrow \Sym(X)$ to be the usual composition of functions. Then $(\Sym(X),\circ)$ is a group, called the \textit{symmetric group} on $X$. An element of $\Sym(X)$ is called a \textit{permutation}. 
+\end{defn}
+
+\begin{remark}[Sanity check]
+\begin{enumerate}
+\item Associativity is clear by inheritance
+\item $1_G=\id_X : x\mapsto x$
+\item For $f\in \Sym(X)$, $x\in X$, choose a unique $y_x\in X$ such that $f(y_x)=x$. Define $g:X\rightarrow X$ by $g(x)=y_x$, then $g$ is a inverse for $f$.
+\end{enumerate}
+\end{remark}
+
+We introduce cycle notation as a more compact way of writing permutations down.
+
+\begin{flushright}
+\textit{Week 1, lecture 2 starts here}
+\end{flushright}
+
+\begin{defn}[Cycle notation]
+Let $X$ be a set.
+\begin{enumerate}
+\item Let $a_1,\ldots,a_n\in X$ be distinct. The permutation $f=(a_1,\ldots,a_n) \in\Sym(X)$ is defined to be $f(a_i)=a_{i+1}$ for $1\leq i\leq n-1$, $f(a_{n})=a_1$, and $f(b)=b$ for $b\not\in \{a_1,\ldots,a_n\}$. We call $f$ a \textit{cycle of length} $n$ (or an $n$-cycle).
+\item Two cycles $(a_1,\ldots,a_r),\ (b_1,\ldots,b_s)$ are \textit{disjoint} if $\{a_1,\ldots,a_r\} \cap \{b_1,\ldots,b_s\}=\varnothing$.
+\item The \textit{empty cycle}, written $()$, is the identity map which is also $1_{\Sym(X)}$.
+\end{enumerate}
+\end{defn}
+\begin{remark}[Important points about cycles]
+\begin{enumerate}
+\item Perhaps a tautology, but the empty cycle is thought of as a cycle (of length 0).
+\item Recall that the group operation is composition of functions. So $fg:X\rightarrow X$ means do $g$ first and then $f$. e.g. $X=\{1,2,3,4,5\}$, so $(3,4,1,2)(4,5)=(1,2,3,4,5)$.
+\item Cycle notation is not unique in the following sense: two distinct $m$-tuples of elements in a set $X$ can represent the same cycle, e.g. $(1,2,3,4,5)=(3,4,5,1,2)$.
+\end{enumerate}
+\end{remark}
+
+\begin{thm}
+Let $X$ be a finite set. Then
+\begin{enumerate}
+\item $|\Sym(X)|=|X|!$,
+\item Every element $F\in \Sym(X)$ can be written as product of disjoint cycles. Moreover, the decomposition is unique in the sense that if $F=f_1\cdots f_r=g_1\cdots g_s$ where $f_i,g_i$ are disjoint cycles of length $>1$, then $r=s$ and $\{f_1,\ldots,f_r\}=\{g_1,\ldots,g_r\}$.
+\end{enumerate}
+\end{thm}
+\begin{proof}[Proof (nonexaminable)]
+\begin{enumerate}
+\item Write $X=\{x_1,\ldots,x_r\}$ where $n=|X|$ and define
+\[
+X(n):=\{(a_1,\ldots,a_n):a_i\in X, a_i\neq a_j \text{ for } i\neq j\}.
+\]
+Define a bijection $\theta:\Sym(X)\rightarrow X(n)$ by $\theta(f)=(f(x_1),\ldots,f(x_n))$. for $f\in \Sym(X)$, observe
+\begin{enumerate}
+\item $\theta$ is well-defined, since $f$ is a bijection, so $f(x_i)\neq f(x_j)$ for $i\neq j$.
+\item In the same way, $\theta$ is injective. Indeed, if $\theta(f)=\theta(g)$ then $f(x_i)=g(x_i) \ \forall i$ by definition of $\theta$, so $f=g$.
+\item If $(a_1,\ldots,a_n)\in X(n)$, then define $f:X\rightarrow X$ by $f(x_i)=a_i$ for $1\leq i\leq n$. Clearly, $f\in \Sym(X)$ and $\theta(f) = (a_1,\ldots,a_n)$, so $\theta$ is surjective.
+\end{enumerate}
+It follows that $|\Sym(X)|=|X(n)|=n!$.
+\item Let $f\in\Sym(X)$. If $f=\id_X$ then $f=()$ so it's a cycle. Now suppose $f$ is not $\id_X$. Let $Y=\{x\in X:f(x)\neq x\}$. Note that since $|\Sym(X)|$ is finite by 1., $\exists n\in \mathbb N$ such that $f^n=\id_X$.
+
+In particular, if we fix $a_1\in Y$, then we may define $m_1:=\min\{m\in \mathbb N:f^m(a_1)=a_1\}$ since the set is nonempty. Now, for $2\leq i\leq m_1$, define $a_i:=f(a_{i-1})$. If $Y=\{a_1,\ldots,a_{m_1}\}$, then by definition of cycle, one has $f=(a_1,\ldots,a_m)$.
+
+Now suppose $Y\backslash \{a_1,\ldots,a_{m_1}\}\neq \varnothing$. Choose $a_{m_1+1} \in Y\backslash \{a_1,\ldots,a_{m_1}\}$, and define $m_2:=\min\{m\in \mathbb N:f^m(a_{m_1+1})=a_{m_1+1}\}$. For $m_1+2\leq i\leq m_2$, again define $a_i:=f(a_{i-1})$, then if $Y=\{a_1,\ldots,a_{m_1},a_{m_1+1},\ldots,a_{m_2}\}$, one has $f=(a_1,\ldots,a_m)(a_{m+1},\ldots,a_{m_2})$. If not, we continue inductively. Since $X$ is finite, this must terminate, and when it does $f$ will be a product of disjoint cycles. The uniqueness follows from the algorithm immediately.
+\end{enumerate}
+\end{proof}
+
+\subsection{Linear group}
+\begin{defn}
+$F$ is a field and $n\in \mathbb N$. We define
+\[
+GL_n(F) := \{A:A\text{ an invertible }n\times n \text{ matrix over } F\},
+\]
+a group with matrix multiplication as operation. This is called \textit{general linear group} of dimension $n$ over $F$.
+\end{defn}
+\begin{flushright}
+\textit{Week 1, lecture 3 starts here}
+\end{flushright}
+
+\begin{remark}[Useful things from Algebra I, II for studying general linear groups]
+\begin{enumerate}
+\item Each field $F$ has an additive and multiplicative identity $0_F$ and $1_F$. Given clear context, they will be denoted simply 0 and 1 respectively.
+\item An $n\times n$ matrix $A$ over $F$ is invertible iff $\det A\neq 0$ iff rows (or columns) of $A$ are linearly independent.
+\item If $F$ is a finite field, then $|F|=p^f$ for some prime $p$ and $f\in\mathbb N$. Moreover, for each prime $p$ and each $f\in\mathbb N$, $\exists!$ a field (up to isomorphism) $F:|F|=p^f$. $p$ is called the \textit{characteristic} of $F$, and satisfies that $p\alpha=0 \ \forall \alpha\in F$.
+\item If $F$ is a field then $F^{\times}:=F\backslash \{0\}$ is a group with multiplication as group operation inherited from $F$.
+\end{enumerate}
+\end{remark}
+\begin{exe}
+\begin{enumerate}
+\item Let $X$ be a set. Show that $\Sym(X)$ is abelian iff $|X|\leq 2$.
+\item Let $F$ be a field. Show that $GL_n(F)$ is abelian iff $n=1$.
+\end{enumerate}
+\end{exe}
+\begin{thm}
+Let $F$ be a finite field with $|F|=q$. Then $\displaystyle |GL_n(F)|=q^{\binom{n}{2}} \prod_{i=1}^n (q^i-1)$.
+\end{thm}
+\begin{proof}[Proof (nonexaminable)]
+See exercise sheet 1. 
+\end{proof}
+
+\subsection{Order of elements}
+\begin{defn}
+The \textit{order} of $g\in G$, denoted $|g|$, is defined $|g|:=\min \{n\in\mathbb N:g^n= 1_G\}$. If the set is $\varnothing$ then $|g|:=\infty$.
+\end{defn}
+\begin{example}
+\begin{enumerate}
+\item Let $X$ be a set and let $f=(a_1,\ldots,a_m)\in\Sym(X)$. Then $|f|=m$.
+\item Let $F$ be a finite field of order $p^f$ where $p$ prime, $G=GL_2(F)$, and $\alpha,\beta\in F^{\times}$. Observe that
+\[
+\begin{pmatrix}
+1 & \alpha \\ 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & \beta \\ 0 & 1
+\end{pmatrix}=
+\begin{pmatrix}
+1 & \alpha+\beta \\ 0 & 1.
+\end{pmatrix}
+\]
+So if $g=\begin{pmatrix}
+1 & \alpha \\ 0 & 1
+\end{pmatrix}$ then $g^n=\begin{pmatrix}
+1 & n\alpha \\ 0 & 1
+\end{pmatrix}$, so $|g|\mid p$ (we'll see later about this implication), so $|g|=p$.
+
+Also,
+\[
+g^n=\begin{pmatrix}
+\alpha & 0 \\ 0 & \beta
+\end{pmatrix}^n=
+\begin{pmatrix}
+\alpha^n & 0 \\ 0 & \beta^n .
+\end{pmatrix}
+\]
+So $|g|=\lcm (m,k)$ where $m=|\alpha|$ and $k=|\beta|$ as elements of $F^\times$.
+\end{enumerate}
+\end{example}
+\begin{remark}
+\begin{enumerate}
+\item For $g\in G$, $(g^n)^{-1}=\left(g^{-1}\right)^n$, so we write $g^{-n}:=\left(g^{-1}\right)^n$. In particular, $\left|g^{-1}\right|=|g|$.
+\item If $g\in G,\ n=|g|$ and $n\mid l$, then $g^l=1$.
+\end{enumerate}
+\end{remark}
+\begin{lemma}
+Let $a,b\in G$ of finite order. Then
+\begin{enumerate}
+\item If $l\in \mathbb N$, then $a^l=1$ iff $|a|\mid l$.
+\item Let $m\in \mathbb N$, then $\displaystyle |a^m|=\frac{|a|}{\gcd (|a|,m)}$.
+\item If $a,b$ commute then $|ab|\mid \lcm (|a|,|b|)$.
+\item If $a,b$ commute and $a^i=b^j \ \forall i,j\in \mathbb N$ only when they are both 1 (i.e. $\langle a\rangle \cap \langle b\rangle =\{1\}$) then $|ab|= \lcm (|a|,|b|)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item $\Leftarrow$ is mentioned. $\Rightarrow$: suppose $a^l=1$. By Euclidean division, we can write $l=q|a|+r$ for some $r\in[0,|a|)$. Then $1=a^l=a^{q|a|+r}=a^r$, which contradicts minimality of $|a|$.
+\item Suppose first that $m\mid |a|$. Then one can write $|a|=ms$, so $a^{ml}=1\Leftrightarrow |a| \mid ml$ by 1 $\displaystyle \Leftrightarrow \frac{|a|}{m}\mid l$. Hence the least positive integer $l:a^{ml}=1$ is $\displaystyle \frac{|a|}{m}$.
+
+Now let $k=\gcd (|a|,m)$. We write $m=ks$, then $a^{m\frac{|a|}{k}}=a^{|a|s}=1$, and by 1 one has $|a^m| \mid \frac{|a|}{k}$. To complete the proof it suffices to show that $\frac{|a|}{k}\leq |a^m|$.
+\begin{flushright}
+\textit{Week 2, lecture 1 starts here}
+\end{flushright}
+By Bézout's lemma, $\exists s,t\in\mathbb Z:k=s|a|+tm$, so $a^k=a^{s|a|+tm}=(a^{|a|})^s a^{tm}=a^{tm}$. Then $a^{tm|a^m|}=((a^m)^{|a^m|}))^t=1^t=1$. This implies $|a^{tm}|\mid a^m$ by 1. So $\frac{|a|}{k}=|a^k|=|a^tm|\mid |a^m|$.
+\item Let $l:=\lcm(|a|,|b|)$. Then $(ab)^l=a^lb^l=1\times 1=1$, so by 1. $|ab|\mid l$.
+\item Let $k:=|ab|$. Then $k\mid l$, but also, $1=(ab)^k=a^kb^k$ so $a^k=\left(b^{-1}\right)^k$ and by assumption both sides are 1. So $|a|,|b|\mid k$, so $l\mid k$, hence $k=l$.
+\end{enumerate}
+\end{proof}
+\begin{exe}
+\begin{enumerate}
+\item Let $h,g\in G$. Show that $\left|hgh^{-1}\right|=|g|$.
+\item Let $l,m,n>2\in\mathbb N$. Show that $\exists G$ with $a,b\in G:|a|=l,\ |b|=m,\ |ab|=n$. Also:
+\begin{enumerate}
+\item Show that $G$ can be finite.
+\item Show that one can replace $l,m,n>2$ by $l,m,n>1$.
+\end{enumerate}
+Key hint: A $2\times 2$ matrix over $\mathbb C$ with distinct eigenvalues is diagonalisable. Now exploit result of 1st exercise.
+\end{enumerate}
+\end{exe}
+\subsection{Subgroup and coset}
+\begin{defn}
+A nonempty $H\subseteq G$ is a \textit{subgroup} of $G$, denoted $H\leq G$, if
+\begin{enumerate}
+\item $1_G\in H$
+\item $h\in H\Rightarrow h^{-1}\in H$
+\item $h_1,h_2\in H \Rightarrow h_1h_2\in H$
+\end{enumerate}
+\end{defn}
+\begin{defn}
+For a group $G$ and $g\in G$, define $\langle g\rangle:=\{g^n:n\in\mathbb Z\}$ which is called the \textit{cyclic subgroup of} $G$ \textit{generated by} $g$. If $G=\langle g\rangle$ then $G$ is \textit{cyclic} and $g$ is a \textit{generator} for $G$.
+\end{defn}
+\begin{lemma}
+$H\subseteq G$ where $H$ nonempty. $H\leq G \Leftrightarrow h_1h_2\in H\Rightarrow h_1h_2^{-1}\in H$
+\end{lemma}
+\begin{proof}
+\begin{itemize}
+\item[$\Rightarrow$] $h_1,h_2\in H\Rightarrow h_2^{-1}\in H\Rightarrow h_1h_2^{-1}\in H$.
+\item[$\Leftarrow$] \begin{enumerate}
+\item $H\neq \varnothing\Rightarrow h\in H\Rightarrow hh^{-1}\in H\Rightarrow 1_G\in H$
+\item $h\in H\Rightarrow 1_Gh^{-1}=h^{-1}\in H$
+\item $h_1,h_2\in H\Rightarrow h_2^{-1}\in H\Rightarrow h_1(h_2^{-1})^{-1}h_1h_2\in H$
+\end{enumerate}
+\end{itemize}
+\end{proof}
+\begin{example}
+Let $G=GL_2(F)$ and
+\[
+H=\left\{\begin{pmatrix}
+  \alpha & 0 \\ 0 & \beta
+\end{pmatrix}:\alpha,\beta\in F^{\times}\right\} \subseteq G. \qquad\text{sometimes called diagonal subgroup}
+\]
+We want to show this is indeed a subgroup. Let $h_i=\begin{pmatrix}
+  \alpha_i & 0 \\ 0 & \beta_i
+\end{pmatrix}\in H$ where $i=1,2$. Then
+\[
+h_1h_2=\begin{pmatrix}
+  \alpha_1 & 0 \\ 0 & \beta_2
+\end{pmatrix}\begin{pmatrix}
+  \alpha_2^{-1} & 0 \\ 0 & \beta_2^{-1}
+\end{pmatrix}=\begin{pmatrix}
+  \alpha_1 \alpha_2^{-1} & 0 \\ 0 & \beta_1\beta_2^{-1}
+\end{pmatrix}\in H .
+\]
+\end{example}
+\begin{defn}
+Let $A\subseteq G$ be nonempty. The \textit{subgroup of} $G$ \textit{generated by} $A$, denoted $\langle A\rangle$, is
+\[
+\{a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}:m\in\mathbb N,\ a_i\in A,\ \varepsilon_i=\{\pm 1\}\}.
+\]
+\end{defn}
+\begin{notation}
+If $A=\{g_1,\ldots,g_t\}$ then we often write $\langle A\rangle$ as $\langle g_1,\ldots,g_t\rangle$.
+\end{notation}
+
+\begin{flushright}
+\textit{Week 2, lecture 2 starts here}
+\end{flushright}
+
+\begin{exe}
+Let $G$ be a group and $A\subseteq$ nonempty.
+\begin{enumerate}
+\item Use Lemma 1.4.3 to show that $\langle A\rangle$ is indeed a subgroup of $G$.
+\item Write $A=\{g_1,\ldots,g_s\}$ and suppose $g_ig_j=g_jg_i \ \forall i,j=1,\ldots,s$. Show that $|\langle A\rangle|\leq \prod_{i=1}^s |g_i|$.
+\item Suppose $g^p=1 \ \forall g\in G$ and $G=\langle x,y\rangle$ for some $x,y\in G$.
+\begin{enumerate}
+\item Show that if $p=2,\ |G|\leq 4$.
+\item Show that if $p=3,\ |G|\leq 3^4$.
+\item Fields-medal-worth: If $p=5$, is $G$ finite?
+\end{enumerate}
+\end{enumerate}
+\end{exe}
+
+\begin{defn}
+The \textit{left coset} of $H\leq G$ with respect to $g\in G$ is the set $gH:=\{gh:h\in H\}.$ The \textit{right coset} is defined similarly.
+\end{defn}
+$gH$ is not a subgroup unless $g\in H$ since in general the identity is not there.
+\begin{lemma}
+Let $H\leq G$ and $g,k\in G$. The following are equivalent:
+\begin{enumerate}
+\item $k\in gH$
+\item $kH=gH$
+\item $g^{-1}k\in H$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+First note that if $h\in H$ then $hH=H$ by virtue of the fact $H\leq G$.
+
+Now $k\in gH\Rightarrow k=gh$ for some $h\in H \Rightarrow kH=ghH=gH$, so 1 implies 2. The other two implications are almost identical.
+\end{proof}
+\begin{lemma}
+Let $H\leq G$. For $g_1,g_2\in G$, say that $g_1\sim_H g_2\Leftrightarrow g_1H=g_2H$. Then $\sim_H$ is an equivalence relation.
+\end{lemma}
+\begin{proof}
+The three conditions reflexivity, symmetry and transitivity follow immediately from definition.
+\end{proof}
+\begin{coro}
+Let $H\leq G$.
+\begin{enumerate}
+\item If $g_1,g_2\in G$, then either $g_1H=g_2H$ or $g_1H\cap g_2 H=\varnothing$.
+\item The set $\{gH:g\in G\}$ of left cosets is a partition of $G$, i.e. if $g_iH$ for $i\in I$ are distinct left cosets of $H$ in $G$ then
+\[
+G=\bigsqcup_{i\in I} g_i H.
+\]
+\end{enumerate}
+\end{coro}
+\begin{proof}
+$\{gH:g\in G\}$ is precisely the set of equivalence classes under $\sim_H$, so the results follow immediately.
+\end{proof}
+\begin{thm}[Lagrange's]
+Let $G$ be a finite group and $H\leq G$. Then $|H|\mid |G|$.
+\end{thm}
+\begin{proof}
+Let $g_1H,\ldots,g_tH$ be distinct left cosets of $H$ in $G$. By Corollary 1.4.10,
+\[
+|G|=\left|\bigsqcup_{i=1}^t g_i H\right|=\sum_{i=1}^t |g_iH|,
+\]
+and one also has $|gH|=|H| \ \forall g\in G$ since $gH\rightarrow H$ defined by $gh\mapsto h$ is a bijection. Hence $|G|=t|H|$.
+\end{proof}
+
+\begin{defn}
+\begin{enumerate}
+\item As in the context of above, we write $G/H:=\{gH:g\in G\}$.
+\item $|G/H|$ is called \textit{index} of $H$ in $G$, denoted $|G:H|$. By Lagrange's theorem if $G$ is finite then $|G:H|=\frac{|G|}{|H|}$.
+\end{enumerate}
+\end{defn}
+\begin{coro}
+If $G$ is finite and $g\in G$, then $|g|\mid |G|$.
+\end{coro}
+\begin{proof}
+This follows from the fact $|\langle g\rangle |=|g|$ and Lagrange's theorem.
+\end{proof}
+
+\subsection{Normal subgroup and quotient group}
+In general $G/H$ is not a group, which is the motivation of this section.
+\begin{lemma}
+Let $H\leq G,\ g\in G$. Then $gHg^{-1}=\left\{ghg^{-1}:h\in H\right\} \leq G$.
+\end{lemma}
+\begin{proof}
+We use Lemma 1.4.3. Clearly $gHg^{-1}\neq \varnothing$ since $1_G\in gHg^{-1}$. Now let $x=gh_1g^{-1},\ y=gh_2g^{-1}$ where $h_1,h_2\in H$. Note that $h_1h_2\in H$ since $H\leq G$. Then $y^{-1}=gh_2^{-1}g^{-1}$ so
+\[
+xy^{-1}=gh_1g^{-1}gh_2^{-1}g^{-1}=gh_1h_2^{-1}g^{-1} \in gHg^{-1}.
+\]
+\end{proof}
+\begin{defn}
+\begin{enumerate}
+\item $H\leq G$ is \textit{normal} in $G$ if $gHg^{-1}=H \ \forall h\in H$, denoted $N\unlhd G$.
+\item The \textit{normaliser} of $H\leq G$ is defined as
+\[
+N_G(H):=\{g\in G:gHg^{-1}=H\}.
+\]
+\end{enumerate}
+\end{defn}
+\begin{exe}
+\begin{enumerate}
+\item If $H\leq G$, show that $N_G(H)\leq G$.
+\item $\{1_G\},G$ are always normal.
+\end{enumerate}
+\end{exe}
+
+\begin{flushright}
+\textit{Week 2, lecture 3 starts here}
+\end{flushright}
+
+\begin{defn}
+$G$ is \textit{simple} if $\{1_G\}$ and $G$ are the only normal subgroups of $G$.
+\end{defn}
+\begin{example}
+\begin{itemize}
+\item $\mathbb Z/p\mathbb Z$ for any prime $p$ (by Lagrange's)
+\item $A_n$ for $n\geq 5$
+\end{itemize}
+\end{example}
+\begin{notation}
+$AB:=\{ab:a\in A,b\in B\}$ where $A,B\subseteq G$. It's a subset but not a subgroup of $G$ in general, even if $A,B\leq G$.
+\end{notation}
+\begin{lemma}
+Let $N\unlhd G$ and $g,h\in G$. Then $(gN)(hN)=ghN$.
+\end{lemma}
+\begin{proof}
+\begin{itemize}
+\item[$\subseteq$:] Let $x=gn_1\in gN,\ y=hn_2\in hN$ where $n_{1,2}\in N$. Then
+\[
+xy=gn_1hn_2=ghh^{-1}n_1hn_2 \in ghN
+\]
+since $h^{-1}n_1h\in N$ by definition of a normal subgroup.
+\item[$\supseteq$:] Let $x=ghn\in ghN$ where $n\in N$. Then
+\[
+x=(g1_G)(hn)\in (gN)(hN).
+\]
+\end{itemize}
+\end{proof}
+\begin{defn}
+Let $N\unlhd G$.
+\begin{enumerate}
+\item The \textit{natural binary operation} on $G/N$ is $\circ:G/N\times G/N\rightarrow G/N$ given by $(gN)\circ(hN)=ghN$.
+\item $(G/N,\circ)$ is a group, called the \textit{quotient of} $G$ \textit{by} $N$.
+\end{enumerate}
+\end{defn}
+Checking this is indeed a group is left as an exercise.
+
+\subsection{Homomorphisms}
+\begin{defn}
+\begin{enumerate}
+\item A map $\theta:G\rightarrow H$ is a \textit{homomorphism} if $\theta(g_1g_2)=\theta(g_1)\theta(g_2) \ \forall \theta_{1,2}\in G$.
+\item A bijective homomorphism is an \textit{isomorphism}. If for $G,H,\ \exists\theta:G\rightarrow H$ an isomorphism, then $G$ and $H$ are \textit{isomorphic}, denoted $G\cong H$.
+\item Let $\theta:G\rightarrow H$ be a homomorphism. The \textit{kernel} of $\theta$, denoted $\ker \theta$, is defined to be $\{g\in G:\theta (g)=1_H\}$, which is a subgroup of $G$. The \textit{image} of $\theta$, denoted $\im \theta$, is defined to be $\{\theta(g):g\in G\}$.
+\end{enumerate}
+\end{defn}
+\begin{example}
+Let $F$ be a field, $G=GL_n(F)$ and $H=F^\times$. Then $\det G\rightarrow H$ is a (surjective) homomorphism, since $\det AB=\det A\det B \ \forall A,B\in GL_n(F)$. Also
+\[
+\ker \det = \{A\in GL_n(F):\det A=1_F\}=: SL_n(F).
+\]
+\end{example}
+
+\begin{thm}[1st isomorphism theorem]
+Let $\theta:G\rightarrow H$ be an homomorphism. Then
+\begin{enumerate}
+\item $\ker\theta\unlhd G$.
+\item $\im \theta\leq H$.
+\item $G/\ker\theta\cong\im\theta$.
+\end{enumerate}
+\end{thm}
+
+\begin{thm}[2nd isomorphism theorem]
+Let $H\leq G$ and $N\unlhd G$. Then
+\begin{enumerate}
+\item $HN=NH\leq G$.
+\item $H\cap N\unlhd H$.
+\item $HN/N\cong H/(H\cap N)$.
+\end{enumerate}
+\end{thm}
+
+\begin{thm}[3rd isomorphism theorem]
+Let $N,K\unlhd G : N\leq K$. Then
+\[
+(G/N)/(K/N)\cong G/K.
+\]
+\end{thm}
+
+\begin{thm}[Correspondence (or 4th isomorphism) theorem]
+Let $N\unlhd G$. Then the map
+\[
+f:\{J:N\leq J\leq G\} \rightarrow \{X:X\leq G/N\}
+\]
+given by
+\[
+J\mapsto J/N
+\]
+is a bijection.
+\end{thm}
+\begin{proof}
+Let $A:=\{J:N\leq J\leq G\}$ and $B:=\{X:X\leq G/N\}$. Clearly $J/N\leq G/N$.
+
+Suppose $J_{1,2}\in A$ and $f(J_1)=f(J_2)$, and let $x\in J_1$. Then
+\[
+xN\in f(J_1)=f(J_2)=J_2/N,
+\]
+so $xN=yN$ for some $y\in J_2$. Since $x\in xN$, $x=yn\in J_2$ for some $n\in N$. It follows that $J_1\subseteq J_2$, and symmetrically $J_2\subseteq J_1$. Hence $f$ is injective.
+
+Let $X\in B$ and set $Y=\{y\in G:yN\in X\}$. One can see that $Y\leq G$ since $y_{1,2}N\in X\Rightarrow (y_1N)(y_2N)^{-1}\in X\Rightarrow y_1y_2^{-1}N \in X$, so $y_1y_2^{-1}\in Y$ by definition, hence $Y\leq G$. Since $N\leq Y$ ($nN=N=1_{G/N}\in X \ \forall n\in N$) one has $y\in A$. Since $f(Y)=X,\ f$ is surjective.
+\end{proof}
+
+\section{Group action}
+
+\section{Sylow's theorems}
+
+\section{Classifying groups of small order}
+
+\section{Soluble group}
+\end{document}
