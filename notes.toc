@@ -6,6 +6,7 @@
 \contentsline {subsection}{\numberline {1.5}Normal subgroup and quotient group}{7}{}%
 \contentsline {subsection}{\numberline {1.6}Homomorphisms}{8}{}%
 \contentsline {section}{\numberline {2}Group action}{9}{}%
-\contentsline {section}{\numberline {3}Sylow's theorems}{9}{}%
-\contentsline {section}{\numberline {4}Classifying groups of small order}{9}{}%
-\contentsline {section}{\numberline {5}Soluble group}{9}{}%
+\contentsline {subsection}{\numberline {2.1}Permutation groups}{9}{}%
+\contentsline {section}{\numberline {3}Sylow's theorems}{12}{}%
+\contentsline {section}{\numberline {4}Classifying groups of small order}{12}{}%
+\contentsline {section}{\numberline {5}Soluble group}{12}{}%
