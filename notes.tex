@@ -711,6 +711,67 @@ Let $\beta:X\rightarrow Y$ be a bijection. Define $\theta:\Sym(X)\rightarrow\Sym
 \textit{Week 3, lecture 3 starts here}
 \end{flushright}
 
+Recall that if $G=\langle B\rangle,\ H=\langle A\rangle$, then $H\unlhd G\Leftrightarrow bab^{-1}\in H \ \forall a\in A, b\in B$.
+
+\subsection{Group actions}
+\begin{defn}
+Let $G$ be a group and $X$ a set. An \textit{action} of $G$ on $X$ is a map $\cdot:G\times X\rightarrow X$ such that
+\begin{enumerate}
+\item $1_G\cdot x=x \quad \forall x\in X$
+\item $(gh)\cdot x = g\cdot (h\cdot x) \quad \forall g,h\in G,\ x\in X$
+\end{enumerate}
+We say $G$ \textit{acts on} $X$ and $X$ is a a $G$\textit{-set}.
+\end{defn}
+
+\begin{example}
+\begin{enumerate}
+\item The action of $G$ on itself by left multiplication: let $X:=G$ and define $\cdot :G\times X\rightarrow X$ by $g\cdot x:= gx,\ g\in G,\ x\in X$. Note that by definition of a group,
+\begin{enumerate}
+\item $1_G\cdot x=1_Gx=x \quad \forall x\in X$,
+\item $(gh)\cdot x = (gh)x=g(hx)=g\cdot(h\cdot x) \quad \forall g,h\in G,\ x\in X$.
+\end{enumerate}
+\item The action of $G$ on itself by conjugation: again let $X:=G$. Define $\cdot :G\times X\rightarrow X$ by $g\cdot x := gxg^{-1}$. Note that
+\begin{enumerate}
+\item $1_G\cdot x = 1_G x 1_G^{-1}=x \quad \forall x\in X$,
+\item $(gh)\cdot x=(gh)x(gh)^{-1}=ghxh^{-1}g^{-1}=g\cdot \left(hxh^{-1}\right)=g\cdot (h\cdot x)$.
+\end{enumerate}
+\item The action of $G$ on the set of left cosets of $H\leq G$: let $X:=G/H=\{gH:g\in G\}$ and define $\cdot : G\times X\rightarrow X$ by $g\cdot kH=gkH$. To see it's indeed an action is similar to 1.
+\end{enumerate} 
+\end{example}
+
+\begin{prop}
+Let $G$ be a group acting on a set $X$. Define $\phi:G\rightarrow\Sym(X)$ by $\phi(g)(x):=g\cdot x$. Then $\phi$ is a homomorphism. (Then $G/\ker\phi\cong H$ where $H\leq \Sym(X)$).
+\end{prop}
+\begin{proof}
+Let $g,h\in G$. $\phi$ is indeed a bijection by definition of an action. It suffices to show $\phi(gh)=\phi(g)\circ\phi(h)$. Let $x\in X$, then
+\[
+\phi(gh)(x)=(gh)\cdot x = g\cdot(h\cdot x)=\phi(g)(\phi(h)(x))=(\phi(g)\circ\phi(h))x.
+\]
+\end{proof}
+
+\begin{defn}
+Let $\phi$ be the same map as above.
+\begin{enumerate}
+\item The \textit{kernel of action} of $G$ on $X$, denoted $\ker(G,X,\cdot)$, is defined to be
+\[
+\ker(G,X,\cdot)=\ker\phi=\{g\in G:g\cdot x=x \ \forall x\in X\} \unlhd G.
+\]
+\item The \textit{image} of the action, denoted $\im(G,X,\cdot)$, is defined to be $\im\phi\leq\Sym(X)$.
+\item The action is \textit{trivial} if $\ker(G,X,\cdot)=G$ and \textit{faithful} if $\ker(G,X,\cdot)=\{1_G\}$.
+\end{enumerate}
+\end{defn}
+
+\begin{example}[The same ones from 2.2.2]
+\begin{enumerate}
+\item $\ker(G,X,\cdot)=\{1_G\}$, a faithful action.
+\item $\ker(G,X,\cdot)=\{g\in G:gxg^{-1}=x \ \forall x\in X\}=Z(G)$. The action is trivial iff $G$ is abelian.
+\item Observe that the action is trivial $\Leftrightarrow gxH=xH \ \forall g,x\in G\Leftrightarrow H=G$, i.e. it's nontrivial as long as $H$ is proper. This is useful: let $G$ be a nonabelian finite simple group. We claim $G$ cannot have a subgroup of index 3 (the case that index is 2 is obvious since if that's true then it has a nontrivial proper normal subgroup, so not simple).
+\begin{proof}
+Suppose $[G:H]=3.\ G$ acts on $X:=G/H$ and by the above $H$ is proper, so $K:=\ker(G,X,\cdot) \unlhd G$ is proper. But $G$ is simple so $K=\{1_G\}$ and one can then say $G\cong G/K\cong$ some subgroup of $S_3$. Since it's nonabelian it must be the whole group. But $S_3$ is not simple, a contradiction. 
+\end{proof}
+\end{enumerate}
+\end{example}
+
 \section{Sylow's theorems}
 
 \section{Classifying groups of small order}
