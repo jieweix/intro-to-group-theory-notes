@@ -8,6 +8,7 @@
 \contentsline {section}{\numberline {2}Group action}{9}{}%
 \contentsline {subsection}{\numberline {2.1}Permutation groups}{9}{}%
 \contentsline {subsection}{\numberline {2.2}Group actions}{12}{}%
-\contentsline {section}{\numberline {3}Sylow's theorems}{13}{}%
-\contentsline {section}{\numberline {4}Classifying groups of small order}{13}{}%
-\contentsline {section}{\numberline {5}Soluble group}{13}{}%
+\contentsline {subsection}{\numberline {2.3}Fixed points}{17}{}%
+\contentsline {section}{\numberline {3}Sylow's theorems}{18}{}%
+\contentsline {section}{\numberline {4}Classifying groups of small order}{18}{}%
+\contentsline {section}{\numberline {5}Soluble group}{18}{}%

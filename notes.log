@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.20)  20 OCT 2023 14:42
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.20)  29 OCT 2023 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -311,27 +311,27 @@ File: l3backend-xetex.def 2023-04-19 L3 backend support: XeTeX
 (./notes.aux)
 \openout1 = `notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 5
-2.
+5.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -384,12 +384,12 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
 
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -402,7 +402,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 ] [1] [2] [3] [4] [5] [6] [7] [8] [9]
-Overfull \hbox (17.96976pt too wide) in paragraph at lines 622--623
+Overfull \hbox (17.96976pt too wide) in paragraph at lines 625--626
 []\TU/lmr/m/n/10 If $\OML/cmm/m/it/10 f \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 a[]
 ; [] ; f[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 []\OT1/cmr/m/n/10 (\OML/cmm/m/it
 /10 X\OT1/cmr/m/n/10 )$ \TU/lmr/m/n/10 is a cycle and $\OML/cmm/m/it/10 g \OMS/
@@ -411,14 +411,14 @@ n/10 , then $[]\OML/cmm/m/it/10 f \OT1/cmr/m/n/10 := \OML/cmm/m/it/10 gfg[] \OT
 1/cmr/m/n/10 = []$\TU/lmr/m/n/10 . 
  []
 
-[10] [11] [12] [13] (./notes.aux) ) 
+[10] [11] [12] [13] [14] [15] [16] [17] [18] (./notes.aux) ) 
 Here is how much of TeX's memory you used:
- 5926 strings out of 476760
- 86649 string characters out of 5805258
+ 5938 strings out of 476760
+ 86910 string characters out of 5805258
  1863482 words of memory out of 5000000
- 25996 multiletter control sequences out of 15000+600000
- 520448 words of font info for 79 fonts, out of 8000000 for 9000
+ 26002 multiletter control sequences out of 15000+600000
+ 520472 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 58i,9n,63p,585b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 58i,10n,63p,585b,319s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on notes.pdf (14 pages).
+Output written on notes.pdf (19 pages).

@@ -22,6 +22,9 @@
 \setlength\parskip{0.3em}
 \setlength{\parindent}{0 pt}
 
+\newcommand{\orb}{\text{orb}}
+\newcommand{\stab}{\text{stab}}
+\newcommand{\fix}{\text{fix}}
 \newcommand{\Sym}{\text{Sym}}
 \newcommand{\Alt}{\text{Alt}}
 \newcommand{\supp}{\text{supp}}
@@ -767,10 +770,293 @@ Let $\phi$ be the same map as above.
 \item $\ker(G,X,\cdot)=\{g\in G:gxg^{-1}=x \ \forall x\in X\}=Z(G)$. The action is trivial iff $G$ is abelian.
 \item Observe that the action is trivial $\Leftrightarrow gxH=xH \ \forall g,x\in G\Leftrightarrow H=G$, i.e. it's nontrivial as long as $H$ is proper. This is useful: let $G$ be a nonabelian finite simple group. We claim $G$ cannot have a subgroup of index 3 (the case that index is 2 is obvious since if that's true then it has a nontrivial proper normal subgroup, so not simple).
 \begin{proof}
-Suppose $[G:H]=3.\ G$ acts on $X:=G/H$ and by the above $H$ is proper, so $K:=\ker(G,X,\cdot) \unlhd G$ is proper. But $G$ is simple so $K=\{1_G\}$ and one can then say $G\cong G/K\cong$ some subgroup of $S_3$. Since it's nonabelian it must be the whole group. But $S_3$ is not simple, a contradiction. 
+Suppose $|G:H|=3.\ G$ acts on $X:=G/H$ and by the above $H$ is proper, so $K:=\ker(G,X,\cdot) \unlhd G$ is proper. But $G$ is simple so $K=\{1_G\}$ and one can then say $G\cong G/K\cong$ some subgroup of $S_3$. Since it's nonabelian it must be the whole group. But $S_3$ is not simple, a contradiction. 
 \end{proof}
 \end{enumerate}
 \end{example}
+
+\begin{flushright}
+\textit{Week 4, lecture 1 starts here}
+\end{flushright}
+
+\begin{remark}
+We saw last time that Proposition 2.2.3 is particularly useful when $G$ is a finite simple group and $H$ is a subgroup of $G$ such that $|G:H|=n$, in that it implies that $G$ is isomorphic to a subgroup of $S_n$. This leads to the following more general result.
+\end{remark}
+
+\begin{prop}
+Let $G$ be a group acting faithfully on a set $X$. Then $G$ is isomorphic to a subgroup of $\Sym(X)$.
+\end{prop}
+\begin{proof}
+This follows immediately from the definition of faithful and the 1st isomorphism theorem.
+\end{proof}
+
+\begin{defn}
+Let $G$ be a group acting on a set $X$ and $x\in X$.
+\begin{enumerate}
+\item The \textit{orbit} of $x$ is $\orb_G(x):=\{g\cdot x:g\in G\}$.
+\item The \textit{stabiliser} of $x$ is $\stab_G(x):=\{g\in G:g\cdot x=x\}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\begin{enumerate}
+\item $\stab_G(x)\leq G$.
+\item $\displaystyle \ker (G,X,\cdot)=\bigcap_{x\in X} \stab_G(x)$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+See sheet 2 Q8.
+\end{proof}
+
+\begin{example}[From 2.2.2.2]
+Fix $x\in X=G$. One has
+\[
+\orb_G(x)=\{gxg^{-1}:g\in G\},
+\]
+called the \textit{conjugacy class} of $x$ in $G$, sometimes denoted $^G x$. Also
+\[
+\stab_G(x)=\{g\in G:gxg^{-1}=x\},
+\]
+called the \textit{centraliser} of $x$ in $G$, sometimes denoted $C_G(x)$.
+\end{example}
+
+\begin{thm}[Orbit-stabiliser]
+Let $G$ be a finite group acting on a set $X$ and $x\in X$. Then
+\[
+|G:\stab_G(x)|=|\orb_G(x)|,
+\]
+or alternatively
+\[
+|G|=|\stab_G(x)||\orb_G(x)|.
+\]
+\end{thm}
+\begin{proof}
+Let $S=\stab_G(x)$. Recall $G/S=\{gS:g\in G\}$ and $|G:S|=|G/S|$. Define
+\[
+f:G/S\rightarrow\orb_G(x) \text{ by } gS\mapsto g\cdot x.
+\]
+It suffices to show $f$ is bijective.
+\begin{enumerate}
+\item $f$ is well-defined and injective: $gS=kS\Leftrightarrow k^{-1}g\in S \Leftrightarrow k^{-1}g\cdot x=x \Leftrightarrow g\cdot x=k\cdot x\Leftrightarrow f(gS)=f(kS)$;
+\item For $g\cdot x\in\orb_G(x)$ then $f(gS)=g\cdot x$, so $f$ is surjective.
+\end{enumerate}
+\end{proof}
+
+\begin{coro}
+\begin{enumerate}
+\item For $x,y\in X$, either $\orb_G(x)=\orb_G(y)$ or $\orb_G(x)\cap \orb_G(y)=\varnothing$.
+\item $\{\orb_G(x):x\in X\}$ is a partition of $X$.
+\item $|\orb_G(x)|$ divides $|G|$.
+\end{enumerate}
+\end{coro}
+\begin{proof}
+\begin{enumerate}
+\item[1, 2.] Define a relation on $X$ $x\sim y$ if $y=g\cdot x$. It follows from the definition of an action that $\sim$ is an equivalence relation and the equivalence classes are $\{\orb_G(x):x\in X\}$.
+\item[3.] Immediate from the theorem.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Cayley's]
+Let $G$ be a finite group. Then $G$ is isomorphic to a subgroup of $\Sym(X)$ for some set $X$.
+\end{thm}
+\begin{proof}
+By Example 2.2.2.1, $G$ acts on itself by left multiplication, and $\ker(G,X,\cdot)=\{1_G\}$, i.e. the action is faithful. The result then follows from Proposition 2.2.6.
+\end{proof}
+
+\begin{thm}
+Let $p$ be prime and $G$ a group of order $p^n$ where $n\in\mathbb N^+$. Then $|Z(G)|>1$.
+\end{thm}
+\begin{proof}
+Observe that
+\[
+g\in Z(G)\Leftrightarrow gxg^{-1}=x \ \forall x\in G \Leftrightarrow xgx^{-1}=g \Leftrightarrow |\orb_G(g)|=1.
+\]
+
+\begin{flushright}
+\textit{Week 4, lecture 2 starts here}
+\end{flushright}
+
+Let $\orb_G(x_1),\ldots,\orb_G(x_t)$ be the orbits of $G$ in its action by conjugation on $X=G$ (Example 2.2.2.2). Assume WLOG that $|\orb_G(x_i)|=1$ for $1\leq i\leq s$ and $|\orb_G(x_i)|>1$ for $s<i\leq t$. By the observation above, one then has $Z(G)=\{x_1,\ldots,x_s\}$ and in particular, $|Z(G)|=s$. If $s<i\leq t$, then $|\orb_G(x)|=p^{a_i}$ for some $a_i\in \mathbb N$ by Corollary 2.2.11.3. Now, by Corollary 2.2.11.2,
+\[
+|G|=|X|=\sum_{i=1}^t \left|\orb_G(x_i)\right|=s+\sum_{i=s+1}^t p^{a_i}=p^n,
+\]
+so $|Z(G)|=s\equiv 0\Mod p$, hence $|Z(G)|\neq 1$.
+\end{proof}
+
+\begin{remark}
+Many groups we shall see in the course will have a trivial centre, e.g. $S_n$ for $n\geq 3$ and $D_{2n}$ for $n\geq 3$. Also, a nonabelian finite simple group is not of order $p^n$.
+\end{remark}
+
+\begin{coro}
+Let $p$ be prime and $G$ a group.
+\begin{enumerate}
+\item $|G|=p^2\Rightarrow G$ is abelian.
+\item $|G|=p^3\Rightarrow$ either $G$ is abelian or $|Z(G)|=p$.
+\end{enumerate}
+\end{coro}
+\begin{proof}
+We need two facts:
+\begin{enumerate}
+\item All groups of order $p$ are cyclic (immediate from Lagrange).
+\item If $G$ is nonabelian then $G/Z(G)$ is not cyclic (see sheet 2 Q1).
+\end{enumerate}
+It follows that if $G$ is nonabelian then $|G/Z(G)|\neq p$ for a prime $p$. Now Theorem 2.2.13 implies
+\begin{enumerate}
+\item $|G|=p^2\Rightarrow |Z(G)|=p^2\Rightarrow Z(G)=G \Rightarrow G$ is abelian.
+\item $|G|=p^3\Rightarrow |Z(G)|=p$ or $p^3$ and the desired result is clear.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}[Cauchy's]
+Let $G$ be a finite group and $p$ a prime divisor of $|G|$. Then $G$ has an element of order $p$. Furthermore, number of elements of order $p$ is congruent to $-1\Mod p$.
+\end{thm}
+\begin{proof}
+Define
+\[
+X:=\{(g_1,\ldots,g_p)\in G^p:g_1\cdots g_r=1_G\}.
+\]
+Note that
+\[
+\begin{aligned}
+x=(g_1,\ldots,g_p)\in X &\Rightarrow 1_G=g_1\cdots g_p \\
+&\Rightarrow g_i^{-1}\cdots g_1^{-1} 1_G g_1\cdots g_i=g_i^{-1}\cdots g_1^{-1} g_1\cdots g_p g_1\cdots g_i \\
+&\Rightarrow 1_G=g_{i+1}\cdots g_pg_1\cdots g_i \\
+&\Rightarrow (g_{i+1},\ldots ,g_p,g_1,\ldots ,g_i)\in X.
+\end{aligned}
+\]
+Now define
+\[
+C:=\langle\sigma\rangle\leq S_p \text{ where }\sigma=(1,2,\ldots,p)
+\]
+and the action
+\[
+\cdot :C\times X\rightarrow X \text{ by } \sigma^i\cdot (g_1,\ldots,g_p):=(g_{i+1},\ldots ,g_p,g_1,\ldots ,g_i).
+\]
+(Check $\cdot$ is indeed an action.) Now
+\begin{enumerate}
+\item If $g\in G$ and $g^p=1_G$ then $(g,\ldots,g)\in X$, and $\sigma^i\cdot(g,\ldots,g)=(g,\ldots,g) \ \forall i$, i.e. $|\orb_C((g,\ldots,g))|=1$.
+\item We claim that the converse is true: if $x$ satisfies $|\orb_C(x)|=1$ then $x=(g,\ldots,g)$ for some $g\in G : g^p=1_G$. Indeed, say $x=(g_1,\ldots,g_p)$. It suffices to show $g_1=g_i \ \forall i$. By the orbit-stabiliser theorem, $|\orb_C(x)|=1$ implies $\stab_C(x)=C$, i.e. $\forall i,$
+\[
+(g_1,\ldots,g_p)=\sigma^{i-1}(g_1,\ldots,g_p)=(g_i,\ldots ,g_p,g_1,\ldots ,g_{i-1}),
+\]
+which gives the desired.
+\item Note that if $(g_1,\ldots,g_p)\in X$ then $g_p=(g_1\cdots g_{p-1})^{-1}$. We claim $|X|=|G|^{p-1}$. Indeed, define $f:X\rightarrow G^{p-1}$ by $(g_1,\ldots,g_p)\mapsto (g_1,\ldots,g_{p-1})$. It suffices to show that $f$ is bijective since then $|X|=|G^{p-1}|=|G|^{p-1}$. To see $f$ is injective, note that
+\[
+\begin{aligned}
+f((g_1,\ldots,g_p))=f((h_1,\ldots,h_p)) &\Rightarrow g_i=h_i \text{ for } 1\leq i\leq p-1 \\
+&\Rightarrow g_p=(g_1\cdots g_{p-1})^{-1}=(h_1\cdots h_{p-1})^{-1}=h_p \\
+&\Rightarrow (g_1,\ldots,g_p)=(h_1,\ldots,h_p).
+\end{aligned}
+\]
+To see $f$ is surjective, note that for every $(x_1,\ldots,x_{p-1})\in G^{p-1}$ one can set $x_p:=(x_1\cdots x_{p-1})^{-1}$, then $(x_1,\ldots,x_p)\in X$ and it satisfies $f((x_1,\ldots,x_p))=(x_1,\ldots,x_{p-1})$.
+\end{enumerate}
+By Corollary 2.2.11.3, all orbits not of size 1 have size $p$. Let $s$ be number of distinct orbits of size 1, $t$ be number of distinct orbits of size $p$ and $r$ be number of elements of order $p$ in $G$. By parts 1 and 2, $s=1+r$ where 1 corresponds to the trivial element $(1_G,\ldots,1_G)$. One can then write $|G|^{p-1}=|X|=1+r+pt$, and since $p\mid |G|,\ r\equiv -1\Mod p$. In particular, $r>0$.
+\end{proof}
+
+\begin{flushright}
+\textit{Week 4, lecture 3 starts here}
+\end{flushright}
+
+\textbf{Recap}: We now have three nice tools for analysing element orders in a finite group $G$. Let $E_p(G):=\{x\in G:|x|=p\}$ where $p$ prime. Then
+\begin{enumerate}
+\item $|E_p(G)\equiv -1\Mod p$ (Cauchy's theorem)
+\item $|E_p(G)\leq |G:C_G(x)| \ \forall x\in G$ by 1.3.4.1 and the orbit-stabiliser theorem.
+\item If $r\neq p$ is a prime and $G$ has no element of order $pr$, then $|C_G(x)|$ is not divisible by $r$ for $x\in E_p(G)$ by Lemma 1.3.3.4 and Cauchy's theorem.
+\end{enumerate}
+
+\begin{example}
+Let $G$ be of order 48 with no elements of order 6. We claim $|E_3(G)|\geq 17$.
+\begin{proof}
+Let $x\in E_3(G)$. Tool 3 implies $|C_G(x)|$ is not divisible by 2. Since $|C_G(x)|\mid 48$, it must be $|C_G(x)|=3$. Then by tool 2 $|E_3(G)|\geq 16$, and since $|E_3(G)|\equiv -1\Mod 3,\ |E_3(G)|\geq 17$.
+\end{proof}
+\end{example}
+
+\begin{prop}
+Let $G,H,X$ be as in Example 2.2.2.3 and $K\leq G$. Then $|KH|=\frac{|K||H|}{|K\cap H|}$.
+\end{prop}
+\begin{proof}
+Since $G$ acts on $X$ and $K\leq G, K$ acts on $X$ as well. Let $x=H\in X$. Then
+\[
+\stab_K(x)=\{k\in K:kH=H\}=\{k\in K:k\in H\}=K\cap H,
+\]
+and
+\[
+|K:K\cap H|=|\orb_K(x)|=|\{kH:k\in K\}|.
+\]
+On the other hand,
+\[
+|KH|=\left|\bigcap_{k\in K} kH\right| = |\{kH:k\in K\}||H|=|K:K\cap H||H|.
+\]
+\end{proof}
+
+\begin{coro}
+Let $G,H,K$ as above. Then
+\[
+|G:H\cap K|\leq |G:H||G:K|.
+\]
+\end{coro}
+\begin{proof}
+\[
+\frac{|H||K|}{|H\cap K|}=|KH|\leq |G|=\frac{|G|^2}{|G|},
+\]
+and rearranging gives the desired.
+\end{proof}
+
+\subsection{Fixed points}
+\begin{defn}
+Let $G$ be a group acting on a set $X$ and $g\in G$.
+\begin{enumerate}
+\item An element $x\in X$ is a \textit{fixed point} of $g$ if $g\cdot x=x$. The set of fixed points of $g$ is denoted $\fix_X(g):=\{x\in X:g\cdot x=x\}$.
+\item $g$ is \textit{fixed point free} if $\fix_X(g)=\varnothing$.
+\end{enumerate}
+\end{defn}
+
+\begin{lemma}[not Burnside's\footnote{William Burnside (1852–1927) was known as a pioneer in the systematic study of finite groups and indeed stated and proved this lemma, but later people found out this equality was known in as early as 1845 to Cauchy, so it's \textit{a lemma that is not Burnside's}.}]
+Let $G$ be a finite group acting a finite set $X$. Then
+\[
+|\{\orb_G(x):x\in X\}|=:r=\frac{1}{|G|}\sum_{g\in G}|\fix_X(g)|.
+\]
+Informally, the number of orbits = the average number of fixed points.
+\end{lemma}
+\begin{proof}
+We will use Corollary 2.2.11.1 and 2. Let
+\[
+\Lambda = \{(g,x):g\in G,x\in X, g\cdot x=x\}.
+\]
+We count $|\Lambda|$ in two different ways (double-counting method to show equality).
+\begin{enumerate}
+\item \[
+|\Lambda|=\sum_{g\in G} |\fix_X(g)|.
+\]
+\item \[
+\begin{aligned}
+|\Lambda|&=\sum_{x\in X} |\{g\in G:g\cdot x=x\}|=\sum_{x\in X} |\stab_G(x)|=\sum_{x\in X} \frac{|G|}{|\orb_G(x)|}\\
+&=\sum_{i=1}^r\sum_{y\in\orb_G(x_i)} \frac{|G|}{|\orb_G(y)|}=\sum_{i=1}^r\sum_{y\in\orb_G(x_i)} \frac{|G|}{|\orb_G(x_i)|} \\
+&=\sum_{i=1}^r |\orb_G(x_i)| \frac{|G|}{|\orb_G(x_i)|}=r|G|
+\end{aligned}
+\]
+where $\orb_G(x_1),\ldots,\orb_G(x_r)$ are distinct orbits.
+\end{enumerate}
+\end{proof}
+
+\begin{coro}
+Let $G,X$ and $r$ be as in above lemma. Suppose $|X|>1$ and $r=1$. Then $G$ has a fixed point free element.
+\end{coro}
+\begin{proof}
+By definition one has $|\fix_X(1_G)|=|X|$. Now
+\[
+1=\frac{1}{|G|}\sum_{g\in G} |\fix_X(g)|=\frac{1}{|G|}\left(|\fix_X(1_G)|+\sum_{g\neq 1_G} |\fix_X(g)|\right).
+\]
+So if $G$ doesn't have any fixed point free element then $|\fix_X(g)|\geq 1 \ \forall g\in G$ and
+\[
+1\geq \frac{1}{|G|}(|X|+|G|-1)>\frac{|G|}{|G|}=1,
+\]
+a contradiction.
+\end{proof}
+
+\begin{flushright}
+\textit{Week 5, lecture 1 starts here}
+\end{flushright}
 
 \section{Sylow's theorems}
 
