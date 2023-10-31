@@ -22,6 +22,7 @@
 \setlength\parskip{0.3em}
 \setlength{\parindent}{0 pt}
 
+\newcommand{\Syl}{\text{Syl}}
 \newcommand{\orb}{\text{orb}}
 \newcommand{\stab}{\text{stab}}
 \newcommand{\fix}{\text{fix}}
@@ -1058,7 +1059,142 @@ a contradiction.
 \textit{Week 5, lecture 1 starts here}
 \end{flushright}
 
-\section{Sylow's theorems}
+\section{Sylow theorems}
+\begin{remark}[Philosophy]
+In chapter 1, we saw Lagrange's theorem. Question: does the converse hold? i.e., if $l\mid |G|$, does $G$ necessarily have a subgroup of order $l$?
+\begin{enumerate}
+\item A counterexample would be $A_4$ with $|A_4|=12$, which does not have a subgroup of order 6 (use tool 3).
+\item In general, let $G$ be a finite simple group of even order $>2$. Then $G$ has no subgroup of order $|G|/2$.
+\end{enumerate}
+Sylow theorems will prove that a partial converse holds by restricting $l$.
+\end{remark}
+
+\begin{notation}
+For the remainder of the chapter, we fix a finite group $G$ and a prime divisor $p$ of $|G|$. Also, we write $|G|_p$ for the $p$-part of $|G|$, i.e. writing $|G|=p^n m$ where $p\nmid m$ we have $|G|_p=p^n$.
+\end{notation}
+
+\begin{defn}
+Let $H\leq G$.
+\begin{enumerate}
+\item $H$ is a $p$\textit{-subgroup} of $G$ if $|H|$ is a power of $p.$
+\item $H$ is a \textit{Sylow} $p$\textit{-subgroup} of $G$ if $|H|=|G|_p$.
+\item The set of all Sylow $p$-subgroups of $G$ is denoted $\Syl_p(G)$.
+\end{enumerate}
+\end{defn}
+
+\begin{example}
+\begin{enumerate}
+\item $G=S_4$ has order 24. Then $|G|_2=2^3,\ |G|_3=3$. One has $\langle (1,2,3)\rangle\in\Syl_3(G)$ and $D_8=\langle (1,2,3,4),(1,4)(2,3)\rangle\in\Syl_2(G)$. Also $\langle(1,2)\rangle$ is a 2-subgroup but not a Sylow 2-subgroup.
+\item $G=C_n$. Then for each divisor $d$ or $n,\ G$ has a unique subgroup of order $d$. In particular, if $p\mid n$, then $|\Syl_p(G)|=1$. See sheet 2 Q3.
+\item $G=GL_2(F)$ where $F$ is a field of order $p$. Then by Theorem 1.2.3, $|G|=p^{\binom{2}{2}} \prod_{i=1}^2(p^i-1)=p(p-1)(p^2-1)$. One has $x=\begin{pmatrix}1&1\\0&1\end{pmatrix}\in G$ with order $p$. Hence $\langle x\rangle \in \Syl_p(G)$. More generally, $|GL_n(F)|_p=p^{\binom{n}{2}}$ and $U(n,F)$ (the set of upper triangular matrices with 1 on the diagonal) is a Sylow $p$-subgroup.
+\end{enumerate}
+\end{example}
+
+\begin{thm}[Sylow theorems]
+Let $G$ be a finite group with $p$ a prime divisor of $|G|$.
+\begin{enumerate}
+\item (Existence) $\Syl_p(G)\neq\varnothing$.
+\item (Conjugacy) All Sylow $p$-subgroups are conjugate in $G$.
+\item (Containment) Every $p$-subgroup of $G$ is contained in a Sylow $p$-subgroup.
+\item (Number) $|\Syl_p(G)|\equiv 1\Mod p$.
+\end{enumerate}
+\end{thm}
+
+\subsection{Wielandt's proof of Sylow theorems 1 \& 4}
+\begin{lemma}
+Let $p$ be prime and $n,m\in\mathbb N^+$ with $\gcd(m,p)=1$. Then
+\begin{enumerate}
+\item $\displaystyle p\mid \binom{p}{i}$ for $1\leq i\leq p-1$.
+\item $\displaystyle \binom{p^n m}{p^n}\equiv m\Mod p$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item Fix $1\leq i\leq p-1$. Then
+\[
+\binom{p}{i}=\frac{p!}{i!(p-i)!}=\frac{p(p-1)\cdots(p-i+1)}{i(i-1)\cdots 1}.
+\]
+Now let $a:=(p-1)\cdots (p-i+1),\ b=i!$. Then
+\[
+\binom{p}{i}=\frac{pa}{b}\Rightarrow pa=b\binom{p}{i}\Rightarrow p\mid b\binom{p}{i},
+\]
+but clearly $\gcd(p,b)=1$, hence $\displaystyle p\mid \binom{p}{i}$.
+\item Let $F:=\mathbb Z/p\mathbb Z=\{0,1,\ldots,p-1\}$ with usual addition and multiplication modulo $p$. Consider the polynomial $(1+x)^p\in F[x]$.
+\begin{flushright}
+\textit{Week 5, lecture 2 starts here}
+\end{flushright}
+By binomial theorem,
+\[
+(1+x)^p=\sum_{i=1}^p \binom{p}{i}x^i=1+x^p \in F[x].
+\]
+Then
+\[
+(1+x)^{p^2}=\left((1+x)^p\right)^p=\left(1+x^p\right)^p=1+x^{p^2}.
+\]
+Inductively,
+\[
+(1+x)^{p^n}=1+x^{p^n}.
+\]
+Even more generally,
+\[
+(1+x)^{p^n m}=\left((1+x)^{p^n}\right)^m=\left(1+x^{p^n}\right)^m.
+\]
+Binomial theorem then gives us the equality
+\[
+\sum_{i=0}^{p^n m} \binom{p^n m}{i} x^i = \sum_{i=0}^{m} \binom{m}{i} x^{p^n i}.
+\]
+Comparing coefficients of $x^{p^n i}$ gives
+\[
+\binom{p^n m}{p^n i}=\binom{m}{i}
+\]
+and in particular for $i=1$,
+\[
+\binom{p^n m}{p^n}=m \in F.
+\]
+Translating this back to $\mathbb Z$ one has the desired.
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+Sylow theorem 4. In particular, Sylow theorem 1.
+\end{prop}
+\begin{proof}
+As usual, write $|G|=p^n m$ where $p\nmid m$ and $p^n=:|G|_p$. Let $X:=\{S\subseteq G:|S|=|G|_p\}$. Define $\cdot G\times X\rightarrow X$ by $g\cdot S:=gS=\{gs:s\in S\}$. This is indeed an action: see sheet 2 Q12. Let $\orb_G(S_i)$ be $t$ distinct orbits in $X$. By Corollary 2.2.11.2 and Lemma 3.1.1.2,
+\[
+\binom{p^n m}{p^n}=|X|=\sum_{i=1}^t |\orb_G(s_i)| \equiv m\Mod p.
+\]
+This means at least one $|\orb_G(s_i)|$ is not divisible by $p$. WLOG, suppose $p\nmid |\orb_G(S_i)|$ for $1\leq i\leq r$ and $p\mid |\orb_G(S_i)|$ for $r< i\leq t$. We claim:
+\begin{enumerate}
+\item Fix $i=1,\ldots,r$ and denote $S_i$ by $S$ for convenience. Then $\exists x\in G:\stab_G(xS)=xS$ and in particular $xS\in\Syl_p(G)$. Indeed, let $s\in S$ and set $x=s^{-1},\ T:=xS$. We want to show $\stab_G(T)=T$. First note that $1_G=xx^{-1}=xs\in T$. Hence $g\in\stab_G(T)\Rightarrow gT\Rightarrow g=g1_G\in gT=T$, so $\stab_G(T)\subseteq T$. Also, $T\in\orb_G(S)$, so $\orb_G(T)=\orb_G(S)$. Hence
+\[
+p\nmid |\orb_G(T)|=\frac{|G|}{|\stab_G(T)|}=\frac{p^n m}{|\stab_G(T)|}.
+\]
+This implies $p^n\mid |\stab_G(T)|$ by Lagrange's theorem. But by construction, $|T|=p^n$, so it must be that $\stab_G(T)=T$.
+\item $r=|\Syl_p(G)|$. Indeed, for $i=1,\ldots,r$ we can take $T_i=x_i S_i\in\orb_G(S_i)$ such that $T_i=\stab_G(T_i)$ by previous claim. Now define
+\[
+\begin{aligned}
+f:\{\orb_G(T_1),\ldots,\orb_G(T_r)\} &\rightarrow \Syl_p(G) \\
+\orb_G(T_i) &\mapsto T_i
+\end{aligned}
+\]
+$f$ is well-defined since $\orb_G(T_i)$ are distinct by construction and $T_i\in\Syl_p(G)$ by first claim. Since $T_i$ are distinct, $f$ is injective. Now let $P\in\Syl_p(G)$. Then $P\in X$, and
+\[
+\stab_G(P)=\{g\in G:gP=P\}=P,
+\]
+so $|\orb_G(P)|=m$ which by definition is not divisible by $p$. Hence for some $i=1,\ldots,r,\ \orb_G(P)=\orb_G(T_i)$, so $P\in\orb_G(T_i)$, i.e. $P=gT_i$ for some $g\in G$. But $g=g1_G\in gT_i=P$ and since $g^{-1}\in P$, $T_i=g^{-1}P=P$. This proves $f$ is surjective, hence bijective, hence the claim.
+\end{enumerate}
+Therefore,
+\[
+rm+0=\sum_{i=1}^r |\orb_G(T_i)|+\sum_{i=r+1}^t |\orb_G(S_i)|=|X|\equiv m\Mod p
+\]
+and since $\gcd(m,p)=1,$ we can do cancellation and have $r\equiv 1\Mod p$.
+\end{proof}
+
+
+
+\begin{flushright}
+\textit{Week 5, lecture 3 starts here}
+\end{flushright}
 
 \section{Classifying groups of small order}
 
