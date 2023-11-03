@@ -1190,10 +1190,85 @@ rm+0=\sum_{i=1}^r |\orb_G(T_i)|+\sum_{i=r+1}^t |\orb_G(S_i)|=|X|\equiv m\Mod p
 and since $\gcd(m,p)=1,$ we can do cancellation and have $r\equiv 1\Mod p$.
 \end{proof}
 
-
-
 \begin{flushright}
 \textit{Week 5, lecture 3 starts here}
+\end{flushright}
+
+\subsection{Proofs of Sylow theorems 2 \& 3}
+\begin{remark}[Easy but useful facts]
+Let $G$ be finite and $p$ a prime divisor of $|G|$. Then
+\begin{enumerate}
+\item $p\in\Syl_p(G),g\in G\Rightarrow gPg^{-1}\in\Syl_p(G)$.
+\item If $|G|$ is a power of $p$ then $\Syl_p(G)=\{G\}$.
+\item By definition, a $p$-subgroup $Q$ of $G$ is a Sylow $p$-subgroup iff $p\nmid |G:Q|$.
+\end{enumerate}
+\end{remark}
+
+\begin{prop}
+Let $G,p$ be as above and $P\in\Syl_p(G),\ H\leq G$. Then $\exists g\in G:H\cap gPg^{-1}\in\Syl_p(H)$.
+\end{prop}
+\begin{proof}
+Let $X=G/P=\{gP:g\in G\}$. Then $H$ acts on $X$ by left multiplication (since $G$ does) (Example 2.2.2.3). Consider the orbits and stabilisers. Fix $xP\in X$ where $x\in G$, then
+\[
+\begin{aligned}
+\stab_H(xP)&=\{h\in H:hxP=xP\}=\{h\in H:x^{-1}hxP=P\}\\
+&=\{h\in H:x^{-1}hx\in P\}=\{h\in H:h\in xPx^{-1}\}=H\cap xPx^{-1}.
+\end{aligned}
+\]
+As usual, let $\orb_H(x_1P),\ldots,\orb_H(x_tP)$ be distinct orbits and write $|G|=p^n m$ where $p\nmid m$. We have
+\[
+p\nmid m=|X|=\sum_{i=1}^t \left|\orb_H(x_i P)\right|=\sum_{i=1}^t \left|H:\left(H\cap x_i Px_i^{-1}\right)\right|
+\]
+so $p\nmid \left|H:\left(H\cap x_i Px_i^{-1}\right)\right|$ for some $i$. We claim $g:=x_i$ satisfies the desired. Indeed, $H\cap gPg^{-1} \leq gPg^{-1}$, so by Lagrange's theorem it's a $p$-subgroup of $H$, hence by 3rd remark above it's a Sylow $p$-subgroup of $H$.
+\end{proof}
+
+\begin{coro}
+Sylow theorems 2 and 3.
+\end{coro}
+\begin{proof}
+\begin{enumerate}
+\item[2.] Let $H,P\in\Syl_p(G)$. Then $\exists g\in G:H\cap gPg^{-1}\in \Syl_p(H)=\{H\}$ by previous proposition and the 2nd remark above. So $H=H\cap gPg^{-1}$, in particular $H\subseteq gPg^{-1}$, but by assumption $|H|=|gPg^{-1}|$ so $H=gPg^{-1}$.
+\item[3.] Let $H\leq G$ be a $p$-subgroup and $P\in\Syl_p(G)$. Then by exactly the same argument as above, $H\subseteq gPg^{-1}\in\Syl_p(G)$.
+\end{enumerate}
+\end{proof}
+
+\subsection{Consequences of Sylow theorems}
+Recall that if $H\leq G$ then $H\leq N_G(H)=\{g\in G:gHg^{-1}=H\}$.
+
+\begin{coro}
+Let $G,p$ be as above and $P\in \Syl_p(G)$.
+\begin{enumerate}
+\item $|\Syl_p(G)|=|G:N_G(P)|$.
+\item $\Syl_p(G)\mid |G:P|$.
+\item $P\unlhd G\Leftrightarrow |\Syl_p(G)|=1$.
+\end{enumerate}
+\end{coro}
+\begin{proof}
+Let $G$ acts on $X:=\Syl_p(G)$ by conjugation (see sheet 2 Q15 that this is indeed an action).
+\begin{enumerate}
+\item By Sylow theorem 2, $\Syl_p(G)$ is explicitly $\{gPg^{-1}:g\in G\}$ which by definition is $\orb_G(P)$. Now $\stab_G(P)=\{g\in G:gPg^{-1}=P\}=N_G(P)$. The desired result then follows from orbit-stabiliser theorem.
+\item By Lagrange's theorem and part 1, $P\leq N_G(P)\Rightarrow |P| \mid |N_G(P)| \Rightarrow |G:N_G(P)| \mid |G:P|\Rightarrow |\Syl_p(G)| \mid |G:P|$.
+\item We have $P\unlhd G\Leftrightarrow \{gPg^{-1}:g\in G\}=\{P\}\Leftrightarrow \Syl_p(G)=\{P\}\Leftrightarrow |\Syl_p(G)|=1$.
+\end{enumerate}
+\end{proof}
+
+\begin{coro}
+Let $G,p$ be as above and
+\[
+F_p(G):=\{x\in G:x\neq 1_G,\ |x|=p^n\}.
+\]
+Then
+\begin{enumerate}
+\item \[
+F_p(G)=\bigcup_{P\in\Syl_p(G)} P\backslash \{1_G\}
+\]
+\item $|F_p(G)|\geq |G|_p-1$ with equality iff $|\Syl_p(G)|=1$ (i.e. there is a normal Sylow $p$-subgroup).
+\item If $|G|_p=p$, then $|F_p(G)|=|\Syl_p(G)|(p-1)$.
+\end{enumerate}
+\end{coro}
+
+\begin{flushright}
+\textit{Week 6, lecture 1 starts here}
 \end{flushright}
 
 \section{Classifying groups of small order}
