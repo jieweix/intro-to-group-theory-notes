@@ -13,5 +13,6 @@
 \contentsline {subsection}{\numberline {3.1}Wielandt's proof of Sylow theorems 1 \& 4}{19}{}%
 \contentsline {subsection}{\numberline {3.2}Proofs of Sylow theorems 2 \& 3}{21}{}%
 \contentsline {subsection}{\numberline {3.3}Consequences of Sylow theorems}{21}{}%
-\contentsline {section}{\numberline {4}Classifying groups of small order}{22}{}%
-\contentsline {section}{\numberline {5}Soluble group}{22}{}%
+\contentsline {subsection}{\numberline {3.4}2 applications of Sylow theorems}{23}{}%
+\contentsline {section}{\numberline {4}Classifying groups of small order}{24}{}%
+\contentsline {section}{\numberline {5}Soluble group}{24}{}%
