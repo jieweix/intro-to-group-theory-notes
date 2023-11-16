@@ -15,4 +15,5 @@
 \contentsline {subsection}{\numberline {3.3}Consequences of Sylow theorems}{21}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}2 applications of Sylow theorems}{23}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Classifying groups of small order}{25}{section.4}%
-\contentsline {section}{\numberline {5}Soluble group}{25}{section.5}%
+\contentsline {subsection}{\numberline {4.1}Semidirect product}{25}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Soluble group}{27}{section.5}%

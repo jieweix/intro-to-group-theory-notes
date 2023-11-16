@@ -23,6 +23,7 @@
 \setlength\parskip{0.3em}
 \setlength{\parindent}{0 pt}
 
+\newcommand{\Aut}{\text{Aut}}
 \newcommand{\Syl}{\text{Syl}}
 \newcommand{\orb}{\text{orb}}
 \newcommand{\stab}{\text{stab}}
@@ -670,6 +671,7 @@ In particular, if $H\leq G$ and $A\subseteq H$ then $\langle A\rangle\leq H$.
 \end{enumerate}
 \end{exe}
 \begin{defn}
+\label{defn:dihedralgp}
 Let $n\in\mathbb N,\ n\geq 3$ and set $X:=\{1,\ldots,n\}$. Define $\sigma,\tau\in\Sym(X)$ by $\sigma:=(1,2,\ldots,n)$ and $\tau=\prod_{i=1}^{\lfloor n/2\rfloor} (i,n-i+1)=(1,n)(2,n-1)\cdots$. The \textit{dihedral group of order} $2n$ is the permutation group on $X$ defined by $D_{2n}:=\langle\sigma,\tau\rangle.$
 \end{defn}
 This is the rigorous (algebraic) definition of $D_{2n}$, but it can also be thought of group of symmetries of a regular $n$-gon.
@@ -986,6 +988,7 @@ Let $x\in E_3(G)$. Tool 3 implies $|C_G(x)|$ is not divisible by 2. Since $|C_G(
 \end{example}
 
 \begin{prop}
+\label{prop:orderofHK}
 Let $G,H,X$ be as in Example \ref{example:gpaction}.3 and $K\leq G$. Then $|KH|=\frac{|K||H|}{|K\cap H|}$.
 \end{prop}
 \begin{proof}
@@ -1452,6 +1455,117 @@ So by induction hypothesis which says $\stab_G(i)\cong A_{n-1}$ is simple, $N\ca
 \end{flushright}
 
 \section{Classifying groups of small order}
+\subsection{Semidirect product}
+\begin{defn}
+Let $H,K$ be groups. Define a binary operation $\cdot:(H\times K)\times (H\times K)\rightarrow H\times K$ by $(h_1,k_1)\cdot (h_2,k_2)=(h_1h_2,k_1k_2)$. Then $(H\times K,\cdot)$ is a group, called the \textit{direct product} of $H$ and $K$, denoted usually simply $H\times K$.
+\end{defn}
+\begin{remark}
+\begin{enumerate}
+\item One can generalise this definition to product of more than 2 groups.
+\item The identity of $G_1\times \cdots \times G_t$ is $\left(1_{G_1},\ldots,1_{G_t}\right)$, and $(g_1,\ldots,g_t)^{-1}=\left(g_1^{-1},\ldots,g_t^{-1}\right)$.
+\item $H\times K\cong K\times H$.
+\end{enumerate}
+\end{remark}
+
+\begin{lemma}
+\label{lemma:GisHKthenGcongHKifHKnormalanditsc1}
+Let $H,K\unlhd G$ with $H\cap K=\{1_G\}$ and $G=HK$. Then
+\begin{enumerate}
+\item $hk=kh \ \forall h\in H,k\in K$.
+\item $G\cong H\times K$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item Let $h\in H,k\in K$. Note $hk=kh \Leftrightarrow hkh^{-1}k^{-1}=1$. Since $H\unlhd G,\ kh^{-1}k^{-1}\in H$, so $hkh^{-1}k^{-1}\in H$. By symmetry of $H$ and $K,\ hkh^{-1}k^{-1}\in K$ as well, so $hkh^{-1}k^{-1}=1$ as desired.
+\item Define $\varphi:H\times K\rightarrow HK=G$ by $(h,k)\mapsto hk$. Sanity check: if $(h_1,k_1),(h_2,k_2)\in H\times K$ then $\varphi((h_1,k_1)(h_2,k_2))=\varphi((h_1h_2,k_1k_2))=h_1h_2k_1k_2=h_1k_1h_2k_2=\varphi((h_1,k_1))\varphi((h_2,k_2))$. It immediately follows from assumption that $\varphi$ is surjective. Now if $(h,k)\in\ker\varphi$ then $h=k^{-1}\in H\cap K=\{1\}$, so $h=k=1$ and $hk=1$, i.e. $\ker\varphi=\{1\}$ which implies $\varphi$ is injective. 
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+The hypotheses of this lemma are not too bad to work with. Lagrange's theorem allows us to study $H\cap K$, Proposition \ref{prop:orderofHK} allows to study $HK$, and Sylow theorems say a lot about normality.
+\end{remark}
+
+\begin{defn}
+An isomorphism $\phi:G\rightarrow G$ is an \textit{automorphism} of $G$. The set $\Aut(G):=\{\phi:\phi\text{ an automorphism}\}$ is a group under composition, called the \textit{automorphism group} of $G$.
+\end{defn}
+\begin{example}
+\label{example:auto}
+\begin{enumerate}
+\item $\id:G\rightarrow G$ is an automorphism.
+\item If $G=C_p$ where $p$ is prime, then $f_e:G\rightarrow G:x_i\mapsto x^{ie}\in \Aut(G)$ for $1\leq e\leq p-1$. Furthermore, this is in fact all the automorphisms and $\Aut(C_p)\cong C_{p-1}$ (see sheet 4 Q8).
+\item If $K\unlhd G$ and $g\in G$, then $c_g:K\rightarrow K:x\mapsto gxg^{-1}\in\Aut(K)$.
+\end{enumerate}
+\end{example}
+
+\begin{defn}
+Let $H,K$ be groups and $\phi:H\rightarrow \Aut(K)$ a homomorphism. For $h\in H$, write $\phi_h$ in place of $\phi(h)$. Define a binary operation $\ast:(H\times K)\times(H\times K)\rightarrow H\times K$ by $(h_1,k_1)\ast (h_2,k_2) = \left(h_1h_2,\phi_{h_2^{-1}} (k_1)k_2\right)$. Then $(H\times K,\ast)$ is a group, called the \textit{semidirect product} of $H$ and $K$ with respect to $\phi$, denoted $H\ltimes_\phi K$.
+\end{defn}
+
+\begin{remark}[Defence of the definition]
+This is not as weird as it looks. If $x,y\in G$ then $xy=yc_{y^{-1}}(x)$ where $c_y$ is as in Example \ref{example:auto}.3 above. Also, this really is a generalisation of the direct product. To see this, define $\phi_h$ to be $\id_K \ \forall h\in H$.
+\end{remark}
+
+\begin{flushright}
+\textit{Week 7, lecture 2 starts here}
+\end{flushright}
+
+\begin{example}
+\begin{enumerate}
+\item Inversion homomorphism: let $H=\langle x\rangle$ with $|x|=2$ and $K$ be abelian. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{1_H}=\id_K$ and $\phi_x(k)=k^{-1}$.
+
+Check $\phi_x$ is an automorphism: indeed $\phi_x\in\Aut(K)$ since it's clearly bijective and as $K$ is abelian, $\phi_x(k_1k_2)=k_2^{-1}k_1^{-1}=k_1^{-1}k_2^{-1}=\phi_x(k_1)\phi_x(k_2)$.
+
+Check $\phi$ is a homomorphism, i.e. $\phi_{h_1h_2}=\phi_{h_1}\circ\phi_{h_2} \ \forall h_1,h_2\in H$, which is not difficult to show.
+\item Conjugation homomorphism: let $G$ be finite and $K\unlhd G,H\leq G$. Define $\phi$ by $\phi_h(k)=hkh^{-1}$. Again it's not difficult to do the two sanity checks.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}[General form of Lemma \ref{lemma:GisHKthenGcongHKifHKnormalanditsc1}]
+If $H\leq G,K\unlhd G$ with $H\cap K=\{1_G\}$ and $G=HK$, then $G\cong H\ltimes_\phi K$ where $\phi$ is conjugation homomorphism.
+\end{lemma}
+
+\begin{proof}
+Again it suffices to show $f:H\ltimes_\phi K\rightarrow G:f((h,k))=hk$ is an isomorphism. Let $(h_1,k_1),(h_2,k_2)\in H\ltimes_\phi K$, then
+\[
+\begin{aligned}
+f((h_1,k_1)(h_2,k_2))&=f((h_1h_2,\phi_{h_2^{-1}}(k_1)k_2))=h_1h_2\phi_{h_2^{-1}}(k_1)k_2\\
+&=h_1h_2(h_2^{-1}k_1h_2)k_2=h_1k_1h_2k_2=f((h_1,k_1))f((h_2,k_2)).
+\end{aligned}
+\]
+To show $f$ is bijective is similar to proof of Lemma \ref{lemma:GisHKthenGcongHKifHKnormalanditsc1}.
+\end{proof}
+
+\begin{example}[Dihedral groups as semidirect products]
+Recall Definition \ref{defn:dihedralgp}, write $G=D_{2n}=\langle\sigma,\tau\rangle$, and let $C_2\cong H=\langle \tau\rangle\leq G,\ C_n\cong K=\langle \sigma\rangle\unlhd G$. Proposition \ref{prop:orderofHK} says
+\[
+|HK|=\frac{|H||K|}{|H\cap K|}=\frac{2\times n}{1}=2n=|G|
+\]
+since if $H\cap K\neq\{1\}$ then it would have to be $H$ since $|H|=2$. Thus $G=HK$, so by previous lemma $G\cong H\ltimes_\phi K$ where $\phi$ is conjugation homomorphism.
+
+Note that
+\[
+\phi_\tau(\sigma)=\tau\sigma\tau^{-1}=(\tau(1),\tau(2),\ldots,\tau(n))=(n,n-1,\ldots,1)=\sigma^{-1}
+\]
+and in general $\phi_\tau(\sigma^i)=\sigma^{-i}$, so $\phi$ is also inversion homomorphism.
+\end{example}
+
+\begin{lemma}[Generalising example above]
+Let $G$ be nonabelian and finite. If \begin{itemize}
+\item $G$ has a cyclic subgroup $K$ of order $\frac{|G|}{2}=:n$,
+\item $G\backslash K$ has an element of order 2, and
+\item the only $i\in\{1,\ldots,n-1\}:i^2\equiv 1\Mod n$ are $1,n-1$,\hfill ($\dagger$)
+\end{itemize}
+then $G\cong D_{2n}$.
+\end{lemma}
+
+\begin{proof}
+First note that $\dagger$ is satisfied when $n=6,\ n=p$ or $n=p^2$ where $p$ is prime.
+\end{proof}
+
+\begin{flushright}
+\textit{Week 7, lecture 3 starts here}
+\end{flushright}
 
 \section{Soluble group}
 \end{document}
