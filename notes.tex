@@ -1522,6 +1522,7 @@ Check $\phi$ is a homomorphism, i.e. $\phi_{h_1h_2}=\phi_{h_1}\circ\phi_{h_2} \ 
 \end{example}
 
 \begin{lemma}[General form of Lemma \ref{lemma:GisHKthenGcongHKifHKnormalanditsc1}]
+\label{lemma:generalformofHKcongHsK}
 If $H\leq G,K\unlhd G$ with $H\cap K=\{1_G\}$ and $G=HK$, then $G\cong H\ltimes_\phi K$ where $\phi$ is conjugation homomorphism.
 \end{lemma}
 
@@ -1537,7 +1538,7 @@ To show $f$ is bijective is similar to proof of Lemma \ref{lemma:GisHKthenGcongH
 \end{proof}
 
 \begin{example}[Dihedral groups as semidirect products]
-Recall Definition \ref{defn:dihedralgp}, write $G=D_{2n}=\langle\sigma,\tau\rangle$, and let $C_2\cong H=\langle \tau\rangle\leq G,\ C_n\cong K=\langle \sigma\rangle\unlhd G$. Proposition \ref{prop:orderofHK} says
+Recall Definition \ref{defn:dihedralgp}, write $G=D_{2n}=\langle\sigma,\tau\rangle$, and let $C_2\cong H:=\langle \tau\rangle\leq G,\ C_n\cong K:=\langle \sigma\rangle\unlhd G$. Proposition \ref{prop:orderofHK} says
 \[
 |HK|=\frac{|H||K|}{|H\cap K|}=\frac{2\times n}{1}=2n=|G|
 \]
@@ -1553,19 +1554,60 @@ and in general $\phi_\tau(\sigma^i)=\sigma^{-i}$, so $\phi$ is also inversion ho
 \begin{lemma}[Generalising example above]
 Let $G$ be nonabelian and finite. If \begin{itemize}
 \item $G$ has a cyclic subgroup $K$ of order $\frac{|G|}{2}=:n$,
-\item $G\backslash K$ has an element of order 2, and
-\item the only $i\in\{1,\ldots,n-1\}:i^2\equiv 1\Mod n$ are $1,n-1$,\hfill ($\dagger$)
+\item $G\backslash K$ has an element $x$ of order 2, and
+\item the only $i\in\{1,\ldots,n-1\}:i^2\equiv 1\Mod n$ are $1$ and $n-1$,\hfill ($\dagger$)
 \end{itemize}
 then $G\cong D_{2n}$.
 \end{lemma}
 
 \begin{proof}
 First note that $\dagger$ is satisfied when $n=6,\ n=p$ or $n=p^2$ where $p$ is prime.
-\end{proof}
 
 \begin{flushright}
 \textit{Week 7, lecture 3 starts here}
 \end{flushright}
+
+Set $H=\langle x\rangle\leq G$ and note that $K\unlhd G$ since $[G:K]=2,\ H\cap K=\{1_G\}$ since $x\in G\backslash K$ and
+\[
+|HK|=\frac{|H||K|}{|H\cap K|}=2n=|G|,
+\]
+so $G=HK$. Recall Lemma \ref{lemma:generalformofHKcongHsK}, assumptions of which are all satisfied. It remains to show that conjugation homomorphism $\phi$ is equal to inversion homomorphism here by example above, i.e. showing $\phi_x(k)=k^{-1} \ \forall k\in K$. Since $K$ is cyclic of order $n$, one can write $K=\langle y\rangle$ with $|y|=n$. By exercises below, it suffices to show $\phi_x(y)=y^{-1}$. Note that $xyx^{-1}\in \langle y\rangle$ since $K\unlhd G$, i.e. $xyx^{-1}=y^i$ for some $i\in\{1,\ldots,n-1\}$. Since $\phi_{1_H}=\id_K$, one has
+\[
+y=\phi_{1_H}(y)=\phi_{x^2}(y)=(\phi_x\circ \phi_x)(y)=\phi_x(\phi_x(y))=\phi_x(y^i)=\phi_x(y)^i=(xyx^{-1})^n,
+\]
+so $y=y^{i^2}$, i.e. $y^{i^2-1}=1_G$. By Lemma \ref{lemma:orderlem}, $n\mid i^2-1$, i.e. $i^2\equiv 1\Mod n$, so by assumption $i=1$ or $n-1$. One now has that $\phi_x(y)=y$ or $y^{-1}$, but if $xyx^{-1}=y$ then $xkx^{-1}=k \ \forall k\in K$, i.e. $\phi$ is trivial homomorphism, which implies $G=H\ltimes_\phi K\cong H\times K\cong C_2\times C_n$ is abelian, contradicting assumption. So $\phi_x(y)=y^{-1}$, inversion homomorphism.
+\end{proof}
+
+\begin{exe}
+\begin{enumerate}
+\item If $H=\langle A\rangle,\ K=\langle B\rangle$, show $hkh^{-1}=k \ \forall h\in H,k\in K\Leftrightarrow aba^{-1}=b \ \forall a\in A,b\in B$.
+\item If $H=\langle x\rangle$ with $|x|=2$ and $K=\langle B\rangle$ is abelian, show $xkx^{-1}=k^{-1} \ \forall k\in K\Leftrightarrow xbx^{-1}=b^{-1} \ \forall b\in B$.
+\end{enumerate}
+\end{exe}
+
+\subsection{Semidirect product of an abelian group and a cyclic group}
+In this section, we fix a finite group $G$ with an abelian subgroup $K$ of odd order $\frac{|G|}{2}$ and let $H=|x|\in\Syl_2(G)$ with $|x|=2$ (as $|G|=2\times$odd number).
+
+\begin{notation}
+For $v\in K,$ write $[v,x]:=vxv^{-1}x^{-1}$ (the commutator).
+\end{notation}
+
+\begin{lemma}[Fitting's]
+Write $[K,x]:=\langle[v,x]:v\in K\rangle$. One has
+\begin{enumerate}
+\item $xkx^{-1}=k^{-1} \ \forall k\in [K,x]$,
+\item $K\cong [K,x]\times C_K(x)$,
+\item $G\cong (H\ltimes_\phi [K,x])\times C_K(x)$ where $\phi$ is inversion homomorphism.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For a sanity check, we need to see $[K,x]$ is abelian for $\phi$ to make sense.
+\begin{enumerate}
+\item It suffices to show it for $k=[v,x]$, a generator of $[K,x]$.
+\item 
+\item 
+\end{enumerate}
+\end{proof}
 
 \section{Soluble group}
 \end{document}

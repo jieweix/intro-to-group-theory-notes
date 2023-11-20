@@ -16,4 +16,5 @@
 \contentsline {subsection}{\numberline {3.4}2 applications of Sylow theorems}{23}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Classifying groups of small order}{25}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Semidirect product}{25}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Soluble group}{27}{section.5}%
+\contentsline {subsection}{\numberline {4.2}Semidirect product of an abelian group and a cyclic group}{28}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Soluble group}{28}{section.5}%
