@@ -23,6 +23,7 @@
 \setlength\parskip{0.3em}
 \setlength{\parindent}{0 pt}
 
+\newcommand{\Dic}{\text{Dic}}
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\Syl}{\text{Syl}}
 \newcommand{\orb}{\text{orb}}
@@ -34,7 +35,7 @@
 \newcommand{\adj}{\text{adj}\ }
 \newcommand{\lcm}{\text{lcm}\ }
 \newcommand{\id}{\text{id}}
-\newcommand{\im}{\text{im }}
+\newcommand{\im}{\text{im\,}}
 \newcommand{\spanset}{\text{span}}
 \newcommand{\rank}{\text{rank }}
 \newcommand{\Mod}{\text{ mod }}
@@ -48,6 +49,7 @@
 \newtheorem{coro}[defn]{Corollary}
 \newtheorem{example}[defn]{Example}
 \newtheorem{exe}[defn]{Exercise}
+\newtheorem{tool}[defn]{Tool}
 \newtheorem*{remark}{Remark}
 \newtheorem*{notation}{Notation}
 
@@ -515,7 +517,7 @@ Let $N\unlhd G$.
 \end{defn}
 Checking this is indeed a group is left as an exercise.
 
-\subsection{Homomorphisms}
+\subsection{Homomorphism}
 \begin{defn}
 \begin{enumerate}
 \item A map $\theta:G\rightarrow H$ is a \textit{homomorphism} if $\theta(g_1g_2)=\theta(g_1)\theta(g_2) \ \forall \theta_{1,2}\in G$.
@@ -583,7 +585,7 @@ Let $X\in B$ and set $Y=\{y\in G:yN\in X\}$. One can see that $Y\leq G$ since $y
 \end{flushright}
 
 \section{Group action}
-\subsection{Permutation groups}
+\subsection{Permutation group}
 \begin{defn}
 Let $X$ be a set. $G\leq\Sym(X)$ is called a \textit{permutation group} on $X$.
 \end{defn}
@@ -727,7 +729,7 @@ Let $\beta:X\rightarrow Y$ be a bijection. Define $\theta:\Sym(X)\rightarrow\Sym
 
 Recall that if $G=\langle B\rangle,\ H=\langle A\rangle$, then $H\unlhd G\Leftrightarrow bab^{-1}\in H \ \forall a\in A, b\in B$.
 
-\subsection{Group actions}
+\subsection{Group action}
 \begin{defn}
 Let $G$ be a group and $X$ a set. An \textit{action} of $G$ on $X$ is a map $\cdot:G\times X\rightarrow X$ such that
 \begin{enumerate}
@@ -904,6 +906,7 @@ Many groups we shall see in the course will have a trivial centre, e.g. $S_n$ fo
 \end{remark}
 
 \begin{coro}
+\label{coro:orderp2gpabelian}
 Let $p$ be prime and $G$ a group.
 \begin{enumerate}
 \item $|G|=p^2\Rightarrow G$ is abelian.
@@ -973,17 +976,20 @@ By Corollary \ref{coro:orbpartitionX}.3, all orbits not of size 1 have size $p$.
 \textit{Week 4, lecture 3 starts here}
 \end{flushright}
 
-\textbf{Recap}: We now have three nice tools for analysing element orders in a finite group $G$. Let $E_p(G):=\{x\in G:|x|=p\}$ where $p$ prime. Then
+\begin{tool}[Analysing element orders in a finite group]
+\label{tool:elementorder}
+Let $E_p(G):=\{x\in G:|x|=p\}$ where $p$ prime. Then
 \begin{enumerate}
 \item $|E_p(G)|\equiv -1\Mod p$ (Cauchy's theorem)
 \item $|E_p(G)|\leq |G:C_G(x)| \ \forall x\in G$ by \ref{exe:conjaugatesordersequal}.1 and the orbit-stabiliser theorem.
 \item If $r\neq p$ is a prime and $G$ has no element of order $pr$, then $|C_G(x)|$ is not divisible by $r$ for $x\in E_p(G)$ by Lemma \ref{lemma:orderlem}.4 and Cauchy's theorem.
 \end{enumerate}
+\end{tool}
 
 \begin{example}
 Let $G$ be of order 48 with no elements of order 6. We claim $|E_3(G)|\geq 17$.
 \begin{proof}
-Let $x\in E_3(G)$. Tool 3 implies $|C_G(x)|$ is not divisible by 2. Since $|C_G(x)|\mid 48$, it must be $|C_G(x)|=3$. Then by tool 2 $|E_3(G)|\geq 16$, and since $|E_3(G)|\equiv -1\Mod 3,\ |E_3(G)|\geq 17$.
+Let $x\in E_3(G)$. Tool \ref{tool:elementorder}.3 implies $|C_G(x)|$ is not divisible by 2. Since $|C_G(x)|\mid 48$, it must be $|C_G(x)|=3$. Then by Tool \ref{tool:elementorder}.2 $|E_3(G)|\geq 16$, and since $|E_3(G)|\equiv -1\Mod 3,\ |E_3(G)|\geq 17$.
 \end{proof}
 \end{example}
 
@@ -1019,7 +1025,7 @@ Let $G,H,K$ as above. Then
 and rearranging gives the desired.
 \end{proof}
 
-\subsection{Fixed points}
+\subsection{Fixed point}
 \begin{defn}
 Let $G$ be a group acting on a set $X$ and $g\in G$.
 \begin{enumerate}
@@ -1079,7 +1085,7 @@ a contradiction.
 \begin{remark}[Philosophy]
 In chapter 1, we saw Lagrange's theorem. Question: does the converse hold? i.e., if $l\mid |G|$, does $G$ necessarily have a subgroup of order $l$?
 \begin{enumerate}
-\item A counterexample would be $A_4$ with $|A_4|=12$, which does not have a subgroup of order 6 (use tool 3).
+\item A counterexample would be $A_4$ with $|A_4|=12$, which does not have a subgroup of order 6 (use Tool \ref{tool:elementorder}.3).
 \item In general, let $G$ be a finite simple group of even order $>2$. Then $G$ has no subgroup of order $|G|/2$.
 \end{enumerate}
 Sylow theorems will prove that a partial converse holds by restricting $l$.
@@ -1552,6 +1558,7 @@ and in general $\phi_\tau(\sigma^i)=\sigma^{-i}$, so $\phi$ is also inversion ho
 \end{example}
 
 \begin{lemma}[Generalising example above]
+\label{lemma:spottingD2n}
 Let $G$ be nonabelian and finite. If \begin{itemize}
 \item $G$ has a cyclic subgroup $K$ of order $\frac{|G|}{2}=:n$,
 \item $G\backslash K$ has an element $x$ of order 2, and
@@ -1586,7 +1593,7 @@ so $y=y^{i^2}$, i.e. $y^{i^2-1}=1_G$. By Lemma \ref{lemma:orderlem}, $n\mid i^2-
 \end{exe}
 
 \subsection{Semidirect product of an abelian group and a cyclic group}
-In this section, we fix a finite group $G$ with an abelian subgroup $K$ of odd order $\frac{|G|}{2}$ and let $H=|x|\in\Syl_2(G)$ with $|x|=2$ (as $|G|=2\times$odd number).
+In this section, we fix a finite group $G$ with an abelian subgroup $K$ of odd order $\frac{|G|}{2}$ (so we know it's normal) and let $H=\langle x\rangle\in\Syl_2(G)$ with $|x|=2$ (as $|G|=2\times$odd number).
 
 \begin{notation}
 For $v\in K,$ write $[v,x]:=vxv^{-1}x^{-1}$ (the commutator).
@@ -1601,13 +1608,206 @@ Write $[K,x]:=\langle[v,x]:v\in K\rangle$. One has
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-For a sanity check, we need to see $[K,x]$ is abelian for $\phi$ to make sense.
 \begin{enumerate}
-\item It suffices to show it for $k=[v,x]$, a generator of $[K,x]$.
-\item 
-\item 
+\item It suffices to show it for $k=[v,x]$, a generator of $[K,x]$. Since $|x|=2$, one has
+\[
+x[v,x]x^{-1}=xvxv^{-1}x^{-1}x^{-1}=xvx^{-1}v^{-1}=[v,x]^{-1}.
+\]
+
+\begin{flushright}
+\textit{Week 8, lecture 1 starts here}
+\end{flushright}
+
+\item First note that for $v,w\in K,$
+\[
+\begin{aligned}
+[vw,x]&=(vw)x(vw)^{-1}x^{-1}=vwxw^{-1}v^{-1}x^{-1}\\
+&=vw\left(xw^{-1}x^{-1}\right)\left(xv^{-1}x^{-1}\right) \\
+&=[v,x][w,x],
+\end{aligned}
+\]
+and $[v,x]=1$ iff $v$ and $x$ commute, i.e. $v\in C_K(x)$.
+
+Now define $f:K\rightarrow [K,x]$ by $f(k)=[k,x]$. $f$ is a homomorphism with $\ker f=C_K(x)$ by above. We claim \begin{enumerate}
+\item $C_K(x),[K,x]\unlhd K$. This is trivial since $K$ is abelian.
+\item $C_K(x)\cap [K,x]=\{1\}$. Indeed, if $a\in C_K(x)\cap [K,x]$, then $a=xax^{-1}=a^{-1}$ by part 1, so $|a|=1$ or 2. But since $|K|$ is odd, by Lagrange's $|a|$ must be 1, so $a=1$.
+\item $K=[K,x]C_K(x)$. Indeed, by 1st isomorphism theorem $|K|=|\im f||\ker f|=|[K,x]||C_K(x)|$, hence by \ref{prop:orderofHK} one has
+\[
+|[K,x]C_K(x)|=\frac{|[K,x]||C_K(x)|}{|[K,x]\cap C_K(x)|}=|[K,x]||C_K(x)|=|K|.
+\]
+\end{enumerate}
+So by Lemma \ref{lemma:GisHKthenGcongHKifHKnormalanditsc1} one has the desired.
+\item Left as an exercise, see sheet 4 Q14.
+\end{enumerate}
+\end{proof}
+
+\subsection{Infinite families}
+\subsubsection{Abelian groups}
+\begin{thm}[Fundamental theorem of finite abelian groups]
+\label{thm:FTFAG}
+Let $G$ be a finite abelian group of order $n$. Then $\exists$ divisors $d_1\mid \cdots \mid d_t$ of $n$ such that $G\cong C_{d_1}\times\cdots\times C_{d_t}$.
+\end{thm}
+\begin{proof}
+See MA251.
+\end{proof}
+
+\begin{example}
+The abelian groups of order 8 are $C_8,\ C_2\times C_4,\ C_2\times C_2\times C_2$.
+\end{example}
+
+\subsubsection{Groups of order $p,p^2,2p$ where $p$ prime}
+\begin{lemma}
+$|G|=p\Rightarrow G\cong C_p$.
+\end{lemma}
+\begin{proof}
+Note that by Lagrange's, any $x\in G\backslash \{1\}$ has $|x|=p$, so $G=\langle x\rangle\cong C_p$.
+\end{proof}
+
+\begin{lemma}
+$|G|=p^2\Rightarrow G\cong C_{p^2}$ or $C_p\times C_p$.
+\end{lemma}
+\begin{proof}
+This follows immediately from Corollary \ref{coro:orderp2gpabelian} and Theorem \ref{thm:FTFAG}.
+\end{proof}
+
+\begin{lemma}
+If $p$ is odd, then $|G|=2p\Rightarrow G\cong C_{2p}$ or $D_{2p}$.
+\end{lemma}
+\begin{proof}
+If $G$ is abelian then $G\cong C_{2p}$ by \ref{thm:FTFAG}. If $G$ is nonabelian and let $K\in\Syl_p(G),\ H=\langle x\rangle \in\Syl_2(G)$ where $|x|=2$. Then
+\begin{enumerate}
+\item $|K|=\frac{|G|}{2}=p$, so $K\cong C_p$,
+\item $x\in G\backslash K$,
+\item If $i^2\equiv 1\Mod p$ then $i\equiv \pm 1\Mod p$ since $\mathbb Z/p\mathbb Z$ is a field,
+\end{enumerate}
+so by Lemma \ref{lemma:spottingD2n} one has $G\cong D_{2p}$.
+\end{proof}
+
+\subsubsection{Groups of order $2p^2$ where $p$ odd prime}
+\begin{defn}
+Let $K=C_p\times C_p,\ H=C_2$ and $\phi:H\rightarrow\Aut(K)$ be inversion homomorphism. $H\ltimes_\phi K$ is called the \textit{generalised dihedral group} of order $2p^2$ and denoted $GD_{2p^2}$.
+\end{defn}
+
+\begin{lemma}
+$|G|=2p^2\Rightarrow G\cong$ either $C_{2p^2},\ C_p\times C_{2p},\ GD_{2p^2},\ D_{2p^2}$ or $C_p\times D_{2p}$.
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item If $G$ is abelian then $G\cong C_{2p^2}$ or $C_p\times C_{2p}$ by \ref{thm:FTFAG}.
+
+\item If $G$ is nonabelian, let $K\in\Syl_p(G)$ and $H=\langle x\rangle\in\Syl_2(G)$ where $|x|=2$. Then $K\cong$ either $C_{p^2}$ or $C_p\times C_p$.
+\begin{enumerate}
+\item If $K\cong C_{p^2}$ then similarly the three conditions of \ref{lemma:spottingD2n} are satisfied and $G\cong D_{2p^2}$.
+\begin{flushright}
+\textit{Week 8, lecture 2 starts here}
+\end{flushright}
+\item If $K\cong C_p\times C_p$ then by Fitting's lemma, $G\cong (H\ltimes_\phi [K,x])\times C_K(x)$ where $\phi$ is inversion homomorphism. By Lagrange's, $|C_K(x)|$ is either $1,p$ or $p^2$. But if $|C_K(x)|=p^2$ then $K=C_K(x)$, i.e. $kx=xk \ \forall k\in K$, contradicting $G$ being abelian since it is generated by $K$ and $x$. 
+\begin{enumerate}
+\item If $|C_K(x)|=1$ then $C_K(x)=\{1\}$. By Fitting's lemma, $K\cong [K,x]\times C_K(x)\cong [K,x]$ and so $G\cong H\ltimes_\phi K\cong C_2\ltimes_\phi(C_p\times C_p)\cong GD_{2p^2}$.
+\item If $|C_K(x)|=p$ then $C_K(x)\cong C_p$ and so $[K,x]\cong C_p$, therefore $G\cong (H\ltimes_\phi [K,x]) \times C_K(x)\cong (C_2\ltimes_\phi C_p) \times C_p\cong D_{2p}\times C_p$.
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Groups of order $pq$ where $p,q$ prime with $p<q$ and $p\nmid (q-1)$}
+\begin{lemma}
+Let $p,q$ be as above. Then $|G|=pq\Rightarrow G\cong C_{pq}$.
+\end{lemma}
+\begin{proof}
+By Sylow theorems, $|\Syl_q(G)|\equiv 1\Mod q$ and $|\Syl_q(G)|\mid \frac{|G|}{|G|_q}=p$. Since $q>p$ and $p\not\equiv 1\Mod q,\ |\Syl_q(G)|=1$. Similarly, $|\Syl_p(G)|=1$. Write $\Syl_p(G)=\{P\}$ and $\Syl_q(G)=\{Q\}$. Then $P,Q\unlhd G,\ P\cap Q=\{1\}$ and $G=PQ$ since $|PQ|=\frac{|P||Q|}{|P\cap Q|}=pq=|G|$. So by Lemma \ref{lemma:GisHKthenGcongHKifHKnormalanditsc1} and Theorem \ref{thm:FTFAG}, $G\cong P\times Q\cong C_p\times C_q\cong C_{pq}$.
+\end{proof}
+
+\subsection{2 missing pieces}
+\subsubsection{Groups of order 8}
+\begin{defn}
+Let $i,j,k$ be indeterminates and define
+\[
+Q_8:=\{\pm1,\pm i,\pm j,\pm k\}\subseteq \mathbb R[i,j,k].
+\]
+Define binary operation $\cdot:Q_8\times Q_8\rightarrow Q_8$ by
+\begin{enumerate}
+\item $1\cdot g=g\cdot 1:=g$ and $(-1)\cdot g=g\cdot(-1):=-g \ \forall g\in Q_8$.
+\item $i\cdot j:=k,\ j\cdot k:=i,\ k\cdot i:=j$.
+\item $j\cdot i:=-k,\ k\cdot j:=-i,\ i\cdot k:=-j$.
+\item $(\pm 1)^2=1,\ g^2:=-1 \ \forall g\in Q_8\backslash\{\pm1\}$.
+\end{enumerate}
+$(Q_8,\cdot)$ is then a group with its full Cayley table determined, called the \textit{quaternion group}.
+\end{defn}
+
+\begin{remark}
+\begin{enumerate}
+\item $Z(Q_8)=\{\pm1\}$.
+\item $Q_8$ has 1 element of order 2 ($-1$) and 6 elements of order 4 ($\pm i,\pm j,\pm k$).
+\item $Q_8=\langle i,j\rangle=\langle i,k\rangle=\langle j,k\rangle$.
+\end{enumerate}
+\end{remark}
+
+\begin{lemma}
+$|G|=9\Rightarrow G\cong$ either $C_8,\ C_2\times C_4,\ C_2\times C_2\times C_2,\ D_8$ or $Q_8$.
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item If $G$ is abelian then by \ref{thm:FTFAG} $G\cong$ either $C_8,\ C_2\times C_4$ or $C_2\times C_2\times C_2$.
+\item If $G$ is nonabelian, then of the 7 elements of order $>1$, none has order 8 (since then $G$ would be $C_8$) and at least one has order $\neq 2$ (since if all elements have order 2, $G$ would be abelian), so by Lagrange's there must $\exists u\in G:|u|=4$. Let $K=\langle u\rangle$ and $v\in G\backslash K$ with minimal order. One then has $G=\langle u,v\rangle$. We claim $vuv^{-1}=u^{-1}$. Indeed, $vuv^{-1}\in K=\{1,u,u^2,u^{-1}\}$ since $K\unlhd G$. We know $|vuv^{-1}|=|u|=4$ and $|u^2|=2$, so $vuv^{-1}$ is either $u$ or $u^{-1}$. But if $vuv^{-1}=u$ then $G$ would be abelian, a contradiction. Now
+\begin{enumerate}
+\item If $|v|=2$ then conditions of Lemma \ref{lemma:spottingD2n} are satisfied, so $G\cong D_8$.
+\item If $|v|=4$, note that $G=K\sqcup vK$ and all elements of $vK$ have order 4, so $G$ has 1 element of order 2 ($u^2$) and 6 elements of order 4. It follows that $g^2=u^2 \ \forall g\in G:|g|=4$, since $g^2$ has order 2 and $u^2$ is the only such element. Now if we see $G$ as $\{1,u^2,u^{\pm 1},v^{\pm 1},(uv)^{\pm 1}\}$ we have $G\cong Q_8$.
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+\begin{flushright}
+\textit{Week 8, lecture 3 starts here}
+\end{flushright}
+
+\subsubsection{Groups of order 12}
+\begin{defn}
+\label{defn:dic}
+Let $H=C_4=\langle x\rangle$ where $|x|=4$ and $K=C_3$. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{x^i}(k)=k^{(-1)^i}$. The group $H\ltimes_\phi K$ is called the \textit{dicyclic group} or order 12, denoted $\Dic_{12}$.
+\end{defn}
+
+\begin{lemma}
+$|G|=12\Rightarrow G\cong$ either $C_{12},\ C_2\times C_6,\ \Dic_{12},\ A_4$ or $D_{12}$.
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+\item If $G$ is abelian then by \ref{thm:FTFAG} $G\cong$ either $C_{12}$ or $C_2\times C_6$.
+\item If $G$ is nonabelian, then
+\begin{enumerate}
+\item If $G$ has an element $a$ of order 6, let $K=\langle a\rangle$. Then all subgroups of $K$ are normal (see sheet 3 Q9). Now
+\begin{enumerate}
+\item If $G\backslash K$ has an element of order 2 then conditions of \ref{lemma:spottingD2n} hold, so $G\cong D_{12}$.
+\item If $G\backslash K$ has no element of order 2, then let $P\in\Syl_2(G)$. We know $P\not\leq K$by Lagrange's, so choose $x\in P\backslash K$. $|x|$ can only be 4 since it cannot be 1 or 2. Let $H=\langle x\rangle$ and $K_1=\langle a^2\rangle$. So $|H|=4,\ |K_1|=3$, and so conditions of \ref{lemma:generalformofHKcongHsK} hold and $G\cong H\ltimes_\phi K_1$ where $\phi$ is conjugation homomorphism. We claim that in this case, $\phi$ is the same as the $\phi$ defined in \label{defn:dic} and so that $G\cong\Dic_{12}$. Indeed, let $k\in\{a^2,a^{-2}\}\subseteq K_1$. Then $G=\langle x,k\rangle$ and $xkx^{-1}$ is either $k$ or $k^{-1}$ since $K_1\unlhd G$. But $xkx^{-1}\neq k$ since $G$ is nonabelian. So $\phi_x(k)=xkx^{-1}=k^{-1}$ and hence $\phi_{x^i}(k)=k^{(-1)^i}$ since $\phi$ is a homomorphism.
+\end{enumerate}
+\item If $G$ has no element of order 6, then let $P=\langle x\rangle\in \Syl_3(G)$ where $|x|=3$. By Sylow theorems, $|\Syl_3(G)|\in\{1,4\}$. By \ref{tool:elementorder}.3, $|C_G(x)|$ is odd, and since $x\in C_G(x),\ |C_G(x)=3$ and $|F_3(G)|\geq |G:C_G(x)|=4$. By \ref{coro:consequence2Sylow}.3, $|F_3(G)|=2|\Syl_3(G)|$, so $|\Syl_3(G)|\geq 2$, hence $|\Syl_3(G)|=4$ and $P\ntrianglelefteq G$. Now let $G$ act on $X=G/P$ by left multiplication. By sheet 2 Q9, $\ker(G,X,\cdot)\leq P$. By Lagrange's, $\ker(G,X,\cdot)$ is either trivial or $P$, but kernels are normal, so $\ker(G,X,\cdot)$ is trivial and the action is faithful, so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_4$. The only subgroup of $S_4$ of order 12 is $A_4$.
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+
+\subsection{Final theorem of the chapter}
+
+\begin{thm}
+The only simple group of order 60 is $A_5$.
+\end{thm}
+\begin{proof}
+Let $G$ be a simple group of order 60. We claim:
+\begin{enumerate}
+\item If $H\lneq G$ then $|H|\leq 12$. Indeed, since $G$ is simple, $G$ acts faithfully on $X=G/H$ (as $\ker(G,X,\cdot)\leq H\lneq G$), so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_{|G:H|}$ and hence $|G|\mid |G:H|!$. Since $|G|=60,\ |G:H|\geq 5$, i.e. $|H|\leq 12$.
+\item If $P_1,P_2\in\Syl_2(G)$ and $P_1\cap P_2\neq \{1\}$, then $H=\langle P_1\cup P_2\rangle\Rightarrow |H|=12$. Indeed, let $x\in P_1\cap P_2\backslash\{1\}$. Then $x\in Z(P_1)\cap Z(P_2)$ since $|P|=4$ and all groups of order 4 are abelian. So $H=\langle P_1\cup P_2\rangle \leq C_G(x)$. Since $G$ is simple, $Z(G)=\{1\}$, so $C_G(x)\lneq G$ and so $H\lneq G$. By claim 1 $|H|\leq 12$.
+
+\begin{flushright}
+\textit{Week 9, lecture 1 starts here}
+\end{flushright}
 \end{enumerate}
 \end{proof}
 
 \section{Soluble group}
+\begin{flushright}
+\textit{Week 9, lecture 2 starts here}
+\end{flushright}
+
+\begin{flushright}
+\textit{Week 9, lecture 3 starts here}
+\end{flushright}
 \end{document}
