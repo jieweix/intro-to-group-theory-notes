@@ -16,7 +16,12 @@
   \let\@ifnextchar\new@ifnextchar
   \array{#1}}
 \makeatother
-
+\makeatletter
+\DeclareRobustCommand{\pns}{\mathrel{\text{$\m@th\proper@ideal$}}}
+\newcommand{\proper@ideal}{%
+  \ooalign{$\lneq$\cr\raise.22ex\hbox{$\lhd$}\cr}%
+}
+\makeatother
 
 \SelectTips{eu}{}
 \setlength{\fboxsep}{0pt}
@@ -542,6 +547,7 @@ Let $\theta:G\rightarrow H$ be an homomorphism. Then
 \end{thm}
 
 \begin{thm}[2nd isomorphism theorem]
+\label{thm:2ndiso}
 Let $H\leq G$ and $N\unlhd G$. Then
 \begin{enumerate}
 \item $HN=NH\leq G$.
@@ -551,13 +557,15 @@ Let $H\leq G$ and $N\unlhd G$. Then
 \end{thm}
 
 \begin{thm}[3rd isomorphism theorem]
+\label{thm:3rdiso}
 Let $N,K\unlhd G : N\leq K$. Then
 \[
-(G/N)/(K/N)\cong G/K.
+K/N \unlhd G/N \quad \text{and} \quad (G/N)/(K/N)\cong G/K.
 \]
 \end{thm}
 
 \begin{thm}[Correspondence (or 4th isomorphism) theorem]
+\label{thm:correspondence}
 Let $N\unlhd G$. Then the map
 \[
 f:\{J:N\leq J\leq G\} \rightarrow \{X:X\leq G/N\}
@@ -1791,21 +1799,152 @@ $|G|=12\Rightarrow G\cong$ either $C_{12},\ C_2\times C_6,\ \Dic_{12},\ A_4$ or 
 The only simple group of order 60 is $A_5$.
 \end{thm}
 \begin{proof}
-Let $G$ be a simple group of order 60. We claim:
+Let $G$ be a simple group of order $60=2^2\times3\times5$. We claim:
 \begin{enumerate}
-\item If $H\lneq G$ then $|H|\leq 12$. Indeed, since $G$ is simple, $G$ acts faithfully on $X=G/H$ (as $\ker(G,X,\cdot)\leq H\lneq G$), so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_{|G:H|}$ and hence $|G|\mid |G:H|!$. Since $|G|=60,\ |G:H|\geq 5$, i.e. $|H|\leq 12$.
-\item If $P_1,P_2\in\Syl_2(G)$ and $P_1\cap P_2\neq \{1\}$, then $H=\langle P_1\cup P_2\rangle\Rightarrow |H|=12$. Indeed, let $x\in P_1\cap P_2\backslash\{1\}$. Then $x\in Z(P_1)\cap Z(P_2)$ since $|P|=4$ and all groups of order 4 are abelian. So $H=\langle P_1\cup P_2\rangle \leq C_G(x)$. Since $G$ is simple, $Z(G)=\{1\}$, so $C_G(x)\lneq G$ and so $H\lneq G$. By claim 1 $|H|\leq 12$.
+\item If $H\lneq G$ then $|H|\leq 12$.
+
+Indeed, since $G$ is simple, $G$ acts faithfully on $X=G/H$ (as $\ker(G,X,\cdot)\leq H\lneq G$), so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_{|G:H|}$ and hence $|G|\mid |G:H|!$. Since $|G|=60,\ |G:H|\geq 5$, so $|H|\leq 12$, i.e. $G$ has no subgroup of index 4 or less.
+\item If $P_1,P_2\in\Syl_2(G)$ and $P_1\cap P_2\neq \{1\}$, then $H=\langle P_1\cup P_2\rangle\Rightarrow |H|=12$.
+
+Indeed, let $x\in P_1\cap P_2\backslash\{1\}$. Then $x\in Z(P_1)\cap Z(P_2)$ since $|P|=4$ and all groups of order 4 are abelian. So $H=\langle P_1\cup P_2\rangle \leq C_G(x)$. Since $G$ is simple, $Z(G)=\{1\}$, so $C_G(x)\lneq G$ and so $H\lneq G$. By claim 1 $|H|\leq 12$.
 
 \begin{flushright}
 \textit{Week 9, lecture 1 starts here}
 \end{flushright}
+
+Now, $4\mid |H|$ since $|P_1|=4$. Also, $|\Syl_2(H)|\equiv 1\Mod 2$ by Sylow theorems, i.e. it's odd, and by \ref{coro:consequence1Sylow} $|\Syl_2(H)|\mid |H|$, so $4\times(\text{an odd number})\mid |H|$. But as $P_1,P_2\leq H,\ |\Syl_2(H)|\geq 2$, so $|H|\geq 12$. We conclude that $|H|=12$.
+\item If $P_1\cap P_2=\{1\} \ \forall P_1\neq P_2,\ P_1,P_2\in\Syl_2(G)$ then $H=N_G(P)$ has order 12 $\forall P\in\Syl_2(G)$.
+
+Indeed, again $|\Syl_2(G)|=|G:N_G(P)|$ is odd, so $|\Syl_2(G)|\in\{1,3,5,15\}$. It's not 1 since $G$ is simple, it's not 3 by claim 1, so $|\Syl_2(G)|\in\{5,15\}$. Suppose it's 15. Note that $|\Syl_5(G)|=6$, and by \ref{coro:consequence2Sylow}, since $|G|_5=5,\ |F_5(G)|=6\times(4-1)=24$. By the assumption that $P_i\backslash\{1\}$ are disjoint,
+\[
+|F_2(G)|=\left|\bigcup_{P\in\Syl_2(G)} P\backslash \{1\}\right|=15\times(4-1)=45,
+\]
+so we have at least 69 elements in a group of order 60, an absurdity. Hence $|\Syl_2(G)|=5$ and $|N_G(P)|=12$. Combined with claim 2, this means $G$ always has a subgroup of index 5.
 \end{enumerate}
+Now let $H\leq G$ be a subgroup of index 5, then again by argument in proof of claim 1, $G\cong$ a subgroup of $S_5$, but the only subgroup of $S_n$ of order $\frac{n!}{2}$ is $A_n$.
 \end{proof}
 
-\section{Soluble group}
+\section{Soluble group and Jordan–Hölder theorem}
+\subsection{Composition series}
+\begin{notation}
+$H\lneq G$ means $H$ is a proper subgroup and $H\pns G$ means $H$ is a proper normal subgroup.
+\end{notation}
+\begin{defn}
+A \textit{composition series} for a group $G$ is a series
+\[
+\{1_G\}=G_0\pns G_1\pns\cdots\pns G_r=G
+\]
+where the (finite) $r$ is called \textit{length} of the series, such that $G_i/G_{i-1}$ is simple $\forall 1\leq i\leq r$.
+\end{defn}
+\begin{example}
+\label{example:compositionseries}
+\begin{enumerate}
+\item If $G=D_{2p}$ with the usual generators $\sigma,\tau$, then
+\[
+G_0=\{1\},\ G_1=\langle\sigma\rangle,\ G_2=G
+\]
+is a composition series since $C_2$ and $C_p$ are simple.
+\item If $G=S_n$ where $n\geq 5$ then
+\[
+G_0=\{1\},\ G_1=A_n,\ G_2=G\]
+is a composition series.
+\item If $G=D_8$ with $\sigma=(1,2,3,4)$ and $\tau=(1,4)(2,3)$, then
+\[
+G_0=\{1\},\ G_1=\langle\sigma^2\rangle,\ G_2=\langle\sigma^2,\tau\rangle,\ G_3=G
+\]
+is a composition series. We could have also set $G_2=\langle\sigma\rangle$.
+\end{enumerate}
+\end{example}
+
+\begin{thm}
+Every finite group has a composition series.
+\end{thm}
+\begin{proof}
+By convention, the trivial group has the composition series $G_0=G$ of length 0. We then proceed to prove by induction on $|G|$ and assume all groups of order $<|G|$ have a composition series.
+
 \begin{flushright}
 \textit{Week 9, lecture 2 starts here}
 \end{flushright}
+
+If $G$ is simple then $G_0=\{1\},\ G_1=G$ is a composition series, so suppose $G$ is not simple. Then $\exists N: \{1\}\neq N\neq G$ and $N\unlhd G$. By inductive hypothesis, $N$ and $G/N$ both have a composition series, and one writes
+\[
+\begin{aligned}
+\{1_G\}&=N_0\pns N_1\pns \cdots\pns N_r=N \\
+\{1_{G/N}\}&=\overline{G_0}\pns\overline{G_1}\pns\cdots\pns\overline{G_s}=G/N
+\end{aligned}
+\]
+Now, by Theorem \ref{thm:correspondence}, $\exists X_i:N\leq X_i\leq G$ and $X_i/N=\overline{G_i}$ for all $i=1,\ldots,s$. Also by Theorem \ref{thm:3rdiso}, one has
+\[
+\frac{X_i/N}{X_{i-1}/N}\cong \frac{X_i}{X_{i-1}},
+\]
+which is simple. Now define
+\[
+G_i:=\left\{ \begin{aligned}
+& N_i,\quad && 1\leq i\leq r \\
+& X_{i-r},\quad && r+1\leq i \leq r+s
+\end{aligned} \right.
+\]
+and note that $X_r=N$ since $\{1_{G/N}\}=N/N$, so
+\[
+G_0\pns G_1\pns\cdots\pns G_{r+s}=G
+\]
+is a composition series.
+\end{proof}
+
+\begin{coro}[Direct byproduct of proof but useful to write down]
+Let $G$ be a finite group, $N\unlhd G$, and
+\[
+\begin{aligned}
+\{1_G\}&=N_0\pns N_1\pns\cdots\pns N_r=N \\
+\{1_{G/N}\}&=N/N\pns X_1/N\pns\cdots\pns X_s/N=G/N
+\end{aligned}
+\]
+be composition series for $N$ and $G/N$ where $N\leq X_i\leq G$, then
+\[
+G_i:=\left\{ \begin{aligned}
+&N_i,\quad &&1\leq i\leq r \\
+&X_{i-r},\quad &&r+1\leq i \leq r+s
+\end{aligned} \right.
+\]
+yields a composition series.
+\end{coro}
+
+\begin{example}
+Recall \ref{example:compositionseries}.3 in which we have two different composition series for $D_8$. But they are not that different after all: length is both 3 and all $G_i/G_{i-1}\cong C_2$ in both cases. Let's codify this.
+\end{example}
+
+\begin{defn}
+Let
+\[
+\tag{I}
+\{1_G\}=A_0\pns\cdots\pns A_r=G
+\]
+\[
+\tag{II}
+\{1_G\}=B_0\pns\cdots\pns B_s=G
+\]
+be 2 composition series for a group $G$. We say (I) and (II) are \textit{equivalent} (and write (I) $\sim$ (II)) if $r=s$ and $\exists$ a bijection
+\[
+f:\{A_i/A_{i-1} : 1\leq i\leq r\} \rightarrow \{B_j/B_{j-1}:1\leq j\leq s\}
+\]
+such that $A_i/A_{i-1}\cong f(A_i/A_{i-1})$.
+\end{defn}
+
+\begin{thm}[Jordan–Hölder]
+Any two composition series of a finite group are equivalent.
+\end{thm}
+\begin{proof}
+WLOG assume $r\leq s$ and do induction on $r$. Base case $r=0$ is trivial so suppose $r>0$ and statement is true for smaller $r$.
+\begin{enumerate}
+\item[$1^\circ$] $A_{r-1}=B_{s-1}$ are the same group, then the two series are equivalent by inductive hypothesis.
+\item[$2^\circ$] $A_{r-1}\neq B_{s-1}$. The idea is to construct two new composition series to `link' the current ones together. Let $D:=A_{r-1}\cap B_{s-1}$. We claim $D\unlhd A_{r-1}$ and $A_{r-1}/D\cong G/B_{s-1}$ (and symmetrically $D\unlhd B_{s-1}$ and $B_{s-1}/D\cong G/A_{r-1})$. Indeed, note that by Theorem \ref{thm:2ndiso}.2, since $A_{r-1}\unlhd A_r=G$ so $A_{r-1}\cap B_{s-1}\unlhd B_{s-1}$ and since $B_{s-1}\unlhd B_s=G$ so $A_{r-1}\cap B_{s-1}\unlhd A_{r-1}$. Again by \ref{thm:2ndiso}.3,
+\[
+\frac{A_{r-1}}{D} = \frac{A_{r-1}}{A_{r-1}\cap B_{s-1}} \cong \frac{A_{r-1}B_{s-1}}{B_{s-1}}.
+\]
+
+\textit{proof to be continued...}
+\end{enumerate}
+\end{proof}
 
 \begin{flushright}
 \textit{Week 9, lecture 3 starts here}
