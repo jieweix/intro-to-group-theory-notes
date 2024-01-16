@@ -28,6 +28,10 @@
 \setlength\parskip{0.3em}
 \setlength{\parindent}{0 pt}
 
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\Dic}{\text{Dic}}
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\Syl}{\text{Syl}}
@@ -96,10 +100,10 @@ The number of elements in a group $(G,\circ)$ is called the order of $G$, denote
 \end{remark}
 
 \begin{example}
-Let $G=\mathbb Z$. Then
+Let $G=\Z$. Then
 \begin{enumerate}
-\item If we define $\circ:G\times G\rightarrow G$ by $g\circ h=g+h$ for $g,h\in \mathbb Z$ then we know $(G,\circ)$ is a group and $1_G=0,\ g^{-1}=-g \ \forall g\in G$.
-\item For the same set, if we define $g\circ h=g\times h$ then $(G,\circ)$ is not a group for lack of inverses for $g\in \mathbb Z \backslash \{\pm 1\}$.
+\item If we define $\circ:G\times G\rightarrow G$ by $g\circ h=g+h$ for $g,h\in \Z$ then we know $(G,\circ)$ is a group and $1_G=0,\ g^{-1}=-g \ \forall g\in G$.
+\item For the same set, if we define $g\circ h=g\times h$ then $(G,\circ)$ is not a group for lack of inverses for $g\in \Z \backslash \{\pm 1\}$.
 \end{enumerate}
 \end{example}
 
@@ -120,7 +124,7 @@ Let $G$ be a group.
 \end{defn}
 
 \begin{example}
-$(\mathbb Z,+)$ is abelian.
+$(\Z,+)$ is abelian.
 \end{example}
 
 \begin{exe}[Commuting elements in groups]
@@ -198,17 +202,17 @@ Define a bijection $\theta:\Sym(X)\rightarrow X(n)$ by $\theta(f)=(f(x_1),\ldots
 \item If $(a_1,\ldots,a_n)\in X(n)$, then define $f:X\rightarrow X$ by $f(x_i)=a_i$ for $1\leq i\leq n$. Clearly, $f\in \Sym(X)$ and $\theta(f) = (a_1,\ldots,a_n)$, so $\theta$ is surjective.
 \end{enumerate}
 It follows that $|\Sym(X)|=|X(n)|=n!$.
-\item Let $f\in\Sym(X)$. If $f=\id_X$ then $f=()$ so it's a cycle. Now suppose $f$ is not $\id_X$. Let $Y=\{x\in X:f(x)\neq x\}$. Note that since $|\Sym(X)|$ is finite by 1., $\exists n\in \mathbb N$ such that $f^n=\id_X$.
+\item Let $f\in\Sym(X)$. If $f=\id_X$ then $f=()$ so it's a cycle. Now suppose $f$ is not $\id_X$. Let $Y=\{x\in X:f(x)\neq x\}$. Note that since $|\Sym(X)|$ is finite by 1., $\exists n\in \N$ such that $f^n=\id_X$.
 
-In particular, if we fix $a_1\in Y$, then we may define $m_1:=\min\{m\in \mathbb N:f^m(a_1)=a_1\}$ since the set is nonempty. Now, for $2\leq i\leq m_1$, define $a_i:=f(a_{i-1})$. If $Y=\{a_1,\ldots,a_{m_1}\}$, then by definition of cycle, one has $f=(a_1,\ldots,a_m)$.
+In particular, if we fix $a_1\in Y$, then we may define $m_1:=\min\{m\in \N:f^m(a_1)=a_1\}$ since the set is nonempty. Now, for $2\leq i\leq m_1$, define $a_i:=f(a_{i-1})$. If $Y=\{a_1,\ldots,a_{m_1}\}$, then by definition of cycle, one has $f=(a_1,\ldots,a_m)$.
 
-Now suppose $Y\backslash \{a_1,\ldots,a_{m_1}\}\neq \varnothing$. Choose $a_{m_1+1} \in Y\backslash \{a_1,\ldots,a_{m_1}\}$, and define $m_2:=\min\{m\in \mathbb N:f^m(a_{m_1+1})=a_{m_1+1}\}$. For $m_1+2\leq i\leq m_2$, again define $a_i:=f(a_{i-1})$, then if $Y=\{a_1,\ldots,a_{m_1},a_{m_1+1},\ldots,a_{m_2}\}$, one has $f=(a_1,\ldots,a_m)(a_{m+1},\ldots,a_{m_2})$. If not, we continue inductively. Since $X$ is finite, this must terminate, and when it does $f$ will be a product of disjoint cycles. The uniqueness follows from the algorithm immediately.
+Now suppose $Y\backslash \{a_1,\ldots,a_{m_1}\}\neq \varnothing$. Choose $a_{m_1+1} \in Y\backslash \{a_1,\ldots,a_{m_1}\}$, and define $m_2:=\min\{m\in \N:f^m(a_{m_1+1})=a_{m_1+1}\}$. For $m_1+2\leq i\leq m_2$, again define $a_i:=f(a_{i-1})$, then if $Y=\{a_1,\ldots,a_{m_1},a_{m_1+1},\ldots,a_{m_2}\}$, one has $f=(a_1,\ldots,a_m)(a_{m+1},\ldots,a_{m_2})$. If not, we continue inductively. Since $X$ is finite, this must terminate, and when it does $f$ will be a product of disjoint cycles. The uniqueness follows from the algorithm immediately.
 \end{enumerate}
 \end{proof}
 
 \subsection{Linear group}
 \begin{defn}
-$F$ is a field and $n\in \mathbb N$. We define
+$F$ is a field and $n\in \N$. We define
 \[
 GL_n(F) := \{A:A\text{ an invertible }n\times n \text{ matrix over } F\},
 \]
@@ -222,7 +226,7 @@ a group with matrix multiplication as operation. This is called \textit{general 
 \begin{enumerate}
 \item Each field $F$ has an additive and multiplicative identity $0_F$ and $1_F$. Given clear context, they will be denoted simply 0 and 1 respectively.
 \item An $n\times n$ matrix $A$ over $F$ is invertible iff $\det A\neq 0$ iff rows (or columns) of $A$ are linearly independent.
-\item If $F$ is a finite field, then $|F|=p^f$ for some prime $p$ and $f\in\mathbb N$. Moreover, for each prime $p$ and each $f\in\mathbb N$, $\exists!$ a field (up to isomorphism) $F:|F|=p^f$. $p$ is called the \textit{characteristic} of $F$, and satisfies that $p\alpha=0 \ \forall \alpha\in F$.
+\item If $F$ is a finite field, then $|F|=p^f$ for some prime $p$ and $f\in\N$. Moreover, for each prime $p$ and each $f\in\N$, $\exists!$ a field (up to isomorphism) $F:|F|=p^f$. $p$ is called the \textit{characteristic} of $F$, and satisfies that $p\alpha=0 \ \forall \alpha\in F$.
 \item If $F$ is a field then $F^{\times}:=F\backslash \{0\}$ is a group with multiplication as group operation inherited from $F$.
 \end{enumerate}
 \end{remark}
@@ -242,7 +246,7 @@ See sheet 1.
 
 \subsection{Order of elements}
 \begin{defn}
-The \textit{order} of $g\in G$, denoted $|g|$, is defined $|g|:=\min \{n\in\mathbb N:g^n= 1_G\}$. If the set is $\varnothing$ then $|g|:=\infty$.
+The \textit{order} of $g\in G$, denoted $|g|$, is defined $|g|:=\min \{n\in\N:g^n= 1_G\}$. If the set is $\varnothing$ then $|g|:=\infty$.
 \end{defn}
 \begin{example}
 \begin{enumerate}
@@ -287,10 +291,10 @@ So $|g|=\lcm (m,k)$ where $m=|\alpha|$ and $k=|\beta|$ as elements of $F^\times$
 \label{lemma:orderlem}
 Let $a,b\in G$ of finite order. Then
 \begin{enumerate}
-\item If $l\in \mathbb N$, then $a^l=1$ iff $|a|\mid l$.
-\item Let $m\in \mathbb N$, then $\displaystyle |a^m|=\frac{|a|}{\gcd (|a|,m)}$.
+\item If $l\in \N$, then $a^l=1$ iff $|a|\mid l$.
+\item Let $m\in \N$, then $\displaystyle |a^m|=\frac{|a|}{\gcd (|a|,m)}$.
 \item If $a,b$ commute then $|ab|\mid \lcm (|a|,|b|)$.
-\item If $a,b$ commute and $a^i=b^j \ \forall i,j\in \mathbb N$ only when they are both 1 (i.e. $\langle a\rangle \cap \langle b\rangle =\{1\}$) then $|ab|= \lcm (|a|,|b|)$.
+\item If $a,b$ commute and $a^i=b^j \ \forall i,j\in \N$ only when they are both 1 (i.e. $\la a\ra \cap \la b\ra =\{1\}$) then $|ab|= \lcm (|a|,|b|)$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -302,7 +306,7 @@ Now let $k=\gcd (|a|,m)$. We write $m=ks$, then $a^{m\frac{|a|}{k}}=a^{|a|s}=1$,
 \begin{flushright}
 \textit{Week 2, lecture 1 starts here}
 \end{flushright}
-By Bézout's lemma, $\exists s,t\in\mathbb Z:k=s|a|+tm$, so $a^k=a^{s|a|+tm}=(a^{|a|})^s a^{tm}=a^{tm}$. Then $a^{tm|a^m|}=((a^m)^{|a^m|}))^t=1^t=1$. This implies $|a^{tm}|\mid a^m$ by 1. So $\frac{|a|}{k}=|a^k|=|a^tm|\mid |a^m|$.
+By Bézout's lemma, $\exists s,t\in\Z:k=s|a|+tm$, so $a^k=a^{s|a|+tm}=(a^{|a|})^s a^{tm}=a^{tm}$. Then $a^{tm|a^m|}=((a^m)^{|a^m|}))^t=1^t=1$. This implies $|a^{tm}|\mid a^m$ by 1. So $\frac{|a|}{k}=|a^k|=|a^tm|\mid |a^m|$.
 \item Let $l:=\lcm(|a|,|b|)$. Then $(ab)^l=a^lb^l=1\times 1=1$, so by 1. $|ab|\mid l$.
 \item Let $k:=|ab|$. Then $k\mid l$, but also, $1=(ab)^k=a^kb^k$ so $a^k=\left(b^{-1}\right)^k$ and by assumption both sides are 1. So $|a|,|b|\mid k$, so $l\mid k$, hence $k=l$.
 \end{enumerate}
@@ -311,7 +315,7 @@ By Bézout's lemma, $\exists s,t\in\mathbb Z:k=s|a|+tm$, so $a^k=a^{s|a|+tm}=(a^
 \label{exe:conjaugatesordersequal}
 \begin{enumerate}
 \item Let $h,g\in G$. Show that $\left|hgh^{-1}\right|=|g|$.
-\item Let $l,m,n>2\in\mathbb N$. Show that $\exists G$ with $a,b\in G:|a|=l,\ |b|=m,\ |ab|=n$. Also:
+\item Let $l,m,n>2\in\N$. Show that $\exists G$ with $a,b\in G:|a|=l,\ |b|=m,\ |ab|=n$. Also:
 \begin{enumerate}
 \item Show that $G$ can be finite.
 \item Show that one can replace $l,m,n>2$ by $l,m,n>1$.
@@ -329,7 +333,7 @@ A nonempty $H\subseteq G$ is a \textit{subgroup} of $G$, denoted $H\leq G$, if
 \end{enumerate}
 \end{defn}
 \begin{defn}
-For a group $G$ and $g\in G$, define $\langle g\rangle:=\{g^n:n\in\mathbb Z\}$ which is called the \textit{cyclic subgroup of} $G$ \textit{generated by} $g$. If $G=\langle g\rangle$ then $G$ is \textit{cyclic} and $g$ is a \textit{generator} for $G$.
+For a group $G$ and $g\in G$, define $\la g\ra:=\{g^n:n\in\Z\}$ which is called the \textit{cyclic subgroup of} $G$ \textit{generated by} $g$. If $G=\la g\ra$ then $G$ is \textit{cyclic} and $g$ is a \textit{generator} for $G$.
 \end{defn}
 \begin{lemma}
 \label{lemma:sgptest}
@@ -366,13 +370,13 @@ h_1h_2=\begin{pmatrix}
 \]
 \end{example}
 \begin{defn}
-Let $A\subseteq G$ be nonempty. The \textit{subgroup of} $G$ \textit{generated by} $A$, denoted $\langle A\rangle$, is
+Let $A\subseteq G$ be nonempty. The \textit{subgroup of} $G$ \textit{generated by} $A$, denoted $\la A\ra$, is
 \[
-\{a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}:m\in\mathbb N,\ a_i\in A,\ \varepsilon_i=\{\pm 1\}\}.
+\{a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}:m\in\N,\ a_i\in A,\ \varepsilon_i=\{\pm 1\}\}.
 \]
 \end{defn}
 \begin{notation}
-If $A=\{g_1,\ldots,g_t\}$ then we often write $\langle A\rangle$ as $\langle g_1,\ldots,g_t\rangle$.
+If $A=\{g_1,\ldots,g_t\}$ then we often write $\la A\ra$ as $\la g_1,\ldots,g_t\ra$.
 \end{notation}
 
 \begin{flushright}
@@ -382,9 +386,9 @@ If $A=\{g_1,\ldots,g_t\}$ then we often write $\langle A\rangle$ as $\langle g_1
 \begin{exe}
 Let $G$ be a group and $A\subseteq$ nonempty.
 \begin{enumerate}
-\item Use Lemma \ref{lemma:sgptest} to show that $\langle A\rangle$ is indeed a subgroup of $G$.
-\item Write $A=\{g_1,\ldots,g_s\}$ and suppose $g_ig_j=g_jg_i \ \forall i,j=1,\ldots,s$. Show that $|\langle A\rangle|\leq \prod_{i=1}^s |g_i|$.
-\item Suppose $g^p=1 \ \forall g\in G$ and $G=\langle x,y\rangle$ for some $x,y\in G$.
+\item Use Lemma \ref{lemma:sgptest} to show that $\la A\ra$ is indeed a subgroup of $G$.
+\item Write $A=\{g_1,\ldots,g_s\}$ and suppose $g_ig_j=g_jg_i \ \forall i,j=1,\ldots,s$. Show that $|\la A\ra|\leq \prod_{i=1}^s |g_i|$.
+\item Suppose $g^p=1 \ \forall g\in G$ and $G=\la x,y\ra$ for some $x,y\in G$.
 \begin{enumerate}
 \item Show that if $p=2,\ |G|\leq 4$.
 \item Show that if $p=3,\ |G|\leq 3^4$.
@@ -451,7 +455,7 @@ and one also has $|gH|=|H| \ \forall g\in G$ since $gH\rightarrow H$ defined by 
 If $G$ is finite and $g\in G$, then $|g|\mid |G|$.
 \end{coro}
 \begin{proof}
-This follows from the fact $|\langle g\rangle |=|g|$ and Lagrange's theorem.
+This follows from the fact $|\la g\ra |=|g|$ and Lagrange's theorem.
 \end{proof}
 
 \subsection{Normal subgroup and quotient group}
@@ -490,7 +494,7 @@ $G$ is \textit{simple} if $\{1_G\}$ and $G$ are the only normal subgroups of $G$
 \end{defn}
 \begin{example}
 \begin{itemize}
-\item $\mathbb Z/p\mathbb Z$ for any prime $p$ (by Lagrange's)
+\item $\Z/p\Z$ for any prime $p$ (by Lagrange's)
 \item $A_n$ for $n\geq 5$
 \end{itemize}
 \end{example}
@@ -631,7 +635,7 @@ Let $H,G\leq \Sym(X)$.
 \item Deduce that $\supp(H)\cap\supp(G)\Rightarrow H\cap G =\{1_{\Sym(X)}\}$.
 \item Is the converse of above true?
 
-No, counterexample: $X=\{1,2,3\},\ G=\langle(1,2)\rangle,\ H=\langle(2,3)\rangle$.
+No, counterexample: $X=\{1,2,3\},\ G=\la(1,2)\ra,\ H=\la(2,3)\ra$.
 \item What if $gh=hg \ \forall g\in G,h\in H$?
 \end{enumerate}
 \end{exe}
@@ -652,7 +656,7 @@ No, counterexample: $X=\{1,2,3\},\ G=\langle(1,2)\rangle,\ H=\langle(2,3)\rangle
 Suppose $x\in\{a_1,\ldots,a_r\}$, which implies $x\neq b_i$ by assumption. So $g(x)=x$ by definition of cycles, hence $f(g(x))=f(x)$. Also, again by definition, $f(x)\in\{a_1,\ldots,a_r\}$, so $f(x)\neq b_i$, hence $g(f(x))=f(x)$. The argument for case $x\notin \{a_1,\ldots,a_r\}$ is symmetric.
 \item The case $m=1$ is seen before in section 1.3. We prove the claim by induction on $m$. Suppose $m\geq 2$ and all precedents are true. Let $g=f_1\ldots f_{m-1}$. We now need three things to finish the proof:
 \begin{enumerate}
-\item Write $f_i=(a_{i_1},\ldots,a_{i_{t_i}})$. Then $\supp(g)=\{a_{i_j}:1\leq i\leq m-1,\ 1\leq j\leq t_i\}$ and $\supp(f_m)=\{a_{m_j}:1\leq j\leq t_m\}$. By assumption $\supp(g)\cap\supp(f_m)=\varnothing$, so $\langle g\rangle \cap \langle f_m\rangle=\{1_{\Sym(X)}\}$ by exercise above.
+\item Write $f_i=(a_{i_1},\ldots,a_{i_{t_i}})$. Then $\supp(g)=\{a_{i_j}:1\leq i\leq m-1,\ 1\leq j\leq t_i\}$ and $\supp(f_m)=\{a_{m_j}:1\leq j\leq t_m\}$. By assumption $\supp(g)\cap\supp(f_m)=\varnothing$, so $\la g\ra \cap \la f_m\ra=\{1_{\Sym(X)}\}$ by exercise above.
 \item $g$ and $f_m$ commute by 1.
 \item $|g|=\lcm(|f_1|,\ldots,|f_{m-1}|)$ by inductive hypothesis.
 \end{enumerate}
@@ -666,7 +670,7 @@ By Lemma \ref{lemma:orderlem}.4 one has the desired.
 \end{flushright}
 Recall that a subgroup of $G$ generated by a nonempty $A\subseteq G$ is defined to be
 \[
-\langle A\rangle :=\left\{ a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}:m\in\mathbb N,\ \varepsilon_i\in\{\pm 1\},\ a_i\in A \right\}.
+\la A\ra :=\left\{ a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}:m\in\N,\ \varepsilon_i\in\{\pm 1\},\ a_i\in A \right\}.
 \]
 \begin{exe}
 \label{exe:checkgeneratingset}
@@ -674,15 +678,15 @@ Let $A\subseteq G$ be nonempty.
 \begin{enumerate}
 \item Show that
 \[
-\langle A\rangle = \bigcap_{A\subseteq H\leq G} H.
+\la A\ra = \bigcap_{A\subseteq H\leq G} H.
 \]
-In particular, if $H\leq G$ and $A\subseteq H$ then $\langle A\rangle\leq H$.
-\item Recall that given $H\leq G,\ N_G(H):=\{g\in G:gHg^{-1}=H\}$. Suppose $g\in G$ and $gag^{-1}\in\langle A\rangle \ \forall a\in A$. Show that $g\in N_G(\langle A\rangle).$ (One only needs to check element in generating set instead of the whole subgroup for normaliser.)
+In particular, if $H\leq G$ and $A\subseteq H$ then $\la A\ra\leq H$.
+\item Recall that given $H\leq G,\ N_G(H):=\{g\in G:gHg^{-1}=H\}$. Suppose $g\in G$ and $gag^{-1}\in\la A\ra \ \forall a\in A$. Show that $g\in N_G(\la A\ra).$ (One only needs to check element in generating set instead of the whole subgroup for normaliser.)
 \end{enumerate}
 \end{exe}
 \begin{defn}
 \label{defn:dihedralgp}
-Let $n\in\mathbb N,\ n\geq 3$ and set $X:=\{1,\ldots,n\}$. Define $\sigma,\tau\in\Sym(X)$ by $\sigma:=(1,2,\ldots,n)$ and $\tau=\prod_{i=1}^{\lfloor n/2\rfloor} (i,n-i+1)=(1,n)(2,n-1)\cdots$. The \textit{dihedral group of order} $2n$ is the permutation group on $X$ defined by $D_{2n}:=\langle\sigma,\tau\rangle.$
+Let $n\in\N,\ n\geq 3$ and set $X:=\{1,\ldots,n\}$. Define $\sigma,\tau\in\Sym(X)$ by $\sigma:=(1,2,\ldots,n)$ and $\tau=\prod_{i=1}^{\lfloor n/2\rfloor} (i,n-i+1)=(1,n)(2,n-1)\cdots$. The \textit{dihedral group of order} $2n$ is the permutation group on $X$ defined by $D_{2n}:=\la\sigma,\tau\ra.$
 \end{defn}
 This is the rigorous (algebraic) definition of $D_{2n}$, but it can also be thought of group of symmetries of a regular $n$-gon.
 \begin{example}
@@ -693,16 +697,16 @@ This is the rigorous (algebraic) definition of $D_{2n}$, but it can also be thou
 \end{example}
 
 \begin{thm}
-Let $n\in\mathbb N,\ n\geq 3$.
+Let $n\in\N,\ n\geq 3$.
 \begin{enumerate}
 \item $|D_{2n}|=2n$.
-\item $N:=\langle\sigma\rangle \unlhd D_{2n}$ and $|N|=n$.
+\item $N:=\la\sigma\ra \unlhd D_{2n}$ and $|N|=n$.
 \end{enumerate}
 \end{thm}
 \begin{proof}
 \begin{enumerate}
 \item See sheet 2.
-\item First note that $\tau\sigma\tau^{-1}=(\tau(1),\ldots,\tau(n))=(n,n-1,\ldots,1)=\sigma^{-1}$ by Theorem \ref{thm:disjointcycle}.3 and definition of $\tau$. Also clearly $\sigma\sigma\sigma^{-1}=\sigma$. Now if $A:=\{\sigma\}$ then we have shown $^\tau \sigma,^\sigma \sigma \in\langle A\rangle$, so by Exercise \ref{exe:checkgeneratingset}.2, $\tau,\sigma\in N_{D_{2n}}(\langle A\rangle)$. Hence $\langle\{\tau,\sigma\}\rangle=D_{2n}\subseteq N_{D_{2n}}(\langle A\rangle)$, i.e. $\langle A\rangle \unlhd D_{2n}$. Also $|N|=|\langle \sigma\rangle|=|\sigma|=n$.
+\item First note that $\tau\sigma\tau^{-1}=(\tau(1),\ldots,\tau(n))=(n,n-1,\ldots,1)=\sigma^{-1}$ by Theorem \ref{thm:disjointcycle}.3 and definition of $\tau$. Also clearly $\sigma\sigma\sigma^{-1}=\sigma$. Now if $A:=\{\sigma\}$ then we have shown $^\tau \sigma,^\sigma \sigma \in\la A\ra$, so by Exercise \ref{exe:checkgeneratingset}.2, $\tau,\sigma\in N_{D_{2n}}(\la A\ra)$. Hence $\la\{\tau,\sigma\}\ra=D_{2n}\subseteq N_{D_{2n}}(\la A\ra)$, i.e. $\la A\ra \unlhd D_{2n}$. Also $|N|=|\la \sigma\ra|=|\sigma|=n$.
 \end{enumerate}
 \end{proof}
 
@@ -735,7 +739,7 @@ Let $\beta:X\rightarrow Y$ be a bijection. Define $\theta:\Sym(X)\rightarrow\Sym
 \textit{Week 3, lecture 3 starts here}
 \end{flushright}
 
-Recall that if $G=\langle B\rangle,\ H=\langle A\rangle$, then $H\unlhd G\Leftrightarrow bab^{-1}\in H \ \forall a\in A, b\in B$.
+Recall that if $G=\la B\ra,\ H=\la A\ra$, then $H\unlhd G\Leftrightarrow bab^{-1}\in H \ \forall a\in A, b\in B$.
 
 \subsection{Group action}
 \begin{defn}
@@ -890,7 +894,7 @@ By Example \ref{example:gpaction}.1, $G$ acts on itself by left multiplication, 
 
 \begin{thm}
 \label{thm:primepowerordergpnontrivZ}
-Let $p$ be prime and $G$ a group of order $p^n$ where $n\in\mathbb N^+$. Then $|Z(G)|>1$.
+Let $p$ be prime and $G$ a group of order $p^n$ where $n\in\N^+$. Then $|Z(G)|>1$.
 \end{thm}
 \begin{proof}
 Observe that
@@ -902,7 +906,7 @@ g\in Z(G)\Leftrightarrow gxg^{-1}=x \ \forall x\in G \Leftrightarrow xgx^{-1}=g 
 \textit{Week 4, lecture 2 starts here}
 \end{flushright}
 
-Let $\orb_G(x_1),\ldots,\orb_G(x_t)$ be the orbits of $G$ in its action by conjugation on $X=G$ (Example \ref{example:gpaction}.2). Assume WLOG that $|\orb_G(x_i)|=1$ for $1\leq i\leq s$ and $|\orb_G(x_i)|>1$ for $s<i\leq t$. By the observation above, one then has $Z(G)=\{x_1,\ldots,x_s\}$ and in particular, $|Z(G)|=s$. If $s<i\leq t$, then $|\orb_G(x)|=p^{a_i}$ for some $a_i\in \mathbb N$ by Corollary \ref{coro:orbpartitionX}.3. Now, by Corollary \ref{coro:orbpartitionX}.2,
+Let $\orb_G(x_1),\ldots,\orb_G(x_t)$ be the orbits of $G$ in its action by conjugation on $X=G$ (Example \ref{example:gpaction}.2). Assume WLOG that $|\orb_G(x_i)|=1$ for $1\leq i\leq s$ and $|\orb_G(x_i)|>1$ for $s<i\leq t$. By the observation above, one then has $Z(G)=\{x_1,\ldots,x_s\}$ and in particular, $|Z(G)|=s$. If $s<i\leq t$, then $|\orb_G(x)|=p^{a_i}$ for some $a_i\in \N$ by Corollary \ref{coro:orbpartitionX}.3. Now, by Corollary \ref{coro:orbpartitionX}.2,
 \[
 |G|=|X|=\sum_{i=1}^t \left|\orb_G(x_i)\right|=s+\sum_{i=s+1}^t p^{a_i}=p^n,
 \]
@@ -953,7 +957,7 @@ x=(g_1,\ldots,g_p)\in X &\Rightarrow 1_G=g_1\cdots g_p \\
 \]
 Now define
 \[
-C:=\langle\sigma\rangle\leq S_p \text{ where }\sigma=(1,2,\ldots,p)
+C:=\la\sigma\ra\leq S_p \text{ where }\sigma=(1,2,\ldots,p)
 \]
 and the action
 \[
@@ -1114,9 +1118,9 @@ Let $H\leq G$.
 
 \begin{example}
 \begin{enumerate}
-\item $G=S_4$ has order 24. Then $|G|_2=2^3,\ |G|_3=3$. One has $\langle (1,2,3)\rangle\in\Syl_3(G)$ and $D_8=\langle (1,2,3,4),(1,4)(2,3)\rangle\in\Syl_2(G)$. Also $\langle(1,2)\rangle$ is a 2-subgroup but not a Sylow 2-subgroup.
+\item $G=S_4$ has order 24. Then $|G|_2=2^3,\ |G|_3=3$. One has $\la (1,2,3)\ra\in\Syl_3(G)$ and $D_8=\la (1,2,3,4),(1,4)(2,3)\ra\in\Syl_2(G)$. Also $\la(1,2)\ra$ is a 2-subgroup but not a Sylow 2-subgroup.
 \item $G=C_n$. Then for each divisor $d$ or $n,\ G$ has a unique subgroup of order $d$. In particular, if $p\mid n$, then $|\Syl_p(G)|=1$. See sheet 2 Q3.
-\item $G=GL_2(F)$ where $F$ is a field of order $p$. Then by Theorem \ref{thm:orderofGLnF}, $|G|=p^{\binom{2}{2}} \prod_{i=1}^2(p^i-1)=p(p-1)(p^2-1)$. One has $x=\begin{pmatrix}1&1\\0&1\end{pmatrix}\in G$ with order $p$. Hence $\langle x\rangle \in \Syl_p(G)$. More generally, $|GL_n(F)|_p=p^{\binom{n}{2}}$ and $U(n,F)$ (the set of upper triangular matrices with 1 on the diagonal) is a Sylow $p$-subgroup.
+\item $G=GL_2(F)$ where $F$ is a field of order $p$. Then by Theorem \ref{thm:orderofGLnF}, $|G|=p^{\binom{2}{2}} \prod_{i=1}^2(p^i-1)=p(p-1)(p^2-1)$. One has $x=\begin{pmatrix}1&1\\0&1\end{pmatrix}\in G$ with order $p$. Hence $\la x\ra \in \Syl_p(G)$. More generally, $|GL_n(F)|_p=p^{\binom{n}{2}}$ and $U(n,F)$ (the set of upper triangular matrices with 1 on the diagonal) is a Sylow $p$-subgroup.
 \end{enumerate}
 \end{example}
 
@@ -1133,7 +1137,7 @@ Let $G$ be a finite group with $p$ a prime divisor of $|G|$.
 \subsection{Wielandt's proof of Sylow theorems 1 \& 4}
 \begin{lemma}
 \label{lemma:1stlemSylow4}
-Let $p$ be prime and $n,m\in\mathbb N^+$ with $\gcd(m,p)=1$. Then
+Let $p$ be prime and $n,m\in\N^+$ with $\gcd(m,p)=1$. Then
 \begin{enumerate}
 \item $\displaystyle p\mid \binom{p}{i}$ for $1\leq i\leq p-1$.
 \item $\displaystyle \binom{p^n m}{p^n}\equiv m\Mod p$.
@@ -1150,7 +1154,7 @@ Now let $a:=(p-1)\cdots (p-i+1),\ b=i!$. Then
 \binom{p}{i}=\frac{pa}{b}\Rightarrow pa=b\binom{p}{i}\Rightarrow p\mid b\binom{p}{i},
 \]
 but clearly $\gcd(p,b)=1$, hence $\displaystyle p\mid \binom{p}{i}$.
-\item Let $F:=\mathbb Z/p\mathbb Z=\{0,1,\ldots,p-1\}$ with usual addition and multiplication modulo $p$. Consider the polynomial $(1+x)^p\in F[x]$.
+\item Let $F:=\Z/p\Z=\{0,1,\ldots,p-1\}$ with usual addition and multiplication modulo $p$. Consider the polynomial $(1+x)^p\in F[x]$.
 \begin{flushright}
 \textit{Week 5, lecture 2 starts here}
 \end{flushright}
@@ -1182,7 +1186,7 @@ and in particular for $i=1$,
 \[
 \binom{p^n m}{p^n}=m \in F.
 \]
-Translating this back to $\mathbb Z$ one has the desired.
+Translating this back to $\Z$ one has the desired.
 \end{enumerate}
 \end{proof}
 
@@ -1309,7 +1313,7 @@ F_p(G)=\bigcup_{P\in\Syl_p(G)} P\backslash \{1_G\}
 \item Let \[
 x\in \bigcup_{P\in\Syl_p(G)} P\backslash \{1_G\}.
 \]
-Then $|x|=p^n$ by Lagrange's, and since $x\neq 1$ one has $x\in F_p(G)$. We haven't used Sylow yet. Now let $x\in F_p(G)$. Then $\langle x\rangle$ is a $p$-subgroup since its order is $|x|$, so $\langle x\rangle$ is contained in a Sylow $p$-subgroup. The desired is then clear
+Then $|x|=p^n$ by Lagrange's, and since $x\neq 1$ one has $x\in F_p(G)$. We haven't used Sylow yet. Now let $x\in F_p(G)$. Then $\la x\ra$ is a $p$-subgroup since its order is $|x|$, so $\la x\ra$ is contained in a Sylow $p$-subgroup. The desired is then clear
 \item[2, 3.] See sheet 3 Q10, 11 respectively.
 \end{enumerate}
 \end{proof}
@@ -1415,7 +1419,7 @@ a contradiction.
 
 \begin{lemma}
 \label{lemma:3cyclesgenAn}
-Let $X$ be the set of 3-cycles in $G=A_n$ for $n\geq 3$. Then $G=\langle X\rangle$, and if $n\geq 5$ then all 3-cycles are conjugate.
+Let $X$ be the set of 3-cycles in $G=A_n$ for $n\geq 3$. Then $G=\la X\ra$, and if $n\geq 5$ then all 3-cycles are conjugate.
 \end{lemma}
 \begin{proof}
 By sheet 2 Q7, every element of $A_n$ can be written as a product of an even number of transpositions. Hence it suffices to prove that $(a,b)(c,d)$ can be written as a product of 3-cycles.
@@ -1527,7 +1531,7 @@ This is not as weird as it looks. If $x,y\in G$ then $xy=yc_{y^{-1}}(x)$ where $
 
 \begin{example}
 \begin{enumerate}
-\item Inversion homomorphism: let $H=\langle x\rangle$ with $|x|=2$ and $K$ be abelian. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{1_H}=\id_K$ and $\phi_x(k)=k^{-1}$.
+\item Inversion homomorphism: let $H=\la x\ra$ with $|x|=2$ and $K$ be abelian. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{1_H}=\id_K$ and $\phi_x(k)=k^{-1}$.
 
 Check $\phi_x$ is an automorphism: indeed $\phi_x\in\Aut(K)$ since it's clearly bijective and as $K$ is abelian, $\phi_x(k_1k_2)=k_2^{-1}k_1^{-1}=k_1^{-1}k_2^{-1}=\phi_x(k_1)\phi_x(k_2)$.
 
@@ -1553,7 +1557,7 @@ To show $f$ is bijective is similar to proof of Lemma \ref{lemma:GisHKthenGcongH
 \end{proof}
 
 \begin{example}[Dihedral groups as semidirect products]
-Recall Definition \ref{defn:dihedralgp}, write $G=D_{2n}=\langle\sigma,\tau\rangle$, and let $C_2\cong H:=\langle \tau\rangle\leq G,\ C_n\cong K:=\langle \sigma\rangle\unlhd G$. Proposition \ref{prop:orderofHK} says
+Recall Definition \ref{defn:dihedralgp}, write $G=D_{2n}=\la\sigma,\tau\ra$, and let $C_2\cong H:=\la \tau\ra\leq G,\ C_n\cong K:=\la \sigma\ra\unlhd G$. Proposition \ref{prop:orderofHK} says
 \[
 |HK|=\frac{|H||K|}{|H\cap K|}=\frac{2\times n}{1}=2n=|G|
 \]
@@ -1583,11 +1587,11 @@ First note that $\dagger$ is satisfied when $n=6,\ n=p$ or $n=p^2$ where $p$ is 
 \textit{Week 7, lecture 3 starts here}
 \end{flushright}
 
-Set $H=\langle x\rangle\leq G$ and note that $K\unlhd G$ since $[G:K]=2,\ H\cap K=\{1_G\}$ since $x\in G\backslash K$ and
+Set $H=\la x\ra\leq G$ and note that $K\unlhd G$ since $[G:K]=2,\ H\cap K=\{1_G\}$ since $x\in G\backslash K$ and
 \[
 |HK|=\frac{|H||K|}{|H\cap K|}=2n=|G|,
 \]
-so $G=HK$. Recall Lemma \ref{lemma:generalformofHKcongHsK}, assumptions of which are all satisfied. It remains to show that conjugation homomorphism $\phi$ is equal to inversion homomorphism here by example above, i.e. showing $\phi_x(k)=k^{-1} \ \forall k\in K$. Since $K$ is cyclic of order $n$, one can write $K=\langle y\rangle$ with $|y|=n$. By exercises below, it suffices to show $\phi_x(y)=y^{-1}$. Note that $xyx^{-1}\in \langle y\rangle$ since $K\unlhd G$, i.e. $xyx^{-1}=y^i$ for some $i\in\{1,\ldots,n-1\}$. Since $\phi_{1_H}=\id_K$, one has
+so $G=HK$. Recall Lemma \ref{lemma:generalformofHKcongHsK}, assumptions of which are all satisfied. It remains to show that conjugation homomorphism $\phi$ is equal to inversion homomorphism here by example above, i.e. showing $\phi_x(k)=k^{-1} \ \forall k\in K$. Since $K$ is cyclic of order $n$, one can write $K=\la y\ra$ with $|y|=n$. By exercises below, it suffices to show $\phi_x(y)=y^{-1}$. Note that $xyx^{-1}\in \la y\ra$ since $K\unlhd G$, i.e. $xyx^{-1}=y^i$ for some $i\in\{1,\ldots,n-1\}$. Since $\phi_{1_H}=\id_K$, one has
 \[
 y=\phi_{1_H}(y)=\phi_{x^2}(y)=(\phi_x\circ \phi_x)(y)=\phi_x(\phi_x(y))=\phi_x(y^i)=\phi_x(y)^i=(xyx^{-1})^n,
 \]
@@ -1596,20 +1600,20 @@ so $y=y^{i^2}$, i.e. $y^{i^2-1}=1_G$. By Lemma \ref{lemma:orderlem}, $n\mid i^2-
 
 \begin{exe}
 \begin{enumerate}
-\item If $H=\langle A\rangle,\ K=\langle B\rangle$, show $hkh^{-1}=k \ \forall h\in H,k\in K\Leftrightarrow aba^{-1}=b \ \forall a\in A,b\in B$.
-\item If $H=\langle x\rangle$ with $|x|=2$ and $K=\langle B\rangle$ is abelian, show $xkx^{-1}=k^{-1} \ \forall k\in K\Leftrightarrow xbx^{-1}=b^{-1} \ \forall b\in B$.
+\item If $H=\la A\ra,\ K=\la B\ra$, show $hkh^{-1}=k \ \forall h\in H,k\in K\Leftrightarrow aba^{-1}=b \ \forall a\in A,b\in B$.
+\item If $H=\la x\ra$ with $|x|=2$ and $K=\la B\ra$ is abelian, show $xkx^{-1}=k^{-1} \ \forall k\in K\Leftrightarrow xbx^{-1}=b^{-1} \ \forall b\in B$.
 \end{enumerate}
 \end{exe}
 
 \subsection{Semidirect product of an abelian group and a cyclic group}
-In this section, we fix a finite group $G$ with an abelian subgroup $K$ of odd order $\frac{|G|}{2}$ (so we know it's normal) and let $H=\langle x\rangle\in\Syl_2(G)$ with $|x|=2$ (as $|G|=2\times$odd number).
+In this section, we fix a finite group $G$ with an abelian subgroup $K$ of odd order $\frac{|G|}{2}$ (so we know it's normal) and let $H=\la x\ra\in\Syl_2(G)$ with $|x|=2$ (as $|G|=2\times$odd number).
 
 \begin{notation}
 For $v\in K,$ write $[v,x]:=vxv^{-1}x^{-1}$ (the commutator).
 \end{notation}
 
 \begin{lemma}[Fitting's]
-Write $[K,x]:=\langle[v,x]:v\in K\rangle$. One has
+Write $[K,x]:=\la[v,x]:v\in K\ra$. One has
 \begin{enumerate}
 \item $xkx^{-1}=k^{-1} \ \forall k\in [K,x]$,
 \item $K\cong [K,x]\times C_K(x)$,
@@ -1669,7 +1673,7 @@ The abelian groups of order 8 are $C_8,\ C_2\times C_4,\ C_2\times C_2\times C_2
 $|G|=p\Rightarrow G\cong C_p$.
 \end{lemma}
 \begin{proof}
-Note that by Lagrange's, any $x\in G\backslash \{1\}$ has $|x|=p$, so $G=\langle x\rangle\cong C_p$.
+Note that by Lagrange's, any $x\in G\backslash \{1\}$ has $|x|=p$, so $G=\la x\ra\cong C_p$.
 \end{proof}
 
 \begin{lemma}
@@ -1683,11 +1687,11 @@ This follows immediately from Corollary \ref{coro:orderp2gpabelian} and Theorem 
 If $p$ is odd, then $|G|=2p\Rightarrow G\cong C_{2p}$ or $D_{2p}$.
 \end{lemma}
 \begin{proof}
-If $G$ is abelian then $G\cong C_{2p}$ by \ref{thm:FTFAG}. If $G$ is nonabelian and let $K\in\Syl_p(G),\ H=\langle x\rangle \in\Syl_2(G)$ where $|x|=2$. Then
+If $G$ is abelian then $G\cong C_{2p}$ by \ref{thm:FTFAG}. If $G$ is nonabelian and let $K\in\Syl_p(G),\ H=\la x\ra \in\Syl_2(G)$ where $|x|=2$. Then
 \begin{enumerate}
 \item $|K|=\frac{|G|}{2}=p$, so $K\cong C_p$,
 \item $x\in G\backslash K$,
-\item If $i^2\equiv 1\Mod p$ then $i\equiv \pm 1\Mod p$ since $\mathbb Z/p\mathbb Z$ is a field,
+\item If $i^2\equiv 1\Mod p$ then $i\equiv \pm 1\Mod p$ since $\Z/p\Z$ is a field,
 \end{enumerate}
 so by Lemma \ref{lemma:spottingD2n} one has $G\cong D_{2p}$.
 \end{proof}
@@ -1704,7 +1708,7 @@ $|G|=2p^2\Rightarrow G\cong$ either $C_{2p^2},\ C_p\times C_{2p},\ GD_{2p^2},\ D
 \begin{enumerate}
 \item If $G$ is abelian then $G\cong C_{2p^2}$ or $C_p\times C_{2p}$ by \ref{thm:FTFAG}.
 
-\item If $G$ is nonabelian, let $K\in\Syl_p(G)$ and $H=\langle x\rangle\in\Syl_2(G)$ where $|x|=2$. Then $K\cong$ either $C_{p^2}$ or $C_p\times C_p$.
+\item If $G$ is nonabelian, let $K\in\Syl_p(G)$ and $H=\la x\ra\in\Syl_2(G)$ where $|x|=2$. Then $K\cong$ either $C_{p^2}$ or $C_p\times C_p$.
 \begin{enumerate}
 \item If $K\cong C_{p^2}$ then similarly the three conditions of \ref{lemma:spottingD2n} are satisfied and $G\cong D_{2p^2}$.
 \begin{flushright}
@@ -1748,7 +1752,7 @@ $(Q_8,\cdot)$ is then a group with its full Cayley table determined, called the 
 \begin{enumerate}
 \item $Z(Q_8)=\{\pm1\}$.
 \item $Q_8$ has 1 element of order 2 ($-1$) and 6 elements of order 4 ($\pm i,\pm j,\pm k$).
-\item $Q_8=\langle i,j\rangle=\langle i,k\rangle=\langle j,k\rangle$.
+\item $Q_8=\la i,j\ra=\la i,k\ra=\la j,k\ra$.
 \end{enumerate}
 \end{remark}
 
@@ -1758,7 +1762,7 @@ $|G|=9\Rightarrow G\cong$ either $C_8,\ C_2\times C_4,\ C_2\times C_2\times C_2,
 \begin{proof}
 \begin{enumerate}
 \item If $G$ is abelian then by \ref{thm:FTFAG} $G\cong$ either $C_8,\ C_2\times C_4$ or $C_2\times C_2\times C_2$.
-\item If $G$ is nonabelian, then of the 7 elements of order $>1$, none has order 8 (since then $G$ would be $C_8$) and at least one has order $\neq 2$ (since if all elements have order 2, $G$ would be abelian), so by Lagrange's there must $\exists u\in G:|u|=4$. Let $K=\langle u\rangle$ and $v\in G\backslash K$ with minimal order. One then has $G=\langle u,v\rangle$. We claim $vuv^{-1}=u^{-1}$. Indeed, $vuv^{-1}\in K=\{1,u,u^2,u^{-1}\}$ since $K\unlhd G$. We know $|vuv^{-1}|=|u|=4$ and $|u^2|=2$, so $vuv^{-1}$ is either $u$ or $u^{-1}$. But if $vuv^{-1}=u$ then $G$ would be abelian, a contradiction. Now
+\item If $G$ is nonabelian, then of the 7 elements of order $>1$, none has order 8 (since then $G$ would be $C_8$) and at least one has order $\neq 2$ (since if all elements have order 2, $G$ would be abelian), so by Lagrange's there must $\exists u\in G:|u|=4$. Let $K=\la u\ra$ and $v\in G\backslash K$ with minimal order. One then has $G=\la u,v\ra$. We claim $vuv^{-1}=u^{-1}$. Indeed, $vuv^{-1}\in K=\{1,u,u^2,u^{-1}\}$ since $K\unlhd G$. We know $|vuv^{-1}|=|u|=4$ and $|u^2|=2$, so $vuv^{-1}$ is either $u$ or $u^{-1}$. But if $vuv^{-1}=u$ then $G$ would be abelian, a contradiction. Now
 \begin{enumerate}
 \item If $|v|=2$ then conditions of Lemma \ref{lemma:spottingD2n} are satisfied, so $G\cong D_8$.
 \item If $|v|=4$, note that $G=K\sqcup vK$ and all elements of $vK$ have order 4, so $G$ has 1 element of order 2 ($u^2$) and 6 elements of order 4. It follows that $g^2=u^2 \ \forall g\in G:|g|=4$, since $g^2$ has order 2 and $u^2$ is the only such element. Now if we see $G$ as $\{1,u^2,u^{\pm 1},v^{\pm 1},(uv)^{\pm 1}\}$ we have $G\cong Q_8$.
@@ -1773,7 +1777,7 @@ $|G|=9\Rightarrow G\cong$ either $C_8,\ C_2\times C_4,\ C_2\times C_2\times C_2,
 \subsubsection{Groups of order 12}
 \begin{defn}
 \label{defn:dic}
-Let $H=C_4=\langle x\rangle$ where $|x|=4$ and $K=C_3$. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{x^i}(k)=k^{(-1)^i}$. The group $H\ltimes_\phi K$ is called the \textit{dicyclic group} or order 12, denoted $\Dic_{12}$.
+Let $H=C_4=\la x\ra$ where $|x|=4$ and $K=C_3$. Define $\phi:H\rightarrow\Aut(K)$ by $\phi_{x^i}(k)=k^{(-1)^i}$. The group $H\ltimes_\phi K$ is called the \textit{dicyclic group} or order 12, denoted $\Dic_{12}$.
 \end{defn}
 
 \begin{lemma}
@@ -1784,12 +1788,12 @@ $|G|=12\Rightarrow G\cong$ either $C_{12},\ C_2\times C_6,\ \Dic_{12},\ A_4$ or 
 \item If $G$ is abelian then by \ref{thm:FTFAG} $G\cong$ either $C_{12}$ or $C_2\times C_6$.
 \item If $G$ is nonabelian, then
 \begin{enumerate}
-\item If $G$ has an element $a$ of order 6, let $K=\langle a\rangle$. Then all subgroups of $K$ are normal (see sheet 3 Q9). Now
+\item If $G$ has an element $a$ of order 6, let $K=\la a\ra$. Then all subgroups of $K$ are normal (see sheet 3 Q9). Now
 \begin{enumerate}
 \item If $G\backslash K$ has an element of order 2 then conditions of \ref{lemma:spottingD2n} hold, so $G\cong D_{12}$.
-\item If $G\backslash K$ has no element of order 2, then let $P\in\Syl_2(G)$. We know $P\not\leq K$by Lagrange's, so choose $x\in P\backslash K$. $|x|$ can only be 4 since it cannot be 1 or 2. Let $H=\langle x\rangle$ and $K_1=\langle a^2\rangle$. So $|H|=4,\ |K_1|=3$, and so conditions of \ref{lemma:generalformofHKcongHsK} hold and $G\cong H\ltimes_\phi K_1$ where $\phi$ is conjugation homomorphism. We claim that in this case, $\phi$ is the same as the $\phi$ defined in \label{defn:dic} and so that $G\cong\Dic_{12}$. Indeed, let $k\in\{a^2,a^{-2}\}\subseteq K_1$. Then $G=\langle x,k\rangle$ and $xkx^{-1}$ is either $k$ or $k^{-1}$ since $K_1\unlhd G$. But $xkx^{-1}\neq k$ since $G$ is nonabelian. So $\phi_x(k)=xkx^{-1}=k^{-1}$ and hence $\phi_{x^i}(k)=k^{(-1)^i}$ since $\phi$ is a homomorphism.
+\item If $G\backslash K$ has no element of order 2, then let $P\in\Syl_2(G)$. We know $P\not\leq K$by Lagrange's, so choose $x\in P\backslash K$. $|x|$ can only be 4 since it cannot be 1 or 2. Let $H=\la x\ra$ and $K_1=\la a^2\ra$. So $|H|=4,\ |K_1|=3$, and so conditions of \ref{lemma:generalformofHKcongHsK} hold and $G\cong H\ltimes_\phi K_1$ where $\phi$ is conjugation homomorphism. We claim that in this case, $\phi$ is the same as the $\phi$ defined in \label{defn:dic} and so that $G\cong\Dic_{12}$. Indeed, let $k\in\{a^2,a^{-2}\}\subseteq K_1$. Then $G=\la x,k\ra$ and $xkx^{-1}$ is either $k$ or $k^{-1}$ since $K_1\unlhd G$. But $xkx^{-1}\neq k$ since $G$ is nonabelian. So $\phi_x(k)=xkx^{-1}=k^{-1}$ and hence $\phi_{x^i}(k)=k^{(-1)^i}$ since $\phi$ is a homomorphism.
 \end{enumerate}
-\item If $G$ has no element of order 6, then let $P=\langle x\rangle\in \Syl_3(G)$ where $|x|=3$. By Sylow theorems, $|\Syl_3(G)|\in\{1,4\}$. By \ref{tool:elementorder}.3, $|C_G(x)|$ is odd, and since $x\in C_G(x),\ |C_G(x)=3$ and $|F_3(G)|\geq |G:C_G(x)|=4$. By \ref{coro:consequence2Sylow}.3, $|F_3(G)|=2|\Syl_3(G)|$, so $|\Syl_3(G)|\geq 2$, hence $|\Syl_3(G)|=4$ and $P\ntrianglelefteq G$. Now let $G$ act on $X=G/P$ by left multiplication. By sheet 2 Q9, $\ker(G,X,\cdot)\leq P$. By Lagrange's, $\ker(G,X,\cdot)$ is either trivial or $P$, but kernels are normal, so $\ker(G,X,\cdot)$ is trivial and the action is faithful, so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_4$. The only subgroup of $S_4$ of order 12 is $A_4$.
+\item If $G$ has no element of order 6, then let $P=\la x\ra\in \Syl_3(G)$ where $|x|=3$. By Sylow theorems, $|\Syl_3(G)|\in\{1,4\}$. By \ref{tool:elementorder}.3, $|C_G(x)|$ is odd, and since $x\in C_G(x),\ |C_G(x)=3$ and $|F_3(G)|\geq |G:C_G(x)|=4$. By \ref{coro:consequence2Sylow}.3, $|F_3(G)|=2|\Syl_3(G)|$, so $|\Syl_3(G)|\geq 2$, hence $|\Syl_3(G)|=4$ and $P\ntrianglelefteq G$. Now let $G$ act on $X=G/P$ by left multiplication. By sheet 2 Q9, $\ker(G,X,\cdot)\leq P$. By Lagrange's, $\ker(G,X,\cdot)$ is either trivial or $P$, but kernels are normal, so $\ker(G,X,\cdot)$ is trivial and the action is faithful, so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_4$. The only subgroup of $S_4$ of order 12 is $A_4$.
 \end{enumerate}
 \end{enumerate}
 \end{proof}
@@ -1805,9 +1809,9 @@ Let $G$ be a simple group of order $60=2^2\times3\times5$. We claim:
 \item If $H\lneq G$ then $|H|\leq 12$.
 
 Indeed, since $G$ is simple, $G$ acts faithfully on $X=G/H$ (as $\ker(G,X,\cdot)\leq H\lneq G$), so by \ref{prop:faithfulisosgpsymX}, $G\cong$ a subgroup of $S_{|G:H|}$ and hence $|G|\mid |G:H|!$. Since $|G|=60,\ |G:H|\geq 5$, so $|H|\leq 12$, i.e. $G$ has no subgroup of index 4 or less.
-\item If $P_1,P_2\in\Syl_2(G)$ and $P_1\cap P_2\neq \{1\}$, then $H=\langle P_1\cup P_2\rangle\Rightarrow |H|=12$.
+\item If $P_1,P_2\in\Syl_2(G)$ and $P_1\cap P_2\neq \{1\}$, then $H=\la P_1\cup P_2\ra\Rightarrow |H|=12$.
 
-Indeed, let $x\in P_1\cap P_2\backslash\{1\}$. Then $x\in Z(P_1)\cap Z(P_2)$ since $|P|=4$ and all groups of order 4 are abelian. So $H=\langle P_1\cup P_2\rangle \leq C_G(x)$. Since $G$ is simple, $Z(G)=\{1\}$, so $C_G(x)\lneq G$ and so $H\lneq G$. By claim 1 $|H|\leq 12$.
+Indeed, let $x\in P_1\cap P_2\backslash\{1\}$. Then $x\in Z(P_1)\cap Z(P_2)$ since $|P|=4$ and all groups of order 4 are abelian. So $H=\la P_1\cup P_2\ra \leq C_G(x)$. Since $G$ is simple, $Z(G)=\{1\}$, so $C_G(x)\lneq G$ and so $H\lneq G$. By claim 1 $|H|\leq 12$.
 
 \begin{flushright}
 \textit{Week 9, lecture 1 starts here}
@@ -1842,7 +1846,7 @@ where the (finite) $r$ is called \textit{length} of the series, such that $G_i/G
 \begin{enumerate}
 \item If $G=D_{2p}$ with the usual generators $\sigma,\tau$, then
 \[
-G_0=\{1\},\ G_1=\langle\sigma\rangle,\ G_2=G
+G_0=\{1\},\ G_1=\la\sigma\ra,\ G_2=G
 \]
 is a composition series since $C_2$ and $C_p$ are simple.
 \item If $G=S_n$ where $n\geq 5$ then
@@ -1851,9 +1855,9 @@ G_0=\{1\},\ G_1=A_n,\ G_2=G\]
 is a composition series.
 \item If $G=D_8$ with $\sigma=(1,2,3,4)$ and $\tau=(1,4)(2,3)$, then
 \[
-G_0=\{1\},\ G_1=\langle\sigma^2\rangle,\ G_2=\langle\sigma^2,\tau\rangle,\ G_3=G
+G_0=\{1\},\ G_1=\la\sigma^2\ra,\ G_2=\la\sigma^2,\tau\ra,\ G_3=G
 \]
-is a composition series. We could have also set $G_2=\langle\sigma\rangle$.
+is a composition series. We could have also set $G_2=\la\sigma\ra$.
 \end{enumerate}
 \end{example}
 
@@ -2031,7 +2035,7 @@ so all 3-cycles in $A_n$ are commutators, which therefore generate $A_n$ by Lemm
 \begin{defn}
 The subgroup
 \[
-[G,G]:=\langle[g,h]:g,h\in G\rangle
+[G,G]:=\la[g,h]:g,h\in G\ra
 \]
 is the \textit{commutator subgroup} of $G$.
 \end{defn}
@@ -2040,7 +2044,7 @@ is the \textit{commutator subgroup} of $G$.
 \begin{enumerate}
 \item More generally, we can think about the commutator subgroup of 2 subgroups $H,K\leq G$ with the definition
 \[
-[H:K]=\langle [h,k]:h\in H,k\in K\rangle.
+[H:K]=\la [h,k]:h\in H,k\in K\ra.
 \]
 \item The commutator subgroup is not necessarily the set of commutators. It's a fair mistake to confuse the two since one has to go to order 96 to find a counterexample of commutator subgroup containing non-commutators.
 \end{enumerate}
@@ -2048,7 +2052,7 @@ is the \textit{commutator subgroup} of $G$.
 
 \begin{example}
 \begin{enumerate}
-\item If $G$ is abelian then $[G:G]=\{1_G\}$.
+\item If $G$ is abelian then $[G,G]=\{1_G\}$.
 \item $[A_n,A_n]=A_n$ for $n\geq 5$.
 \end{enumerate}
 \end{example}
@@ -2058,7 +2062,7 @@ is the \textit{commutator subgroup} of $G$.
 \begin{enumerate}
 \item $[G,G]\unlhd G$.
 \item $G/[G,G]$ is abelian.
-\item If $N\unlhd G$ and $G/N$ is abelian then $[G,G]\leq N$, i.e. $[G:G]$ is the smallest normal subgroup $H$ of $G$ with $G/H$ abelian.
+\item If $N\unlhd G$ and $G/N$ is abelian then $[G,G]\leq N$, i.e. $[G,G]$ is the smallest normal subgroup $H$ of $G$ with $G/H$ abelian.
 \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -2080,7 +2084,7 @@ g[h,k]g^{-1}&=ghkh^{-1}k^{-1}g^{-1}=gh(g^{-1}g)k(g^{-1}g)h^{-1}(g^{-1}g)k^{-1}g^
 \end{proof}
 
 \begin{example}
-In $G=D_{2n}$ one has $\tau\sigma\tau^{-1}=\sigma^{-1}$, so $[\tau,\sigma]=\sigma^{-2}$. Also $N:=\langle\sigma\rangle\unlhd G$ and so $K:=\langle\sigma^{-2}\rangle=\langle\sigma^2\rangle\leq N$, which implies $K\unlhd G$ (see sheet 3 Q9) and by definition $K\leq [G,G]$.
+In $G=D_{2n}$ one has $\tau\sigma\tau^{-1}=\sigma^{-1}$, so $[\tau,\sigma]=\sigma^{-2}$. Also $N:=\la\sigma\ra\unlhd G$ and so $K:=\la\sigma^{-2}\ra=\la\sigma^2\ra\leq N$, which implies $K\unlhd G$ (see sheet 3 Q9) and by definition $K\leq [G,G]$.
 \begin{enumerate}
 \item[$1^\circ$] If $n$ is odd then $K=N$ since $|\sigma^2|=|\sigma|$ (2 and $n$ are coprime), and $|G:K|=2$ with $G/K=C_2$, abelian, so $[G,G]\leq K$, hence $[G,G]=K$.
 \item[$2^\circ$] If $n$ is even then $|K|=\frac{n}{2}$ and so $|G/K|=4$ with $G/K$ abelian by \ref{coro:orderp2gpabelian}, so still $[G,G]\leq K$ and hence $[G,G]=K$.
@@ -2101,7 +2105,7 @@ Define $G^{(0)}=G,\ G^{(1)}=[G,G]$ and inductively $G^{(i)}=[G^{(i-1)},G^{(i-1)}
 \begin{remark}
 \begin{enumerate}
 \item $H\leq G\Rightarrow H^{(n)}\leq G^{(n)}$.
-\item For $n,m\in\mathbb N,\ \left(G^{(n)}\right)^{(m)}=G^{(n+m)}$.
+\item For $n,m\in\N,\ \left(G^{(n)}\right)^{(m)}=G^{(n+m)}$.
 \end{enumerate}
 \end{remark}
 
@@ -2111,19 +2115,19 @@ Define $G^{(0)}=G,\ G^{(1)}=[G,G]$ and inductively $G^{(i)}=[G^{(i-1)},G^{(i-1)}
 
 \begin{example}
 \begin{enumerate}
-\item $A_n^{(i)}=A_n \ \forall i\in\mathbb N$ for $n\geq 5$.
-\item $D_{2n}^{(1)}=\langle\sigma^2\rangle$ and $D_{2n}^{(2)}=[\langle\sigma^2\rangle,\langle\sigma^2\rangle]=\{1_G\}$ since cyclic groups are abelian.
+\item $A_n^{(i)}=A_n \ \forall i\in\N$ for $n\geq 5$.
+\item $D_{2n}^{(1)}=\la\sigma^2\ra$ and $D_{2n}^{(2)}=[\la\sigma^2\ra,\la\sigma^2\ra]=\{1_G\}$ since cyclic groups are abelian.
 \end{enumerate}
 Observe the two patterns: one does not terminate at the trivial group and the other does. Also note that $A_n$ is not soluble for $n\geq 5$ while $D_{2n}$ is. This brings us to the following theorem.
 \end{example}
 
 \begin{thm}
 \label{thm:GsoliffGneq1}
-A finite group $G$ is soluble iff $G^{(n)}=\{1_G\}$ for some $n\in\mathbb N$.
+A finite group $G$ is soluble iff $G^{(n)}=\{1_G\}$ for some $n\in\N$.
 \end{thm}
 \begin{proof}
 \begin{itemize}
-\item[$\Rightarrow:$] We prove by induction on $|G|$. The base case is trivial so suppose statement holds for all groups of order $<|G|$ and $|G|>1$. By definition, a composition series $\{1_G\}=G_0\pns\cdots\pns G_r=G$ satisfies $G_i/G_{i-1}$ is cyclic of prime order $\forall 1\leq i\leq r$. In particular, $G_{r-1}\pns G$ and $G/G_{r-1}$ is abelian, so by Theorem \ref{thm:propofcommsubgp} $G^{(1)}\leq G_{r-1}$ and also $G^{(1)}\pns G$. Hence by Lemma \ref{lemma:GsoliffNGNsol}, $G^{(1)}$ is soluble, so by inductive hypothesis $\left(G^{(1)}\right)^n=G^{(1+n)}=\{1_G\}$ for some $n\in\mathbb N$.
+\item[$\Rightarrow:$] We prove by induction on $|G|$. The base case is trivial so suppose statement holds for all groups of order $<|G|$ and $|G|>1$. By definition, a composition series $\{1_G\}=G_0\pns\cdots\pns G_r=G$ satisfies $G_i/G_{i-1}$ is cyclic of prime order $\forall 1\leq i\leq r$. In particular, $G_{r-1}\pns G$ and $G/G_{r-1}$ is abelian, so by Theorem \ref{thm:propofcommsubgp} $G^{(1)}\leq G_{r-1}$ and also $G^{(1)}\pns G$. Hence by Lemma \ref{lemma:GsoliffNGNsol}, $G^{(1)}$ is soluble, so by inductive hypothesis $\left(G^{(1)}\right)^n=G^{(1+n)}=\{1_G\}$ for some $n\in\N$.
 \item[$\Leftarrow:$] We prove by induction on $n$. The base case $n=1$ implies $G$ is abelian, so soluble. Now suppose statement holds for smaller values of $n$ and denote $[G,G]=G^{(1)}$ by $N$. Then
 \[
 N^{(n-1)}=\left(G^{(1)}\right)^{(n-1)}=G^{(n)}=\{1_G\},
@@ -2141,6 +2145,7 @@ so $N$ is soluble by inductive hypothesis. Now $G/N$ is abelian by Theorem \ref{
 
 \subsection{Examples of a soluble group}
 \begin{thm}
+\label{thm:subgpofsolissol}
 Every subgroup of a finite soluble group is soluble.
 \end{thm}
 \begin{proof}
@@ -2148,7 +2153,7 @@ This follows immediately from remark after Definition \ref{defn:derivedseries} a
 \end{proof}
 
 \begin{thm}
-Every group of order $p^n$ where $p$ prime and $n\in\mathbb N$ is soluble.
+Every group of order $p^n$ where $p$ prime and $n\in\N$ is soluble.
 \end{thm}
 \begin{proof}
 Let $G$ be such group and we prove by induction on $n$. The base case is trivial since any group of prime order is abelian, so soluble, so suppose $n>1$ and statement is true for any smaller $n$. Denote $Z(G)$ by $Z$. Note that $Z$ is normal by definition, abelian so soluble, and $|G/Z|<|G|$ since $Z$ is not trivial by Theorem \ref{thm:primepowerordergpnontrivZ}. So $G/Z$ is soluble by inductive hypothesis, hence by Lemma \ref{lemma:GsoliffNGNsol} $G$ is soluble.
@@ -2157,10 +2162,84 @@ Let $G$ be such group and we prove by induction on $n$. The base case is trivial
 \begin{example}[How far can we push this?]
 \begin{enumerate}
 \item Let $G$ be a group of order $2p^n$. If $p=2$ then $G$ is soluble by theorem above. If $p$ is odd, let $P\in\Syl_p(G)$, then $|G:P|=2$ so $P\unlhd G$. Also, $P$ is soluble by theorem above and $G/P\cong C_2$ is soluble, hence by Lemma \ref{lemma:GsoliffNGNsol} $G$ is soluble.
-\end{enumerate}
-\end{example}
-
 \begin{flushright}
 \textit{Week 10, lecture 3 starts here}
 \end{flushright}
+\item Say $|G|=4p^n$. Is $G$ soluble? If $p=2$ then again by theorem above $G$ is soluble, so suppose $p$ is odd. Now we know
+\begin{itemize}
+\item $S_4$ is soluble (see sheet 5 Q3).
+\item Let $G$ act on $X=G/P$ where $P\in\Syl_p(G)$ by left multiplication, then $\ker(G,X,\cdot)\leq P$ (see sheet 2 Q9). By Lagrange's, $\ker(G,X,\cdot)$ has $p$-power order, so it's soluble by theorem above.
+\item $G/\ker(G,X,\cdot)\cong$ a subgroup of $S_4$ by \ref{prop:GhomSymX}, so it's soluble by \ref{thm:subgpofsolissol}.
+\end{itemize}
+So by \ref{lemma:GsoliffNGNsol} $G$ is indeed soluble.
+\item If $|G|=3p^n$, then $G$ is soluble by the same argument and the fact that $S_3$ is soluble.
+\item Challenge: if $|G|=5p^n$, is $G$ soluble? (Yes.) Note $S_5$ is not soluble.
+\end{enumerate}
+\end{example}
+
+\begin{thm}
+Let $G_1,\ldots,G_t$ be finite soluble groups. Then $G=G_1\times\cdots\times G_t$ is soluble.
+\end{thm}
+\begin{proof}[Proof by induction on t] The base case is a tautology, so suppose $t\geq 2$ and result holds for smaller values of $t$, i.e. $X=G_2\times\cdots G_t$ is soluble and we want to prove $G=G_1\times X$ is as well. Consider the projection homomorphism $\pi:G_1\times X\rightarrow X:(g,x)\mapsto x$. Then $\ker\pi=G_1\times \{1_X\}\cong G_1$ is soluble, and $\im\pi=X$ is also soluble. By the 1st isomorphism theorem, $G/\ker\pi\cong\im\pi$, so by \ref{lemma:GsoliffNGNsol} one has the desired.
+\end{proof}
+
+\subsection{Nonexaminable: nilpotent group}
+\begin{defn}
+For a group $G$, define $\gamma_1(G):=G$ and for $i\geq 2$, $\gamma_i(G):=[\gamma_{i-1}G,G]$. Then $\gamma_1(G)\geq\gamma_2(G)\geq\cdots$ form the \textit{lower central series} of $G$.
+\end{defn}
+\begin{defn}
+A group $G$ is \textit{nilpotent} if $\gamma_n(G)=\{1_G\}$ for some $n\in\N$. The maximal $c\in\N:\gamma_c(G)\neq\{1_G\}$ is called the \textit{nilpotency class} of $G$.
+\end{defn}
+\begin{example}
+\begin{enumerate}
+\item All abelian groups are nilpotent of nilpotency class 1.
+\item Let $G=D_8=\la \sigma,\tau\ra$. Then $\gamma_2(G)=[G,G]=\la\sigma^2\ra=Z(G)$, and $\gamma_3(G)=[Z(G),G]=\{1_G\}$, so $D_8$ is nilpotent of nilpotency class 2.
+\end{enumerate}
+\end{example}
+
+\begin{prop}
+\begin{enumerate}
+\item If $H\leq G$ and $G$ is nilpotent, then $H$ is nilpotent.
+\item Let $N\unlhd G$. Then $\gamma_n(G/N)=\gamma_n(G)N/N$. In particular, if $G$ is nilpotent then so is $G/N$.
+\end{enumerate}
+\end{prop}
+\begin{exe}[Before the proof]
+Let $A\subseteq G$. Show that $\la A\ra N/N=\la B\ra$ where $B=\{aN:a\in A\}$.
+\end{exe}
+\begin{proof}
+\begin{enumerate}
+\item By definition, if $H\leq G$ then $\gamma_n(H)\leq\gamma_n(G) \ \forall n\in N$.
+\item We prove by induction on $n$. If $n=1$ then $\gamma_1(G/N)=G/N=GN/N=\gamma_1(G)N/N$, so suppose $n>1$ and result holds for smaller values of $n$. Note $[gN,hN]=[g,h]N \ \forall g,h\in G$. Thus
+\[
+\begin{aligned}
+\gamma_n(G/N)&=\la [xN,yN]:xN\in\gamma_{n-1}(G/N),yN\in G/N\ra \qquad \text{by definition}\\
+&=\la [xN,yN]:xN\in\gamma_{n-1}(G)N/N,yN\in G/N \ra \qquad \text{by inductive hypothesis} \\
+&=\la[xN,yN]:x\in\gamma_{n-1}(G),y\in G\ra \\
+&=\la[x,y]N:x\in\gamma_{n-1}(G),y\in G\ra \\
+&=\la[x,y]:x\in\gamma_{n-1}(G),y\in G\ra N/N\qquad\text{by exercise} \\
+&=\gamma_n(G)N/N. \qquad\text{by definition again}
+\end{aligned}
+\]
+\end{enumerate}
+\end{proof}
+
+\begin{coro}
+Every finite nilpotent group is soluble.
+\end{coro}
+\begin{proof}
+First note that $G^{(0)}=G=\gamma_1(G)$ and an easy inductive proof shows more generally
+\[
+G^{(n-1)}\leq \gamma_n(G) \ \forall n\in \N.
+\]
+Hence, $G$ nilpotent $\Rightarrow \gamma_n(G)=\{1_G\}$ for some $n\in \N\Rightarrow G^{(n-1)}=\{1_G\}\Rightarrow G$ soluble by Theorem \ref{thm:GsoliffGneq1}.
+\end{proof}
+
+\begin{prop}
+If $|G|=p^n$ for $p$ prime then $G$ is nilpotent, i.e.
+\[
+\begin{aligned}
+\{\text{finite groups of prime power order}\}&\subseteq\{\text{finite nilpotent groups}\}\\&\subseteq\{\text{finite soluble groups}\}\subseteq\{\text{finite groups}\}.
+\end{aligned}
+\]
+\end{prop}
 \end{document}
