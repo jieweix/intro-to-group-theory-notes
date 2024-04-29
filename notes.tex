@@ -849,7 +849,7 @@ called the \textit{conjugacy class} of $x$ in $G$, sometimes denoted $^G x$. Als
 called the \textit{centraliser} of $x$ in $G$, sometimes denoted $C_G(x)$.
 \end{example}
 
-\begin{thm}[Orbit-stabiliser]
+\begin{thm}[Orbit–stabiliser]
 Let $G$ be a finite group acting on a set $X$ and $x\in X$. Then
 \[
 |G:\stab_G(x)|=|\orb_G(x)|,
@@ -967,7 +967,7 @@ and the action
 (Check $\cdot$ is indeed an action.) Now
 \begin{enumerate}
 \item If $g\in G$ and $g^p=1_G$ then $(g,\ldots,g)\in X$, and $\sigma^i\cdot(g,\ldots,g)=(g,\ldots,g) \ \forall i$, i.e. $|\orb_C((g,\ldots,g))|=1$.
-\item We claim that the converse is true: if $x$ satisfies $|\orb_C(x)|=1$ then $x=(g,\ldots,g)$ for some $g\in G : g^p=1_G$. Indeed, say $x=(g_1,\ldots,g_p)$. It suffices to show $g_1=g_i \ \forall i$. By the orbit-stabiliser theorem, $|\orb_C(x)|=1$ implies $\stab_C(x)=C$, i.e. $\forall i,$
+\item We claim that the converse is true: if $x$ satisfies $|\orb_C(x)|=1$ then $x=(g,\ldots,g)$ for some $g\in G : g^p=1_G$. Indeed, say $x=(g_1,\ldots,g_p)$. It suffices to show $g_1=g_i \ \forall i$. By the Orbit–stabiliser theorem, $|\orb_C(x)|=1$ implies $\stab_C(x)=C$, i.e. $\forall i,$
 \[
 (g_1,\ldots,g_p)=\sigma^{i-1}(g_1,\ldots,g_p)=(g_i,\ldots ,g_p,g_1,\ldots ,g_{i-1}),
 \]
@@ -994,7 +994,7 @@ By Corollary \ref{coro:orbpartitionX}.3, all orbits not of size 1 have size $p$.
 Let $E_p(G):=\{x\in G:|x|=p\}$ where $p$ prime. Then
 \begin{enumerate}
 \item $|E_p(G)|\equiv -1\Mod p$ (Cauchy's theorem)
-\item $|E_p(G)|\leq |G:C_G(x)| \ \forall x\in G$ by \ref{exe:conjaugatesordersequal}.1 and the orbit-stabiliser theorem.
+\item $|E_p(G)|\geq |G:C_G(x)| \ \forall x\in G$ by \ref{exe:conjaugatesordersequal}.1 and the Orbit–stabiliser theorem.
 \item If $r\neq p$ is a prime and $G$ has no element of order $pr$, then $|C_G(x)|$ is not divisible by $r$ for $x\in E_p(G)$ by Lemma \ref{lemma:orderlem}.4 and Cauchy's theorem.
 \end{enumerate}
 \end{tool}
@@ -1283,7 +1283,7 @@ Let $G,p$ be as above and $P\in \Syl_p(G)$.
 \begin{proof}
 Let $G$ acts on $X:=\Syl_p(G)$ by conjugation (see sheet 2 Q15 that this is indeed an action).
 \begin{enumerate}
-\item By Sylow theorem 2, $\Syl_p(G)$ is explicitly $\{gPg^{-1}:g\in G\}$ which by definition is $\orb_G(P)$. Now $\stab_G(P)=\{g\in G:gPg^{-1}=P\}=N_G(P)$. The desired result then follows from orbit-stabiliser theorem.
+\item By Sylow theorem 2, $\Syl_p(G)$ is explicitly $\{gPg^{-1}:g\in G\}$ which by definition is $\orb_G(P)$. Now $\stab_G(P)=\{g\in G:gPg^{-1}=P\}=N_G(P)$. The desired result then follows from Orbit–stabiliser theorem.
 \item By Lagrange's theorem and part 1, $P\leq N_G(P)\Rightarrow |P| \mid |N_G(P)| \Rightarrow |G:N_G(P)| \mid |G:P|\Rightarrow |\Syl_p(G)| \mid |G:P|$.
 \item We have $P\unlhd G\Leftrightarrow \{gPg^{-1}:g\in G\}=\{P\}\Leftrightarrow \Syl_p(G)=\{P\}\Leftrightarrow |\Syl_p(G)|=1$.
 \end{enumerate}
@@ -1314,7 +1314,7 @@ F_p(G)=\bigcup_{P\in\Syl_p(G)} P\backslash \{1_G\}
 \item Let \[
 x\in \bigcup_{P\in\Syl_p(G)} P\backslash \{1_G\}.
 \]
-Then $|x|=p^n$ by Lagrange's, and since $x\neq 1$ one has $x\in F_p(G)$. We haven't used Sylow yet. Now let $x\in F_p(G)$. Then $\la x\ra$ is a $p$-subgroup since its order is $|x|$, so $\la x\ra$ is contained in a Sylow $p$-subgroup. The desired is then clear
+Then $|x|=p^n$ by Lagrange's, and since $x\neq 1$ one has $x\in F_p(G)$. We haven't used Sylow yet. Now let $x\in F_p(G)$. Then $\la x\ra$ is a $p$-subgroup since its order is $|x|$, so $\la x\ra$ is contained in a Sylow $p$-subgroup. The desired is then clear.
 \item[2, 3.] See sheet 3 Q10, 11 respectively.
 \end{enumerate}
 \end{proof}
